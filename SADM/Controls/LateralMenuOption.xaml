@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="SADM.Controls.LateralMenuOption">
+    <StackLayout HeightRequest="40">
+        <StackLayout Orientation="Horizontal"
+                     HeightRequest="35"
+                     Padding="0"
+                     Margin="0"
+                     x:Name="OptionStackLayout">
+            <Image x:Name="IconImage" 
+                   IsVisible="false"
+                   WidthRequest="20"
+                   HeightRequest="20"
+                   HorizontalOptions="Start"
+                   Margin="10,10,0,10"
+                   VerticalOptions="Center"/>
+            <Label x:Name="TextLabel"
+                   TextColor="White"
+                   FontSize="15"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="0"/>
+        </StackLayout>
+        <BoxView BackgroundColor="White" HeightRequest="1"/>
+    </StackLayout>
+
+</ContentView>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                x:Class="SADM.Views.LoginPage">
+    <Grid VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Column="0"
+                    Grid.Row="0" >
+            <StackLayout VerticalOptions="StartAndExpand">
+                <Image Source="aydlogin.png"
+                       Aspect="AspectFit"
+                       HeightRequest="100"
+                       WidthRequest="200"
+                       HorizontalOptions="Center"
+                       Margin="30,30,30,15"/>
+                <controls:InputBox Text="{Binding Email}"
+                                   Placeholder="{i18n:Translate EmailPlaceholder}"
+                                   ImageLeft="mail.png"
+                                   Margin="20,10,20,5"
+                                   Keyboard="Email"/>
+                <controls:InputBox Text="{Binding Password}"
+                                   Placeholder="{i18n:Translate PasswordPlaceholder}"
+                                   ImageLeft="password.png"
+                                   Margin="20,0,20,10"
+                                   IsPassword="true"/>
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <controls:ImprovedButton Text="{i18n:Translate LoginButton}"
+                                             Command="{Binding LoginAttemptCommand}"
+                                             Style="{StaticResource PurpleButtonStyle}"
+                                             HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="5">
+                    <controls:FlipFlop Pressed="{Binding RememberMe}" 
+                                       HeightRequest="15" 
+                                       WidthRequest="15"
+                                       PressedImage="checkon.png"
+                                       UnPressedImage="checkoff.png"
+                                       VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{i18n:Translate RemindMe}" 
+                           TextColor="{StaticResource BlackTextColor}"
+                           FontSize="13"
+                           VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout Grid.Column="0"
+                     Grid.Row="1" 
+                     Orientation="Horizontal"
+                     Margin="10">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <controls:ImprovedButton Text="{i18n:Translate ForgottenPassword}"
+                                         Command="{Binding PasswordRecoveryAttemptCommand}"
+                                         Style="{StaticResource GrayButtonStyle}"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <controls:ImprovedButton Text="{i18n:Translate CreateAccount}" 
+                                         Command="{Binding SignUpCommand}"
+                                         Style="{StaticResource GrayButtonStyle}"/>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</views:PageBase>

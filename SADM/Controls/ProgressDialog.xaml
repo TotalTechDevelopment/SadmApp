@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="SADM.Controls.ProgressDialog"
+             xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+             HasSystemPadding="False"
+             CloseWhenBackgroundIsClicked="False">
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <controls:ImprovedFrame HorizontalOptions="Center"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="300"
+                                Padding="0"
+                                Margin="5,5,5,5"
+                                HasShadow="True">
+            <StackLayout BackgroundColor="White"
+                         Orientation="Vertical"
+                         Padding="20">
+                <ActivityIndicator HeightRequest="30"
+                                   WidthRequest="30"
+                                   Color="{StaticResource PrimaryColor}"
+                                   IsRunning="true"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="CenterAndExpand"
+                                   Margin="0"/>
+                <Label x:Name="MessageLabel"
+                       Margin="0"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </controls:ImprovedFrame>
+    </StackLayout>
+</pages:PopupPage>

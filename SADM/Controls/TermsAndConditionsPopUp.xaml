@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                 x:Class="SADM.Controls.TermsAndConditionsPopUp"
+                 HasSystemPadding="False"
+                 CloseWhenBackgroundIsClicked="False">
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+        <controls:ImprovedFrame HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="300" 
+
+                                Padding="0" 
+                                Margin="5,5,5,5" 
+                                HasShadow="True">
+            <StackLayout Orientation="Vertical">
+                <Label x:Name="TitleLabel" 
+                       Margin="10,10,10,0"
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource BlueTextColor}"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+
+                <ScrollView HorizontalOptions="FillAndExpand"
+                            HeightRequest="150"
+                            Margin="10,0,10,10">
+                    <controls:ImprovedEditor x:Name="TextLabel"
+                        FontSize="13"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                </ScrollView>
+                
+                <Label x:Name="Title2Label" 
+                       Margin="10,0,10,0"
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource BlueTextColor}"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="false"/>
+
+                <ScrollView HorizontalOptions="FillAndExpand"
+                            HeightRequest="150"
+                            Margin="10,0,10,10">
+                    <controls:ImprovedEditor x:Name="Text2Label"
+                        FontSize="13"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        IsVisible="false"/>
+                </ScrollView>
+                
+                <controls:ImprovedButton x:Name="CancelButton"
+                                         Clicked="HidePopup"
+                                         Style="{StaticResource PurpleButtonStyle}"
+                                         HorizontalOptions="FillAndExpand"
+                                         ImprovedBorderRadius="0"
+                                         ImprovedBorderWidth="0"/>
+                
+            </StackLayout>
+        </controls:ImprovedFrame>
+    </StackLayout>
+</pages:PopupPage>

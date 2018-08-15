@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:behaviors="clr-namespace:SADM.Behaviors;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                x:Class="SADM.Views.MyDataPage">
+    <StackLayout Style="{StaticResource LayoutBaseStyle}">
+        <controls:AppBar Style="{StaticResource AppBarStyle}"/>
+        <Label Style="{StaticResource TitleLabelStyle}" Text="{i18n:Translate MyDataTitle}"/> 
+        <BoxView Style="{StaticResource YellowHorizontalSeparatorStyle}"/>
+        <!-- Begin Content -->
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="20,10,20,10">
+
+                <Label Text="{i18n:Translate NamePlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding FirstName}"
+                                   Keyboard="Text"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate LastNamePlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding LastName}"
+                                   Keyboard="Text"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate SecondLastNamePlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding SecondLastName}"
+                                   Keyboard="Text"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate EmailPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Email}"
+                                   Keyboard="Email"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate StreetPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Street}"
+                                   Keyboard="Text"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate NumberPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Number}"
+                                   Keyboard="Numeric"
+                                   Margin="0,0,0,10">
+                    <controls:InputBox.Behaviors>
+                        <behaviors:OnlyDigitsValidatorBehavior Max="10"/>
+                    </controls:InputBox.Behaviors>
+                </controls:InputBox>
+
+                <Label Text="{i18n:Translate ColonyPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Colony}"
+                                   Keyboard="Text"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate CityPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding City}"
+                                   Keyboard="Text"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate StatePlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding State}"
+                                   Keyboard="Text"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate ZipCodePlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding PostalCode}"
+                                   Keyboard="Numeric"
+                                   Margin="0,0,0,10">
+                    <controls:InputBox.Behaviors>
+                        <behaviors:OnlyDigitsValidatorBehavior Max="5"/>
+                    </controls:InputBox.Behaviors>
+                </controls:InputBox>
+
+                <Label Text="{i18n:Translate PhonePlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Phone}"
+                                   Keyboard="Telephone"
+                                   ImageRight="info.png"
+                                   ImageRightCommand="{Binding PhoneHelpCommand}"
+                                   Margin="0,0,0,10">
+                    <controls:InputBox.Behaviors>
+                        <behaviors:OnlyDigitsValidatorBehavior Max="10"/>
+                    </controls:InputBox.Behaviors>
+                </controls:InputBox>
+
+                <Label Text="{i18n:Translate PasswordPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Password}"
+                                   Keyboard="Text"
+                                   ImageRight="info.png"
+                                   ImageRightCommand="{Binding PasswordHelpCommand}"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate ConfirmPasswordPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding ConfirmPassword}"
+                                   Keyboard="Text"
+                                   ImageRight="info.png"
+                                   ImageRightCommand="{Binding ConfirmPasswordHelpCommand}"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate QuestionPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Question}"
+                                   Keyboard="Text"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+
+                <Label Text="{i18n:Translate AnswerPlaceholder}" 
+                       TextColor="{StaticResource BlackTextColor}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       Margin="0"/>
+                
+                <controls:InputBox Text="{Binding Answer}"
+                                   Keyboard="Text"
+                                   IsRequired="true"
+                                   Margin="0,0,0,10"/>
+                
+                <controls:ImprovedButton Text="{i18n:Translate UpdateDataButton}"
+                                         Command="{Binding UpdateDataAttemptCommand}"
+                                         Style="{StaticResource PurpleButtonStyle}"
+                                         HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+        <!-- End Content -->
+    </StackLayout>
+</views:PageBase>

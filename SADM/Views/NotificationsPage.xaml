@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                x:Class="SADM.Views.NotificationsPage">
+    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0">
+        <controls:AppBar LeftIcon="{Binding LeftIcon}" 
+                         RightIcon="{Binding RightIcon}"
+                         LeftIconCommand="{Binding LeftIconCommand}"
+                         RightIconCommand="{Binding RightIconCommand}"/>
+        <Label Text="{Binding Source={i18n:Translate NotificationsTitle}, Converter={StaticResource StringCaseConverter}, ConverterParameter=u}"
+                       TextColor="{StaticResource YellowColor}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       Margin="10"/>
+        <controls:ImprovedListView ItemsSource="{Binding NotificationList}"
+                                   HasUnevenRows="true"
+                                   BackgroundColor="Transparent"
+                                   SeparatorVisibility="None"
+                                   ItemSelectedCommand="{Binding ShowNotificationCommand}">
+            <controls:ImprovedListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid BackgroundColor="{Binding Type, Converter={StaticResource NotificationTypeToColorConverter}}" RowSpacing="0" Padding="0, 10, 10, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="11"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="0">
+                                <Image Source="{Binding Type, Converter={StaticResource NotificationTypeToIconConverter}}"
+                                       HeightRequest="32"
+                                       WidthRequest="32"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <Label Grid.Column="1" Grid.Row="0" 
+                                   Text="{Binding Title}" 
+                                   TextColor="Black" 
+                                   FontAttributes="Bold"
+                                   FontSize="14"/>
+                            <controls:ImprovedLabel Grid.Column="1" Grid.Row="1" 
+                                                    FontSize="12"
+                                                    Text="{Binding Message}" 
+                                                    TextColor="Black"
+                                                    Lines="2"
+                                                    VerticalOptions="CenterAndExpand"/>
+                            <BoxView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
+                                     HeightRequest="1"
+                                     BackgroundColor="{StaticResource RowDarkColor}" 
+                                     Margin="0,10,0,0"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </controls:ImprovedListView.ItemTemplate>
+        </controls:ImprovedListView>
+    </StackLayout>
+</views:PageBase>

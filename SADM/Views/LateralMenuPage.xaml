@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                  ios:Page.UseSafeArea="true"
+                  x:Class="SADM.Views.LateralMenuPage"
+                  NavigationPage.HasNavigationBar="False">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu" 
+                     Icon="ic_menu.png"
+                     ios:Page.UseSafeArea="true">
+            <StackLayout BackgroundColor="{StaticResource PrimaryColor}" Padding="10,40,10,20">
+                <Label Text="{Binding UserName}"
+                       FontAttributes="Bold"
+                       TextColor="White" 
+                       FontSize="20"/>
+                <BoxView Style="{StaticResource WhiteHorizontalSeparatorStyle}"/>
+
+                <controls:ImprovedListView ItemsSource="{Binding MenuOptionList}"
+                                           VerticalOptions="FillAndExpand"
+                                           HorizontalOptions="FillAndExpand"
+                                           Margin="0,20,0,0"
+                                           HasUnevenRows="true"
+                                           BackgroundColor="Transparent"
+                                           SeparatorVisibility="None"
+                                           ItemSelectedCommand="{Binding OptionSelectedCommand}">
+                    <controls:ImprovedListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Spacing="0">
+                                    <StackLayout Orientation="Horizontal"
+                                                 HeightRequest="40"
+                                                 Padding="0"
+                                                 Margin="0"
+                                                 x:Name="OptionStackLayout">
+                                        <Image Source="{Binding Item1}"
+                                               WidthRequest="20"
+                                               HeightRequest="20"
+                                               HorizontalOptions="Start"
+                                               Margin="0,10,0,10"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="{Binding Item2}"
+                                               TextColor="White"
+                                               FontSize="15"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="0"/>
+                                    </StackLayout>
+                                    <BoxView Style="{StaticResource WhiteHorizontalSeparatorStyle}" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ImprovedListView.ItemTemplate>
+                </controls:ImprovedListView>
+
+                <StackLayout Orientation="Horizontal"
+                             HeightRequest="40"
+                             Padding="0"
+                             Margin="0,10,0,0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseSessionCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="logout.png"
+                           WidthRequest="20"
+                           HeightRequest="20"
+                           HorizontalOptions="Start"
+                           Margin="0,10,0,10"
+                           VerticalOptions="Center"/>
+                    <Label Text="{i18n:Translate MenuCloseSession}"
+                           TextColor="{StaticResource YellowColor}"
+                           FontSize="15"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="0"/>
+                </StackLayout>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

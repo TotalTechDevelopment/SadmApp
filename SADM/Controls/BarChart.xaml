@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<controls:ImprovedFrame xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                        x:Class="SADM.Controls.BarChart"
+                        BackgroundColor="{StaticResource BarChartBackgroundColor}"
+                        Padding="0" 
+                        HorizontalOptions="CenterAndExpand"
+                        HasShadow="True">
+    <StackLayout x:Name="ChartStckLy"
+                 BackgroundColor="{StaticResource BarChartBackgroundColor}"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 Spacing="0"
+                 Orientation="Horizontal">
+    </StackLayout>
+</controls:ImprovedFrame>

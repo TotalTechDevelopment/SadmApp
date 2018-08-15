@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="AppName" xml:space="preserve">
+        <value>SADM</value>
+        <comment>Name of the App</comment>
+    </data>
+    <data name="HudContineDefault" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="LoginLoading" xml:space="preserve">
+        <value>Iniciando sesión...</value>
+    </data>
+    <data name="PasswordRecoveryLoading" xml:space="preserve">
+        <value>Recuperando contraseña...</value>
+    </data>
+    <data name="PasswordRecoverySuccessful" xml:space="preserve">
+        <value>Se envío un correo para recuperar la contraseña.</value>
+    </data>
+    <data name="CreateAccount" xml:space="preserve">
+        <value>CREAR 
+UNA CUENTA</value>
+    </data>
+    <data name="ForgottenPassword" xml:space="preserve">
+        <value>OLVIDÉ MI 
+CONTRASEÑA</value>
+    </data>
+    <data name="RemindMe" xml:space="preserve">
+        <value>Recordarme</value>
+    </data>
+    <data name="LoginButton" xml:space="preserve">
+        <value>ENTRAR</value>
+    </data>
+    <data name="EmailPlaceholder" xml:space="preserve">
+        <value>Correo Electrónico</value>
+    </data>
+    <data name="PasswordPlaceholder" xml:space="preserve">
+        <value>Contraseña</value>
+    </data>
+    <data name="NamePlaceholder" xml:space="preserve">
+        <value>Nombre</value>
+    </data>
+    <data name="LastNamePlaceholder" xml:space="preserve">
+        <value>Apellido paterno</value>
+    </data>
+    <data name="SecondLastNamePlaceholder" xml:space="preserve">
+        <value>Apellido materno</value>
+    </data>
+    <data name="StreetPlaceholder" xml:space="preserve">
+        <value>Calle</value>
+    </data>
+    <data name="NumberPlaceholder" xml:space="preserve">
+        <value>Número</value>
+    </data>
+    <data name="ColonyPlaceholder" xml:space="preserve">
+        <value>Colonia</value>
+    </data>
+    <data name="CityPlaceholder" xml:space="preserve">
+        <value>Ciudad</value>
+    </data>
+    <data name="StatePlaceholder" xml:space="preserve">
+        <value>Estado</value>
+    </data>
+    <data name="CellPhonePlaceholder" xml:space="preserve">
+        <value>Celular (10 dígitos)</value>
+    </data>
+    <data name="PhonePlaceholder" xml:space="preserve">
+        <value>Teléfono</value>
+    </data>
+    <data name="ZipCodePlaceholder" xml:space="preserve">
+        <value>Código Postal</value>
+    </data>
+    <data name="ConfirmPasswordPlaceholder" xml:space="preserve">
+        <value>Confirmar Contraseña</value>
+    </data>
+    <data name="QuestionPlaceholder" xml:space="preserve">
+        <value>¿Cuál será su pregunta de recuperación?</value>
+    </data>
+    <data name="AnswerPlaceholder" xml:space="preserve">
+        <value>Respuesta a la pregunta</value>
+    </data>
+    <data name="EmailEmpty" xml:space="preserve">
+        <value>El correo electrónico es requerido.</value>
+    </data>
+    <data name="EmailInvalid" xml:space="preserve">
+        <value>Correo electrónico inválido.</value>
+    </data>
+    <data name="PasswordEmpty" xml:space="preserve">
+        <value>La contraseña es requerida.</value>
+    </data>
+    <data name="PasswordInvalid" xml:space="preserve">
+        <value>Contraseña inválida.</value>
+    </data>
+    <data name="NameEmpty" xml:space="preserve">
+        <value>El nombre es requerido.</value>
+    </data>
+    <data name="NameInvalid" xml:space="preserve">
+        <value>Nombre inválido.</value>
+    </data>
+    <data name="FirstNameEmpty" xml:space="preserve">
+        <value>Los apellidos son requeridos.</value>
+    </data>
+    <data name="FirstNameInvalid" xml:space="preserve">
+        <value>Los apellidos son inválidos.</value>
+    </data>
+    <data name="PhoneNumberEmpty" xml:space="preserve">
+        <value>El celular es requerido.</value>
+    </data>
+    <data name="PhoneNumberInvalid" xml:space="preserve">
+        <value>Celular inválido.</value>
+    </data>
+    <data name="ZipCodeEmpty" xml:space="preserve">
+        <value>El código postal es requerido.</value>
+    </data>
+    <data name="ZipCodeInvalid" xml:space="preserve">
+        <value>Código postal inválido.</value>
+    </data>
+    <data name="ErrorTitle" xml:space="preserve">
+        <value>Errores:
+</value>
+    </data>
+    <data name="ErrorItem" xml:space="preserve">
+        <value>- {0}</value>
+    </data>
+    <data name="PhoneHelp" xml:space="preserve">
+        <value>INGRESA LOS 10 DÍGITOS, SIN ESPACIO, SOLO NÚMEROS.</value>
+    </data>
+    <data name="PasswordHelp" xml:space="preserve">
+        <value>PENDIENTE POR DEFINIR.</value>
+    </data>
+    <data name="PasswordConfirmHelp" xml:space="preserve">
+        <value>PENDIENTE POR DEFINIR.</value>
+    </data>
+    <data name="TermsAndConditionsFirstPart" xml:space="preserve">
+        <value>Acepto </value>
+    </data>
+    <data name="TermsAndConditionsSecondPart" xml:space="preserve">
+        <value>términos y condiciones.</value>
+    </data>
+    <data name="SignUpButton" xml:space="preserve">
+        <value>CONTINUAR</value>
+    </data>
+    <data name="SignUpTitle" xml:space="preserve">
+        <value>REGISTRO</value>
+    </data>
+    <data name="SignUpLoading" xml:space="preserve">
+        <value>Registrando usuario...</value>
+    </data>
+    <data name="TermsAndConditionsError" xml:space="preserve">
+        <value>Es necesario aceptar los términos y condiciones.</value>
+    </data>
+    <data name="PrivacityTitle" xml:space="preserve">
+        <value>Aviso de Privacidad</value>
+    </data>
+    <data name="PrivacityText" xml:space="preserve">
+        <value>La utilización de cualquiera de las aplicaciones del mismo constituye el pleno y expreso consentimiento por parte del usuario para observar y sujetarse a cada uno de los términos y condiciones que aquí se contienen, en el entendido de que éstos pueden cambiar en cualquier momento y por lo tanto es responsabilidad de Usted mantenerse actualizado al respecto. 
+
+Los datos personales que se soliciten en el sitio serán obligatorios e indispensables para su trámite, por lo que una negativa a proporcionarlos será motivo de considerar por cancelada su solicitud.
+
+Los datos personales que proporcione a través del portal de Servicios de Agua y Drenaje de Monterrey, I.P.D., serán incorporados a un sistema con el fin de dar atención, trámite y seguimiento a los servicios que se prestan a través del mismo, y serán tratados exclusivamente por el área competente que corresponda, según el trámite de que se trate. Asimismo, los datos antes referidos podrán ser transmitidos a las autoridades que resulten competentes, así como a terceros, para lo cual se requerirá de su consentimiento previo en los casos que establece el artículo 145 de la Ley de Transparencia y Acceso a la Información Pública del Estado de Nuevo León.
+Los titulares de las unidades administrativas ante quien se presenten las solicitudes a través del Portal de Servicios de Agua y Drenaje de Monterrey, I.P.D., serán los servidores públicos responsables de resguardar y mantener los datos personales en estricta confidencialidad.
+
+El titular de los datos personales podrá ejercer en todo momento su derecho de acceso, rectificación, cancelación y oposición de datos personales que proporcione, pudiendo hacerlo físicamente en las Oficinas Generales de Servicios de Agua y Drenaje de Monterrey, I.P.D., ubicadas en Matamoros 1717 poniente, colonia Obispado, en el municipio de Monterrey, Nuevo León, o bien a través de la Plataforma Nacional de Transparencia en el siguiente link: https://www.plataformadetransparencia.org.mx/web/guest/inicio, debiendo generar de forma previa un usuario para ello.
+
+Lo anterior en cumplimiento a lo dispuesto en los artículos 1, 2, 3 fracción XVI y XXXII, de la Ley de Transparencia y Acceso a la Información Pública del Estado de Nuevo León; 3 fracción II, 24 fracción VI, 27, 28, 116 y 120 de la Ley General de Transparencia y Acceso a la Información Pública, así como los artículos 1,2,3 fracciones IX, X, XI, 31, 32, 42, 43, 44 y demás relativos de la Ley General de Protección de Datos Personales en Posesión de los Sujetos Obligados.</value>
+    </data>
+    <data name="TermsAndConditionsTitle" xml:space="preserve">
+        <value>Términos y Condiciones</value>
+    </data>
+    <data name="CloseButton" xml:space="preserve">
+        <value>Cerrar</value>
+    </data>
+    <data name="TermsAndConditionsText" xml:space="preserve">
+        <value>La utilización de las aplicaciones del mismo constituye el pleno y expreso consentimiento por parte del usuario para observar y sujetarse a cada uno de los términos y condiciones que aquí se contienen, así como a las políticas de privacidad, políticas de seguridad y, en su caso, cualesquiera otros documentos que conformen parte o regulen la participación del usuario en este sitio. En el supuesto que cualquiera de los términos a los que habrá de sujetarse el usuario cuando acceda a este sitio sean contrarios a sus intereses, deberá abstenerse de hacer uso del mismo.
+
+Definiciones
+Para efectos del presente aviso legal, las palabras que se relacionan a continuación tendrán, en singular o en plural, los siguientes significados:
+Usuario.- La persona física o moral que acceda al sitio de SADM y a los servicios prestados en el mismo.
+Servicio y/o servicios en línea.- Conjunto de operaciones disponibles a los usuarios de SADM mediante transacciones electrónicas.
+Sitio.- Conjunto de páginas información y servicios en el Internet que SADM brinda a sus usuarios.
+Clave de Usuario.- Nombre que identifica al usuario de SADM en los servicios en línea.
+Contraseña.- Clave de acceso que el usuario define para acceder a los servicios en línea.
+
+Obligaciones del usuario
+
+Al utilizar este sitio me obligo a cumplir con los términos y condiciones de su uso, establecidos en el presente documento (en adelante, los “términos y condiciones”), reconozco haberlos leído y entendido, y estoy de acuerdo en sujetarme a todos los términos y condiciones del sitio y en acatar lo que en ellos se establece.
+
+Términos generales
+
+La información y los servicios que ofrece SADM a través de su sitio, hacen referencia exclusivamente a la normatividad que los rige en los Estados Unidos Mexicanos y son formulados para las operaciones que se realicen en su territorio.
+Por el solo hecho de hacer uso de la información y hacer uso de los servicios, se entenderá que el usuario acepta y está de acuerdo con los términos y condiciones del presente aviso legal, así como con las modificaciones que al mismo, en su caso, realice SADM.
+
+Este sitio, la información, los materiales descritos en él y el software que se proporciona, son presentados “como son”, “en el estado en que se encuentran” y están disponibles sin garantía alguna, ya sea expresa o tácita, incluyendo sin limitación, cualquier garantía de comerciabilidad, idoneidad de los materiales para un fin particular, o de no cumplimiento.
+
+Los usuarios no residentes en los Estados Unidos Mexicanos que deseen acceder al sitio, deberán asegurarse que el acceso y uso del mismo, de su contenido y/o de los servicios, les esté permitido de conformidad con la legislación aplicable en su lugar de residencia o del lugar en que se encuentren al momento de acceder al sitio.
+
+El usuario que utilice este sitio fuera del territorio nacional, se hará responsable del cumplimiento de toda la legislación aplicable en el territorio nacional y aquélla que sea aplicable en el lugar donde se encuentre.
+
+La utilización del sitio, así como el acceso y uso de los servicios supondrá la aceptación plena por parte del usuario de: (i) los términos y condiciones vigentes en cada momento en que el usuario acceda y/o utilice los mismos y (ii) cualesquiera modificaciones de los mismos, hayan o no sido debidamente comunicados al usuario.
+
+SADM se reserva el derecho de suspender, interrumpir o dejar de operar el sitio y los servicios, en cualquier momento y el usuario acepta que no tendrá ningún derecho a reclamar o exigir a SADM la disponibilidad del sitio y/o cualquiera de las aplicaciones o software relacionados al mismo.
+
+Marcas y derechos de autor
+
+Todo el contenido exhibido o disponible a través de este sitio está protegido por la legislación vigente en materia de derechos de autor. Las marcas, logotipos, nombres comerciales, patentes, diseños industriales, personajes, y demás derechos de propiedad intelectual (la "propiedad intelectual" en lo sucesivo) exhibidas en este sitio son propiedad de SADM o de quién éste indique, por lo que en todo caso se prohíbe a los usuarios utilizar la “propiedad intelectual” para fines distintos a los que correspondan a los trámites que se realizan en el propio sitio, sin previa autorización por escrito de SADM.
+
+Con el ingreso y la utilización del sitio, sus aplicaciones y software relacionado, el usuario no adquiere ningún derecho de propiedad en relación con la Propiedad Intelectual y en ningún caso dicho uso se entenderá como una autorización o licencia para utilizar los servicios propios del sitio con fines distintos a aquellos para los cuales fue creada.
+
+Los derechos de propiedad intelectual del sitio de SADM en Internet, las pantallas que se muestran, la información y material que aparecen en las mismas, pertenecen a SADM salvo que éste indique lo contrario.
+
+El logotipo de SADM así como las marcas denominativas y mixtas de servicios y nombres comerciales que aparezcan en el sitio, son marcas registradas propiedad de SADM y se encuentran protegidas conforme a la legislación aplicable.
+
+Enlaces con sitios de Internet
+
+SADM proporciona enlaces con otros sitios de Internet para la conveniencia del usuario. SADM no es responsable en relación con tales sitios, cualquier sitio enlazado con ésta es independiente de SADM. En consecuencia, SADM no tiene control sobre tales productos, servicios, materiales o cualquier otra información contenida en o disponible a través de los sitios de dichos terceros. El acceso a cualquier otro sitio enlazado es bajo el propio riesgo del usuario.
+
+En virtud de lo anterior, SADM no garantiza ni asume ningún tipo de responsabilidad por: (a) los daños y perjuicios que se puedan ocasionar por el funcionamiento, disponibilidad, accesibilidad o continuidad de los sitios enlazados; (b) el mantenimiento de los servicios, información, datos, archivos, productos y cualquier clase de material existente en los sitios enlazados; (c) la prestación o transmisión de los servicios, información, datos, archivos, productos y cualquier clase de material existente en los sitios enlazados; y (d) la calidad, licitud, fiabilidad y utilidad de los servicios, información, datos, archivos, productos y cualquier clase de material existente en los sitios enlazados.
+
+Prohibiciones
+
+El usuario no tiene derecho de colocar links, ni derecho de colocar o utilizar en el sitio páginas propias o de terceros sin autorización previa y por escrito de SADM.
+
+En caso de que el usuario coloque links, enlaces para páginas de terceros o cualquier tipo de material que SADM considere inapropiado, inadecuado o que no convenga a los fines del sitio, SADM podrá retirarlo o modificarlo sin ningún tipo de responsabilidad. Lo anterior sin perjuicio de que SADM pueda intentar las acciones que correspondan conforme a la legislación aplicable.
+
+Seguridad de la información
+
+SADM mantiene procedimientos diseñados para proteger la información confidencial sobre el usuario y el uso por parte del usuario de cualquiera de los productos y servicios proporcionados a través del sitio.
+
+La seguridad de la información que se transmite entre el usuario y las páginas de terceros enlazados al sitio de SADM en Internet será responsabilidad exclusiva de dichos terceros y del usuario.
+
+El usuario entiende y acepta que no obstante que SADM protege la información transmitida a través del sitio, dada la naturaleza de Internet, SADM no garantiza que toda transacción electrónica se encuentre libre de riesgo; por lo que el usuario libera de manera absoluta y sin limitación alguna a SADM de cualquier tipo de responsabilidad, civil, penal, administrativa, así como de los daños y perjuicios o cualquier otra que pudiera ser ocasionados por el mal uso, por terceras personas de la información generada, transmitida, recibida o archivada en el sitio.
+
+Autorización para divulgar información
+
+El usuario acepta expresamente que al proporcionar la información requerida para acceder al área denominada como servicios en línea dentro del sitio de SADM, autoriza a SADM a que toda la información que ingrese al sistema pueda ser proporcionada por SADM a un tercero, conforme a lo dispuesto en la normatividad aplicable, por lo que en ningún caso se entenderá que se está violando derecho alguno del usuario.
+
+Integridad, autenticidad y archivo de los mensajes de datos
+
+La clave de usuario y la contraseña, servirán para realizar las operaciones propias del sitio a fin de: (a) verificar la identidad del emisor de un mensaje de datos; (b) determinar que un mensaje de datos no ha sido alterado y ha permanecido íntegro durante su generación, comunicación, transmisión, recepción o archivo; y (c) atribuir tal mensaje de datos de manera fehaciente al usuario que lo haya generado.
+
+Los mensajes de datos recibidos y/o archivados en medios electrónicos, identificados con la clave de usuario y la contraseña, serán atribuibles al usuario respectivo y servirán para evidenciar su origen. Por consiguiente, el usuario es responsable de todos los actos, disposiciones, cesión de derechos, autorizaciones, transferencias, operaciones financieras, información proporcionada, etcétera, que se realicen con su clave de usuario y con su contraseña, ya sea que el uso de los mismos haya sido autorizado o no por el mismo.
+
+El usuario contará con una clave de usuario y una contraseña, mismas que quedarán bajo su custodia, control y cuidado por lo que será de su exclusiva responsabilidad cualquier quebranto que se pudiera sufrir como consecuencia del uso indebido de dichas claves. Para efectos de identificación, de acuerdo con lo dispuesto por el artículo 90 del Código de Comercio, el usuario reconoce y acepta el carácter de personal, confidencial e intransferible de la clave de usuario y de la contraseña.
+
+El usuario podrá solicitar a SADM cambios, modificaciones, bloqueos de sus Claves u otros servicios, vía telefónica o por correo electrónico, para lo cual SADM le solicitará la información que considere necesaria a su satisfacción, como medio de seguridad.
+
+Para todos los efectos legales a que haya lugar, el usuario acepta la responsabilidad por cada una de las personas que faculte para realizar por su cuenta y orden operaciones en el sitio, por lo que libera a SADM de cualquier tipo de responsabilidad derivada del uso indebido de la clave de usuario y de la contraseña correspondientes.
+
+El usuario se obliga a sacar en paz y a salvo a SADM de cualquier situación de carácter legal o administrativa que se presente por el uso indebido del sitio y de las claves, que realice cualquier persona a la que el usuario haya proporcionado sus Claves, y que con éstas ingrese al sitio.
+
+Claves de acceso y claves de identificación
+
+En todo momento, el usuario es responsable único y final de mantener en secreto la clave de usuario y la contraseña con las cuales tenga acceso a los servicios que ofrece SADM a través del Sitio.
+
+El usuario se compromete a hacer un uso diligente y a mantener en secreto la clave de usuario y la contraseña mediante las cuales puede realizar operaciones en el sitio.
+
+Responsabilidad limitada
+
+El usuario acepta que SADM no tendrá responsabilidad alguna por la interrupción o demora de cualquier información, material o cualquier otro aspecto de los servicios que ofrece el sitio, incluyendo sin limitación, responsabilidad asociada con cualesquier virus que pudiera infectar el equipo de cómputo o software del usuario, ni por los daños y/o perjuicios que puedan ocasionarse por la falta de veracidad, vigencia, exhaustividad y/o autenticidad de la información que un tercero dé de alta en el sitio.
+
+Responsabilidad por daños y perjuicios
+
+El usuario responderá de los daños y perjuicios que SADM sufra como consecuencia del incumplimiento de los términos y condiciones, así como de cualquiera de las obligaciones a las que queda sometido el usuario.
+
+Contingencia
+
+El usuario acepta expresamente que SADM no será responsable de los daños y perjuicios que se le pudiera causar si por caso fortuito, fuerza mayor o por cualquier otro acontecimiento o circunstancia inevitable, más allá del control razonable de SADM, no pudiera hacer uso del sitio o realizar alguna de las operaciones que el mismo ofrece.
+
+Usos permitidos
+
+El uso del sitio es bajo la exclusiva responsabilidad del usuario, quien en todo caso deberá realizar las operaciones correspondientes de acuerdo con el fin para el cual se creó el sitio, por lo que el usuario se obliga a utilizarlo de modo que no se atente contra las leyes de los Estados Unidos Mexicanos, las buenas costumbres, la dignidad de las personas y los derechos de terceros.
+
+En virtud de lo anterior, SADM autoriza al usuario a visualizar y descargar los materiales contenidos en el sitio solamente para su uso personal y no para uso comercial. Esta autorización no transmite la propiedad de los materiales y/o de las copias de los mismos, y estará sujeta a las siguientes restricciones: 1) El usuario deberá conservar en todas las copias de los materiales descargados, todos los avisos sobre derechos de autor y propiedad intelectual de los materiales, contenidos en los mismos; 2) El usuario no deberá modificar, reproducir o mostrar pública o comercialmente los materiales, ni podrá distribuir o utilizarlos con algún propósito público o comercial; y 3) El usuario no deberá transferir los materiales a ningún tercero.
+
+Asimismo el usuario se compromete a cumplir con todas las restricciones adicionales visualizadas en el sitio, aún y cuando éstas sean actualizadas frecuentemente. Este sitio, incluyendo todos los materiales contenidos en el mismo, se encuentran protegidos por la Ley Federal del Derecho de Autor de los Estados Unidos Mexicanos. Al usar este sitio, el usuario se obliga a cumplir con todas las leyes y tratados internacionales sobre derechos de autor en cualquier parte del mundo y prevenir el copiado no autorizado de los materiales, SADM no le concede al usuario derecho expreso o implícito sobre alguna patente, marca registrada, nombre comercial, aviso comercial, secreto industrial o derecho de autor.
+
+Queda terminantemente prohibida la utilización de tales elementos, su reproducción, comunicación y/o distribución con fines comerciales o lucrativos, así como su modificación, alteración, o descompilación. Para cualquier otro uso distinto de los expresamente permitidos, será necesario obtener el consentimiento previo por escrito del titular de los derechos de que se trate.
+
+El usuario no podrá modificar, copiar, reproducir, volver a publicar, cargar, exponer, transmitir o distribuir de cualquier forma el contenido disponible a través del servicio y los sitios asociados, incluidos el código y el software.
+
+Exclusión de garantías y de responsabilidad por el funcionamiento del sitio
+
+SADM no garantiza la disponibilidad y continuidad del funcionamiento del sitio, de los servicios y/o de aquellos otros sitios con los que se haya establecido un link, ni la idoneidad de los mismos para las necesidades de los usuarios.
+
+SADM no será en ningún caso responsable por cualesquiera daños y perjuicios que puedan derivarse de (i) la falta de disponibilidad o accesibilidad del sitio, de los servicios y/o de aquellos otros sitios con los que se haya establecido un link; (ii) la interrupción en el funcionamiento del sitio y/o de los servicios o fallos informáticos producidos en el curso de su funcionamiento; y (iii) la falta de idoneidad del sitio, de los contenidos y/o de los servicios para responder a las necesidades de los usuarios.
+
+Los materiales pueden contener inexactitudes y/o errores tipográficos, por lo que SADM no garantiza la exactitud o perfección de los materiales, ni la confiabilidad de algún aviso, opinión, declaración o cualquier otra información visualizada o distribuida a través del sitio. El usuario reconoce que el confiar en cualquier aviso, opinión, declaración o información será bajo su propio riesgo. SADM se reserva el derecho, bajo su propia discreción, de corregir cualesquier errores u omisiones que se encuentren en cualquier parte del sitio. SADM podrá realizar cualquier cambio al sitio, así como a cualquier material, productos, programas, servicios o precios (si existieran) descritos en el sitio en cualquier momento y sin necesidad de aviso previo.
+
+Con el fin de disminuir el riesgo de introducción de virus en el sitio, SADM utiliza programas de detección de virus. No obstante, no garantiza la ausencia de virus ni de otros elementos en el sitio introducidos por terceros ajenos a SADM que puedan producir alteraciones en los sistemas físicos o lógicos de los usuarios o en los documentos electrónicos y ficheros almacenados en sus sistemas. En consecuencia, SADM no será en ningún caso responsable de cualesquiera daños y perjuicios de toda naturaleza que pudieran derivarse de la presencia de virus u otros elementos que puedan producir alteraciones en los sistemas físicos o lógicos, documentos electrónicos o ficheros de los usuarios.
+
+Exclusión de garantías y de responsabilidad por la utilización del sitio
+
+SADM no se hará responsable en ningún caso del uso que los usuarios y/o terceros pudieran hacer del sitio, de los contenidos y/o de los servicios, ni de los daños y perjuicios que pudieran derivarse del mismo.
+
+Exclusión de garantías y de responsabilidad por los contenidos
+
+Con la inclusión en el sitio de contenidos provenientes de terceros, no se convierte en editor de los mismos; y en consecuencia, no garantiza ni se hace responsable de la licitud, fiabilidad, utilidad, veracidad, exactitud, exhaustividad y actualidad de dichos contenidos.
+
+Exclusión de garantías y de responsabilidad en relación con los links
+
+El sitio pone a disposición de los usuarios dispositivos técnicos de enlace, directorios y herramientas de búsqueda que permiten a los usuarios acceder a páginas web pertenecientes a y/o gestionados por terceros.
+
+En ningún caso, SADM se hace responsable, aprueba, ni hace propios los productos, servicios, contenidos, información, datos, archivos y cualquier clase de material existente en tales páginas web y no controla ni se hace responsable, aprueba o hace propias las sucesivas modificaciones de dichos materiales. En consecuencia, SADM en ningún caso responderá del acceso a otras páginas web o contenidos de terceros a través de las conexiones y links existentes.
+
+Cambios al aviso legal.
+
+SADM se reserva el derecho de modificar el presente aviso legal en cualquier tiempo, mediante simple publicación de las nuevas disposiciones aplicables, siendo el usuario responsable de revisar el aviso legal periódicamente. El uso del sitio constituirá la aceptación del usuario, de las disposiciones aplicables al sitio ya sea que éstas se encuentren en el presente Aviso Legal. El usuario es responsable de revisar periódicamente dichos cambios.
+
+Ley aplicable
+
+El servicio del sitio es controlado por SADM desde sus oficinas generales en la Ciudad de Monterrey, Nuevo León, en los Estados Unidos Mexicanos. Al ingresar al sitio, el usuario acepta someterse a la legislación aplicable en los Estados Unidos Mexicanos, sin tomar en cuenta los principios de conflictos de leyes que pudieran surgir.
+
+Jurisdicción
+
+Para la interpretación, ejecución y cumplimiento del presente aviso legal, las partes están de acuerdo en someterse a la jurisdicción de los tribunales competentes en la ciudad de Monterrey, Nuevo León, renunciando expresamente a cualquier otro fuero que por sus domicilios presentes o futuros pudiera corresponderles.
+
+El usuario declara haber leído y aceptar íntegramente los presentes términos y condiciones vigentes en el momento de acceder al sitio y/o usar los servicios.
+
+En el caso de que el usuario no esté de acuerdo con las disposiciones del presente aviso legal deberá abstenerse de utilizar el sitio y/o de realizar operaciones a través del sitio.</value>
+    </data>
+    <data name="ConfirmPasswordRequired" xml:space="preserve">
+        <value>La confirmación de contraseña es requerida.</value>
+    </data>
+    <data name="ConfirmPasswordError" xml:space="preserve">
+        <value>La confirmación de contraseña no coincide.</value>
+    </data>
+    <data name="QuestionRequired" xml:space="preserve">
+        <value>La pregunta de recuperación es requerida.</value>
+    </data>
+    <data name="AnswerRequired" xml:space="preserve">
+        <value>La respuesta es requerida.</value>
+    </data>
+    <data name="AssociateContractTitle" xml:space="preserve">
+        <value>ASOCIA UN CONTRATO</value>
+    </data>
+    <data name="NisLabel" xml:space="preserve">
+        <value>NIR (Número de identificación del registro)</value>
+    </data>
+    <data name="NisHelp" xml:space="preserve">
+        <value>NIR (Número de identificación del registro), ejemplo 999999999999999999.
+
+Ubica este dato en tu recibo:</value>
+    </data>
+    <data name="NisPlaceholder" xml:space="preserve">
+        <value>999999999999999999</value>
+    </data>
+    <data name="Or" xml:space="preserve">
+        <value>ó</value>
+    </data>
+    <data name="PreviousReadingPlaceholder" xml:space="preserve">
+        <value>Lectura anterior (4 dígitos)</value>
+    </data>
+    <data name="AssociateContractButton" xml:space="preserve">
+        <value>CREAR CUENTA</value>
+    </data>
+
+    <!-- Balances -->
+    <data name="BalancesTitle" xml:space="preserve">
+        <value>SALDOS</value>
+    </data>
+    <data name="Colony" xml:space="preserve">
+        <value>Colonia</value>
+    </data>
+
+    <data name="BalanceLabel" xml:space="preserve">
+        <value>SALDO:</value>
+    </data>
+    <data name="ExpireLabel" xml:space="preserve">
+        <value>VENCE:</value>
+    </data>
+    <data name="NisSimpleLabel" xml:space="preserve">
+        <value>NIS:</value>
+    </data>
+    <data name="NirRequired" xml:space="preserve">
+        <value>El NIR es requerido.</value>
+    </data>
+    <data name="NisInvalid" xml:space="preserve">
+        <value>NIR inválido.</value>
+    </data>
+    <data name="PreviousReadingEmpty" xml:space="preserve">
+        <value>La lectura anterior es requerida.</value>
+    </data>
+    <data name="PreviousReadingInvalid" xml:space="preserve">
+        <value>Lectura anterior inválida.</value>
+    </data>  
+    <data name="AssociateContractLoading" xml:space="preserve">
+        <value>Asociando el contrato...</value>
+    </data>
+    <data name="TotalToPay" xml:space="preserve">
+        <value>TOTAL A PAGAR</value>
+    </data>
+    <data name="OutstandingDebt" xml:space="preserve">
+        <value>ADEUDO PENDIENTE</value>
+    </data>
+    <data name="Expiration" xml:space="preserve">
+        <value>VENCIMIENTO</value>
+    </data>
+    <data name="BilledMonth" xml:space="preserve">
+        <value>MES FACTURADO</value>
+    </data>
+    <data name="PeriodOfConsumption" xml:space="preserve">
+        <value>PERIODO DE CONSUMO</value>
+    </data>
+    <data name="BalanceButton" xml:space="preserve">
+        <value>PAGAR</value>
+    </data>
+
+    <!-- Balance -->
+    <data name="BalanceTitle" xml:space="preserve">
+        <value>SALDO</value>
+    </data>
+    
+    <!-- LateralMenu -->
+    <data name="MenuMyData" xml:space="preserve">
+        <value>Mis Datos</value>
+    </data>
+    <data name="MenuMyBalances" xml:space="preserve">
+        <value>Mis saldos</value>
+    </data>
+    <data name="MenuBills" xml:space="preserve">
+        <value>Mis facturas</value>
+    </data>
+    <data name="MenuReports" xml:space="preserve">
+        <value>Reportes</value>
+    </data>
+    <data name="MenuPaymentCenter" xml:space="preserve">
+        <value>Centro de Pago</value>
+    </data>
+    <data name="MenuContact" xml:space="preserve">
+        <value>Contacto</value>
+    </data>
+    <data name="MenuCloseSession" xml:space="preserve">
+        <value>Cerrar sesión</value>
+    </data>
+
+    <!-- MyData -->
+    <data name="MyDataTitle" xml:space="preserve">
+        <value>MIS DATOS</value>
+    </data>
+    <data name="DownloadBillButton" xml:space="preserve">
+        <value>DESCARGAR
+FACTURA</value>
+    </data>
+    <data name="SendToTheAddress" xml:space="preserve">
+        <value>Enviar al
+domicilio</value>
+    </data>
+    <data name="SendToEmail" xml:space="preserve">
+        <value>Enviar al
+correo</value>
+    </data>
+
+    <!-- Bills -->
+    <data name="BillsTitle" xml:space="preserve">
+        <value>MIS FACTURAS</value>
+    </data>
+    
+    <!-- Notifications -->
+    <data name="NotificationsTitle" xml:space="preserve">
+        <value>Notificaciones</value>
+    </data>
+    <data name="NotificationTitle" xml:space="preserve">
+        <value>Notificación</value>
+    </data>
+    <data name="CallButton" xml:space="preserve">
+        <value>LLAMAR</value>
+    </data>
+    
+    <!-- Reports -->
+    <data name="ReportsTitle" xml:space="preserve">
+        <value>REPORTES</value>
+    </data>
+    <data name="GenerateReport" xml:space="preserve">
+        <value>Genera Reportes</value>
+    </data>
+    <data name="GenerateReportDesciption" xml:space="preserve">
+        <value>Genera reportes por fallas en el suministro de agua o fugas.</value>
+    </data>
+    <data name="RequestStatus" xml:space="preserve">
+        <value>Consulta Estatus de Solicitud</value>
+    </data>
+    <data name="RequestStatusDescription" xml:space="preserve">
+        <value>Consulta estatus de las solicitudes iniciadas.</value>
+    </data>
+    <!-- MyRequestList View -->
+    <data name="MyRequestListTitle" xml:space="preserve">
+        <value>MIS SOLICITUDES</value>
+    </data>
+    <data name="GenerateReportTitle" xml:space="preserve">
+        <value>GENERA UN REPORTE</value>
+    </data>
+    <data name="Measurer" xml:space="preserve">
+        <value>Medidor</value>
+    </data>
+    <data name="PreviousReading" xml:space="preserve">
+        <value>Lectura anterior</value>
+    </data>
+    <data name="LastReading" xml:space="preserve">
+        <value>Última lectura</value>
+    </data>
+    <data name="Consumption" xml:space="preserve">
+        <value>Consumo</value>
+    </data>
+    <data name="SeeMoreButton" xml:space="preserve">
+        <value>VER MÁS</value>
+    </data>
+    <!-- Contact View -->
+    <data name="ContactTitle" xml:space="preserve">
+        <value>CONTACTO</value>
+    </data>
+    <data name="SubjectLabel" xml:space="preserve">
+        <value>Asunto</value>
+    </data>
+    <data name="SubjectPlaceholder" xml:space="preserve">
+        <value>ASUNTO</value>
+    </data>
+    <data name="NameLabel" xml:space="preserve">
+        <value>Nombre</value>
+    </data>
+    <data name="MailLabel" xml:space="preserve">
+        <value>Mail</value>
+    </data>
+    <data name="MailPlaceholder" xml:space="preserve">
+        <value>MAIL</value>
+    </data>
+    <data name="DraftingLabel" xml:space="preserve">
+        <value>Redacción</value>
+    </data>
+    <data name="DraftingPlaceholder" xml:space="preserve">
+        <value>NOMBRE</value>
+    </data>
+
+    <!-- PaymentCenterListView -->
+    <data name="PaymentCenterList" xml:space="preserve">
+        <value>CENTROS DE PAGO</value>
+    </data>
+    <data name="SearchPlaceholder" xml:space="preserve">
+        <value>BUSCAR</value>
+    </data>
+
+    <!-- Close Session Popup -->
+    <data name="CloseSessionTitle" xml:space="preserve">
+        <value>CERRAR SESIÓN</value>
+    </data>
+    <data name="CloseSessionMessage" xml:space="preserve">
+        <value>¿DESEA SALIR DE SU CUENTA?</value>
+    </data>
+    <data name="CloseSessionAcceptButton" xml:space="preserve">
+        <value>SI</value>
+    </data>
+    <data name="CloseSessionCancelButton" xml:space="preserve">
+        <value>NO</value>
+    </data>
+    
+    <!-- PayView -->
+    <data name="PayTitle" xml:space="preserve">
+        <value>PAGAR CON TARJETA</value>
+    </data>
+    <data name="CardHolderPlaceholder" xml:space="preserve">
+        <value>NOMBRE (Como aparece en la tarjeta)</value>
+    </data>
+    <data name="CardNumberPlaceholder" xml:space="preserve">
+        <value>NÚMERO DE TARJETA</value>
+    </data>
+    <data name="CvvPlaceholder" xml:space="preserve">
+        <value>CVV</value>
+    </data>
+    <data name="CvvHelp" xml:space="preserve">
+        <value>El CVV se encuentra al reverso de la tarjeta:</value>
+    </data>
+    <data name="MonthPlaceholder" xml:space="preserve">
+        <value>MES</value>
+    </data>
+    <data name="YearPlaceholder" xml:space="preserve">
+        <value>AÑO</value>
+    </data>
+    <data name="PayButton" xml:space="preserve">
+        <value>PAGAR</value>
+    </data>
+    
+    <data name="CardHolderInvalid" xml:space="preserve">
+        <value>Nombre inválido.</value>
+    </data>
+    <data name="CardNumberInvalid" xml:space="preserve">
+        <value>Número de tarjeta inválido.</value>
+    </data>
+    <data name="CvvInvalid" xml:space="preserve">
+        <value>CVV inválido.</value>
+    </data>
+    <data name="CardHolderEmpty" xml:space="preserve">
+        <value>El nombre es requerido.</value>
+    </data>
+    <data name="CardNumberEmpty" xml:space="preserve">
+        <value>El número de tarjeta es requerido.</value>
+    </data>
+    <data name="CvvEmpty" xml:space="preserve">
+        <value>El CVV es requerido.</value>
+    </data>
+    <data name="MonthEmpty" xml:space="preserve">
+        <value>Debe seleccionar un mes.</value>
+    </data>
+    <data name="YearEmpty" xml:space="preserve">
+        <value>Debe seleccionar un año.</value>
+    </data>
+    <data name="NisFormat" xml:space="preserve">
+        <value>NIS: {0}</value>
+    </data>
+    <data name="BillMonthYearFormat" xml:space="preserve">
+        <value>Factura {0} {1}</value>
+    </data>
+    <data name="NisListTitle" xml:space="preserve">
+        <value>NIS</value>
+    </data>
+    <data name="ReportTypeListTitle" xml:space="preserve">
+        <value>Tipo de Reporte</value>
+    </data>
+    <data name="CancelButton" xml:space="preserve">
+        <value>CANCELAR</value>
+    </data>
+    <data name="FugueInMyAddress" xml:space="preserve">
+        <value>Reporte de Fuga en Mi Domilicio</value>
+    </data>
+    <data name="FugueInAnotherAddress" xml:space="preserve">
+        <value>Reporte de Fuga en Otra Ubicación</value>
+    </data>
+    <data name="SendButton" xml:space="preserve">
+        <value>ENVIAR</value>
+    </data>
+    <data name="ScanBarcode" xml:space="preserve">
+        <value>ESCANEAR NIR</value>
+    </data>
+    <data name="AddContract" xml:space="preserve">
+        <value>AÑADIR NIR</value>
+    </data>
+    <data name="AddContractLoading" xml:space="preserve">
+        <value>Añadiendo NIR...</value>
+    </data>
+    <data name="UpdateDataLoading" xml:space="preserve">
+        <value>Guardando...</value>
+    </data>
+    <data name="UpdateDataButton" xml:space="preserve">
+        <value>GUARDAR</value>
+    </data>
+    <data name="UpdateDataSuccess" xml:space="preserve">
+        <value>Sus datos se guardaron correctamente.</value>
+    </data>
+    <data name="UpdateDataUnchanged" xml:space="preserve">
+        <value>No hay cambios en los datos.</value>
+    </data>
+    <data name="AddReportLoading" xml:space="preserve">
+        <value>Generando reporte...</value>
+    </data>
+    <data name="AddReportSuccess" xml:space="preserve">
+        <value>Se ha generado el reporte {0}.</value>
+    </data>
+</root>

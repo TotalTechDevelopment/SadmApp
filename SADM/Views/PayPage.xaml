@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:behaviors="clr-namespace:SADM.Behaviors;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                x:Class="SADM.Views.PayPage">
+    <StackLayout Style="{StaticResource LayoutBaseStyle}">
+        <controls:AppBar Style="{StaticResource AppBarStyle}"/>
+        <Label Style="{StaticResource TitleLabelStyle}" Text="{i18n:Translate PayTitle}"/>
+        <BoxView Style="{StaticResource YellowHorizontalSeparatorStyle}"/>
+        <!-- Begin Content -->
+
+        <ScrollView>
+            <StackLayout Style="{StaticResource LayoutBaseStyle}">
+
+                <controls:InputBox Text="{Binding CardHolder}"
+                                   Placeholder="{i18n:Translate CardHolderPlaceholder}"
+                                   Keyboard="Text"
+                                   Margin="20,10,20,10"/>
+                
+                <controls:InputBox Text="{Binding CardNumber}"
+                                   Placeholder="{i18n:Translate CardNumberPlaceholder}"
+                                   Keyboard="Numeric"
+                                   Margin="20,0,20,10">
+                    <controls:InputBox.Behaviors>
+                        <behaviors:OnlyDigitsValidatorBehavior Max="16"/>
+                    </controls:InputBox.Behaviors>
+                </controls:InputBox>
+
+                <StackLayout Orientation="Horizontal" Style="{StaticResource LayoutBaseStyle}" Spacing="10" Margin="20,0,20,10">
+                    
+                    <Frame CornerRadius="5"
+                           BorderColor="{StaticResource GrayLabelBackgroundColor}"
+                           Padding="0"
+                           HasShadow="false"
+                           HeightRequest="50"
+                           WidthRequest="70"
+                           HorizontalOptions="Start"
+                           BackgroundColor="{StaticResource GrayLabelBackgroundColor}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowMonthListCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" 
+                                     Style="{StaticResource LayoutBaseStyle}" 
+                                     Padding="5,0,5,0"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding Month}"
+                                   FontSize="12"
+                                   FontAttributes="Bold"
+                                   WidthRequest="30"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource BlackTextColor}"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Image Source="down.png"
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="5"
+                           BorderColor="{StaticResource GrayLabelBackgroundColor}"
+                           Padding="0"
+                           HasShadow="false"
+                           HeightRequest="50"
+                           WidthRequest="70"
+                           HorizontalOptions="Start"
+                           BackgroundColor="{StaticResource GrayLabelBackgroundColor}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowYearListCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" 
+                                     Style="{StaticResource LayoutBaseStyle}" 
+                                     Padding="5,0,5,0"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding Year}"
+                                   FontSize="12"
+                                   FontAttributes="Bold"
+                                   WidthRequest="30"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource BlackTextColor}"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Image Source="down.png"
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <controls:InputBox Text="{Binding Cvv}"
+                                       Placeholder="{i18n:Translate CvvPlaceholder}"
+                                       Keyboard="Numeric"
+                                       WidthRequest="70"
+                                       HorizontalOptions="FillAndExpand"
+                                       ImageRight="info.png"
+                                       ImageRightCommand="{Binding ShowHelpCvvCommand}">
+                        <controls:InputBox.Behaviors>
+                            <behaviors:OnlyDigitsValidatorBehavior Max="3"/>
+                        </controls:InputBox.Behaviors>
+                    </controls:InputBox>
+                    
+                </StackLayout>
+                
+                <controls:ImprovedButton Text="{i18n:Translate PayButton}"
+                                         Command="{Binding PayAttemptCommand}"
+                                         Style="{StaticResource PurpleButtonStyle}"
+                                         HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+        
+        <!-- End Content -->
+    </StackLayout>
+</views:PageBase>

@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.396" />
+    <PackageReference Include="Refit" Version="4.6.16" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.482510" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.0.4" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="2.3.0" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+    <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Settings\" />
+    <Folder Include="Services\SadmApi\" />
+    <Folder Include="Models\Requests\" />
+    <Folder Include="Models\Responses\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\AsyncCommand\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Services\Hud\" />
+    <Folder Include="Services\Localize\" />
+    <Folder Include="Effects\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Services\Download\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\MainViewModel.cs" />
+    <Compile Remove="EventArgs\EventArgs{T}.cs" />
+    <Compile Remove="Validations\EmailRule.cs" />
+    <Compile Remove="Validations\ExtendedBindableObject.cs" />
+    <Compile Remove="PopUps\PopUpBase.cs" />
+    <Compile Remove="Controls\ImprovedMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Effects\UnderlinedLabelEffect.xml" />
+    <None Remove="Settings\Development.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Settings\Development.json" />
+  </ItemGroup>
+</Project>

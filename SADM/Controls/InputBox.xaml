@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<controls:ImprovedFrame xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+       xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+       xmlns:behaviors="clr-namespace:SADM.Behaviors;assembly=SADM"
+       x:Class="SADM.Controls.InputBox"
+       HeightRequest="40"
+       Padding="0">
+    <Grid ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" 
+               Grid.Column="0" 
+               x:Name="LeftImage" 
+               WidthRequest="20"
+               HeightRequest="20"
+               HorizontalOptions="Start"
+               Margin="5,5,0,5"
+               VerticalOptions="Center"
+               IsVisible="false"/>
+        
+        <controls:BorderlessEntry Grid.Row="0" 
+                                  Grid.Column="1" 
+                                  x:Name="Input"
+                                  FontSize="15"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="FillAndExpand"
+                                  PlaceholderColor="{StaticResource SecondaryDarkTextColor}"
+                                  Margin="5,0,5,0"/>
+
+        <Label Grid.Row="0" 
+               Grid.Column="2" 
+               x:Name="RequiredLabel"
+               Text="*"
+               TextColor="{StaticResource YellowColor}"
+               IsVisible="false"
+               FontSize="15"
+               VerticalOptions="Center"
+               Margin="5,0,5,0"/>
+        
+        <Image Grid.Row="0" 
+               Grid.Column="3" 
+               x:Name="RightImage" 
+               WidthRequest="20"
+               HeightRequest="20"
+               HorizontalOptions="End"
+               Margin="0,5,5,5"
+               VerticalOptions="Center"
+               IsVisible="false"/>
+        
+    </Grid>
+</controls:ImprovedFrame>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                 HasSystemPadding="False"
+                 CloseWhenBackgroundIsClicked="False"
+                 x:Class="SADM.Controls.DownloadBillPopup">
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <controls:ImprovedFrame HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="300" 
+                                Padding="0" 
+                                Margin="5,5,5,5" 
+                                HasShadow="True">
+            <StackLayout Orientation="Vertical"
+                         Padding="10">
+                
+                <Label x:Name="TitleLabel"
+                       Margin="10,10,10,0"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+                
+                <Label x:Name="FirstMonthLabel"
+                       Margin="10,10,10,0"
+                       FontSize="13"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <controls:ImprovedButton x:Name="FirstLeftButton"
+                                             Text="PDF"
+                                             WidthRequest="80"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource ButtonTwoStyle}"
+                                             HorizontalOptions="Center"/>
+                    <controls:ImprovedButton x:Name="FirstRigthButton"
+                                             Text="XML"
+                                             WidthRequest="80"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource PurpleButtonStyle}"
+                                             HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <Label x:Name="SecondMonthLabel"
+                       IsVisible="false"
+                       Margin="10,10,10,0"
+                       FontSize="13"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" x:Name="SecondStackLayout"
+                             IsVisible="false">
+                    <controls:ImprovedButton x:Name="SecondLeftButton"
+                                             Text="PDF"
+                                             WidthRequest="80"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource ButtonTwoStyle}"
+                                             HorizontalOptions="Center"/>
+                    <controls:ImprovedButton x:Name="SecondRigthButton"
+                                             Text="XML"
+                                             WidthRequest="80"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource PurpleButtonStyle}"
+                                             HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <Label x:Name="ThirdMonthLabel"
+                       IsVisible="false"
+                       Margin="10,10,10,0"
+                       FontSize="13"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" x:Name="ThirdStackLayout"
+                             IsVisible="false">
+                    <controls:ImprovedButton x:Name="ThirdLeftButton"
+                                             Text="PDF"
+                                             WidthRequest="80"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource ButtonTwoStyle}"
+                                             HorizontalOptions="Center"/>
+                    <controls:ImprovedButton x:Name="ThirdRigthButton"
+                                             Text="XML"
+                                             WidthRequest="80"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource PurpleButtonStyle}"
+                                             HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout HorizontalOptions="FillAndExpand" Margin="10,10,10,0">
+                    <controls:ImprovedButton x:Name="ContinueButton"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource PurpleButtonStyle}"
+                                             HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </controls:ImprovedFrame>
+    </StackLayout>
+</pages:PopupPage>

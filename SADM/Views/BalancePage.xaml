@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                x:Class="SADM.Views.BalancePage">
+    <StackLayout Style="{StaticResource LayoutBaseStyle}">
+        <controls:AppBar Style="{StaticResource AppBarStyle}"/>
+        <Label Style="{StaticResource TitleLabelStyle}" Text="{i18n:Translate BalanceTitle}"/> 
+        <BoxView Style="{StaticResource YellowHorizontalSeparatorStyle}"/>
+        <!-- Begin Content -->
+        <ScrollView Padding="20,0,20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+                
+                <Label Text="{i18n:Translate TotalToPay}"
+                       TextColor="{StaticResource PrimaryColor}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"
+                       Margin="10,10,10,0"/>
+
+                <Frame CornerRadius="5"
+                       BorderColor="{StaticResource GrayLabelBackgroundColor}"
+                       Padding="0"
+                       WidthRequest="200"
+                       HasShadow="false"
+                       HeightRequest="50"
+                       HorizontalOptions="CenterAndExpand"
+                       BackgroundColor="{StaticResource GrayLabelBackgroundColor}"
+                       Margin="0,0,0,20">
+                    <Label Text="{Binding TotalToPay, Converter={StaticResource DoubleToAmountConverter}}"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource BlackTextColor}"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"/>
+                </Frame>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label Text="{i18n:Translate OutstandingDebt}" 
+                               Style="{StaticResource BalanceBlueTextLabelStyle}"/>
+                        <Label Text="{i18n:Translate Expiration}" 
+                               Style="{StaticResource BalanceBlueTextLabelStyle}"/>
+                        <Label Text="{i18n:Translate BilledMonth}" 
+                               Style="{StaticResource BalanceBlueTextLabelStyle}"/>
+                        <Label Text="{i18n:Translate PeriodOfConsumption}" 
+                               Style="{StaticResource BalanceBlueTextLabelStyle}"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Frame Style="{StaticResource BalanceBackgroundLabelStyle}">
+                            <Label Text="{Binding OutstandingDebt}" 
+                                   Style="{StaticResource BalanceBlackTextLabelStyle}"/>
+                        </Frame>
+                        <Frame Style="{StaticResource BalanceBackgroundLabelStyle}">
+                            <Label Text="{Binding Expiration, StringFormat='{0:dd/MM/yy}'}"
+                                   Style="{StaticResource BalanceBlackTextLabelStyle}"/>
+                        </Frame>
+                        <Frame Style="{StaticResource BalanceBackgroundLabelStyle}">
+                            <Label Text="{Binding BilledMonth, StringFormat='{0:MM/yy}'}" 
+                                   Style="{StaticResource BalanceBlackTextLabelStyle}"/>
+                        </Frame>
+                        <Frame Style="{StaticResource BalanceBackgroundLabelStyle}">
+                            <Label Text="{Binding PeriodOfConsumption}" 
+                                   Style="{StaticResource BalanceBlackTextLabelStyle}"/>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+
+                <BoxView BackgroundColor="{StaticResource YellowColor}" HeightRequest="1" Margin="0,10,0,10"/>
+
+                <Frame Padding="0" HorizontalOptions="Center">
+                    <StackLayout BackgroundColor="{StaticResource BarChartBackgroundColor}"
+                                 HeightRequest="70"
+                                 HorizontalOptions="Center"
+                                 Orientation="Horizontal"
+                                 Padding="15,10,20,0">
+                        <Label HeightRequest="{Binding Bar1}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar2}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar3}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar4}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar5}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar6}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar7}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar8}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar9}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar10}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar11}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar12}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                    </StackLayout>
+                </Frame>
+
+                <controls:ImprovedButton Text="{i18n:Translate BalanceButton}"
+                                         Command="{Binding PayAttemptCommand}"
+                                         Style="{StaticResource PurpleButtonStyle}"
+                                         HorizontalOptions="Center"
+                                         Margin="10"/>
+
+            </StackLayout>
+        </ScrollView>
+        <!-- End Content -->
+    </StackLayout>
+</views:PageBase>

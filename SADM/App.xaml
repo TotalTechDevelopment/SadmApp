@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms" 
+                        xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                        xmlns:converters="clr-namespace:SADM.Converters;assembly=SADM"
+                        x:Class="SADM.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <converters:StringCaseConverter x:Key="StringCaseConverter"/>
+            <converters:DoubleToAmountConverter x:Key="DoubleToAmountConverter"/>
+            <converters:IndexToColorConverter x:Key="IndexToColorConverter"/>
+            <converters:NotificationTypeToIconConverter x:Key="NotificationTypeToIconConverter"/>
+            <converters:NotificationTypeToColorConverter x:Key="NotificationTypeToColorConverter"/>
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converters:ReportStatusToTextConverter x:Key="ReportStatusToTextConverter"/>
+
+            <!-- Colors Morado:8E278A Azul:003d75-->
+            <Color x:Key="PrimaryColor">#003d75</Color>
+
+            <Color x:Key="PrimaryDarkTextColor">#282828</Color>
+            <Color x:Key="SecondaryDarkTextColor">#888888</Color>
+            <Color x:Key="PrimaryClearTextColor">#FFFFFF</Color>
+            
+            <Color x:Key="PageBackgroundColor">#F4F4F4</Color>
+            <Color x:Key="GrayButtonBackgroundColor">#E0E0E0</Color>
+            <Color x:Key="GrayButtonTextColor">#222222</Color>
+            <Color x:Key="PurpleButtonTextColor">#F4F4F4</Color>
+            <Color x:Key="AlertBackgroundColor">White</Color>  
+            <Color x:Key="InputBoxBackgroundColor">White</Color>
+            <Color x:Key="BlackTextColor">#282828</Color>
+            <Color x:Key="BarBackgroundColor">#E0E0E0</Color>
+            <Color x:Key="GrayLabelBackgroundColor">#E0E0E0</Color>
+            <Color x:Key="BlueTextColor">#003d75</Color>
+            <Color x:Key="BarChartBackgroundColor">#EEEEEE</Color>
+            <Color x:Key="BarChartBarColor">#003d75</Color>
+            <Color x:Key="YellowColor">#FBC246</Color>
+            <Color x:Key="RowLightColor">#ececec</Color>
+            <Color x:Key="RowDarkColor">#e0e0e0</Color>
+
+            <!-- Styles -->
+            <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource BarBackgroundColor}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style ApplyToDerivedTypes="true" TargetType="TabbedPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource BarBackgroundColor}"/>
+            </Style>
+            
+            <Style x:Key="GrayButtonStyle" TargetType="controls:ImprovedButton">
+                <Setter Property="TextColor" Value="{StaticResource GrayButtonTextColor}"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="WidthRequest" Value="140"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="ImprovedBorderColor" Value="{StaticResource GrayButtonBackgroundColor}"/>
+                <Setter Property="ImprovedBackgroundColor" Value="{StaticResource GrayButtonBackgroundColor}"/>
+                <Setter Property="ImprovedBorderRadius" Value="5"/>
+                <Setter Property="ImprovedBorderWidth" Value="5"/>
+            </Style>
+            <Style x:Key="PurpleButtonStyle" TargetType="controls:ImprovedButton">
+                <Setter Property="TextColor" Value="{StaticResource PurpleButtonTextColor}"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="WidthRequest" Value="130"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="ImprovedBorderColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="ImprovedBackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="ImprovedBorderRadius" Value="5"/>
+                <Setter Property="ImprovedBorderWidth" Value="5"/>
+            </Style>
+
+            <Style x:Key="ButtonTwoStyle" TargetType="controls:ImprovedButton" BasedOn="{StaticResource PurpleButtonStyle}">
+                <Setter Property="TextColor" Value="{StaticResource BlueTextColor}"/>
+                <Setter Property="ImprovedBorderColor" Value="{StaticResource YellowColor}"/>
+                <Setter Property="ImprovedBackgroundColor" Value="{StaticResource YellowColor}"/>
+            </Style>
+            
+            <Style x:Key="SmallPurpleButtonStyle" TargetType="controls:ImprovedButton" BasedOn="{StaticResource PurpleButtonStyle}">
+                <Setter Property="FontSize" Value="9"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Margin" Value="5,0,5,0"/>
+            </Style>
+
+            <Style x:Key="BalanceBlueTextLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlueTextColor}"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style x:Key="BalanceBlackTextLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style x:Key="BalanceBackgroundLabelStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="false"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="Padding" Value="10,5,10,5"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource GrayLabelBackgroundColor}"/>
+                <Setter Property="BorderColor" Value="{StaticResource GrayLabelBackgroundColor}"/>
+            </Style>
+
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="Text" Value="{Binding Title}"/>
+                <Setter Property="TextColor" Value="{StaticResource YellowColor}"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+
+            <Style x:Key="AppBarStyle" TargetType="controls:AppBar">
+                <Setter Property="LeftIcon" Value="{Binding LeftIcon}"/>
+                <Setter Property="RightIcon" Value="{Binding RightIcon}"/>
+                <Setter Property="LeftIconCommand" Value="{Binding LeftIconCommand}"/>
+                <Setter Property="RightIconCommand" Value="{Binding RightIconCommand}"/>
+            </Style>
+
+            <Style x:Key="LayoutBaseStyle" TargetType="StackLayout">
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
+            
+            <Style x:Key="MyConsumptionLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="HorizontalSeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+
+            <Style x:Key="GrayHorizontalSeparatorStyle" TargetType="BoxView" BasedOn="{StaticResource HorizontalSeparatorStyle}">
+                <Setter Property="BackgroundColor" Value="{StaticResource RowDarkColor}"/>
+            </Style>
+
+            <Style x:Key="YellowHorizontalSeparatorStyle" TargetType="BoxView" BasedOn="{StaticResource HorizontalSeparatorStyle}">
+                <Setter Property="BackgroundColor" Value="{StaticResource YellowColor}"/>
+            </Style>
+
+            <Style x:Key="WhiteHorizontalSeparatorStyle" TargetType="BoxView" BasedOn="{StaticResource HorizontalSeparatorStyle}">
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="VerticalSeparatorStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="1"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+
+            <Style x:Key="GrayVerticalSeparatorStyle" TargetType="BoxView" BasedOn="{StaticResource VerticalSeparatorStyle}">
+                <Setter Property="BackgroundColor" Value="{StaticResource BlackTextColor}"/>
+            </Style>
+
+            <Style x:Key="MyConsumptionRowStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource RowLightColor}"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="Padding" Value="10,0,10,0"/>
+            </Style>
+
+            <Style x:Key="PrimaryDarkTextLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDarkTextColor}"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            
+            <Style x:Key="PrimaryDarkBoldTextLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDarkTextColor}"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

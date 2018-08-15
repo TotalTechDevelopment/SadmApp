@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                x:Class="SADM.Views.NotificationPage">
+    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0">
+        <controls:AppBar LeftIcon="{Binding LeftIcon}" 
+                         RightIcon="{Binding RightIcon}"
+                         LeftIconCommand="{Binding LeftIconCommand}"
+                         RightIconCommand="{Binding RightIconCommand}"/>
+        <Label Text="{Binding Source={i18n:Translate NotificationTitle}, Converter={StaticResource StringCaseConverter}, ConverterParameter=u}"
+                       TextColor="{StaticResource YellowColor}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       Margin="10"/>
+
+        <Image Source="{Binding Notification.Type, Converter={StaticResource NotificationTypeToIconConverter}}"
+               HeightRequest="32"
+               WidthRequest="32"/>
+        
+        <Label Text="{Binding Notification.Title}"
+               TextColor="{StaticResource BlackTextColor}"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Margin="10"/>
+
+        <Label Text="{Binding Notification.Message}"
+               TextColor="{StaticResource BlackTextColor}"
+               FontSize="15"
+               HorizontalTextAlignment="Center"
+               Margin="10"/>
+
+        <StackLayout VerticalOptions="EndAndExpand" Margin="10">
+            <Label Text="Para mayor información:"
+                   TextColor="{StaticResource BlackTextColor}"
+                   FontSize="15"
+                   HorizontalOptions="StartAndExpand"/>
+            <controls:ImprovedButton Text="{i18n:Translate CallButton}"
+                                     Command="{Binding CallCommand}"
+                                     Style="{StaticResource PurpleButtonStyle}"
+                                     HorizontalOptions="Center"/>
+        </StackLayout>
+
+        
+    </StackLayout>
+</views:PageBase>

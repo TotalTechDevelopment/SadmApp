@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:effects="clr-namespace:SADM.Effects;assembly=SADM"
+    xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+    x:Class="SADM.Controls.AppBar">
+    <StackLayout>
+        <StackLayout HeightRequest="60" 
+                     Orientation="Horizontal"
+                     HorizontalOptions="FillAndExpand" 
+                     BackgroundColor="{StaticResource BarBackgroundColor}" 
+                     VerticalOptions="Start"
+                     Padding="10,0,10,0">
+
+            <StackLayout.Effects>
+                <effects:ShadowEffect Radius="2" 
+                                      DistanceX="0" 
+                                      DistanceY="2"
+                                      Color="Black">
+                </effects:ShadowEffect>
+            </StackLayout.Effects>
+
+            <controls:ImprovedImage x:Name="LeftIconImage" 
+                                    HeightRequest="40"
+                                    WidthRequest="40" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Start"
+                                    IsVisible="false"
+                                    TintColor="{StaticResource PrimaryColor}"/>
+            <Image Source="bar_bg.png" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="50"
+                   WidthRequest="100" />
+            <controls:ImprovedImage x:Name="RightIconImage" 
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="End"
+                                    IsVisible="false"
+                                    TintColor="{StaticResource PrimaryColor}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

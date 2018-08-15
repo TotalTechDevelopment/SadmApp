@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                x:Class="SADM.Views.ReportListPage">
+    <StackLayout Style="{StaticResource LayoutBaseStyle}">
+        <controls:AppBar Style="{StaticResource AppBarStyle}"/>
+        <Label Style="{StaticResource TitleLabelStyle}" Text="{i18n:Translate MyRequestListTitle}"/> 
+        <BoxView HeightRequest="1" BackgroundColor="{StaticResource YellowColor}"  HorizontalOptions="FillAndExpand"/>
+        <!-- Begin Content -->
+        <controls:ImprovedListView 
+            VerticalOptions="FillAndExpand"
+            ItemsSource="{Binding ReportList}"
+            HasUnevenRows="true"
+            BackgroundColor="Transparent"
+            SeparatorVisibility="None">
+            <controls:ImprovedListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="{StaticResource RowLightColor}"
+                                     VerticalOptions="FillAndExpand" 
+                                     HorizontalOptions="FillAndExpand" 
+                                     Spacing="0">
+
+                            <StackLayout Orientation="Horizontal" 
+                                         VerticalOptions="FillAndExpand" 
+                                         HorizontalOptions="FillAndExpand" 
+                                         Spacing="0">
+
+                                <Image Source="{Binding Path=., Converter={StaticResource ReportStatusToTextConverter}}"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       Margin="10"/>
+
+                                <BoxView Grid.Column="1" WidthRequest="1" 
+                                     BackgroundColor="{StaticResource RowDarkColor}"
+                                     VerticalOptions="FillAndExpand"
+                                     Margin="0,10,0,10"/>
+
+                                <Label Text="{Binding Path=., Converter={StaticResource ReportStatusToTextConverter}}"
+                                       TextColor="{StaticResource BlackTextColor}"
+                                       FontSize="14"
+                                       VerticalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       Margin="10"/>
+                                
+                            </StackLayout>
+                            
+                            <BoxView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                                     HeightRequest="1"
+                                     BackgroundColor="{StaticResource PageBackgroundColor}"/>
+                            
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </controls:ImprovedListView.ItemTemplate>
+        </controls:ImprovedListView>
+        <!-- End Content -->
+    </StackLayout>
+</views:PageBase>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="SADM.Controls.Alert"
+             xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+             HasSystemPadding="False"
+             CloseWhenBackgroundIsClicked="False">
+  <StackLayout VerticalOptions="CenterAndExpand">
+        <Frame HorizontalOptions="Center"
+               WidthRequest="300" 
+               Padding="1,1,1,1" 
+               Margin="5,5,5,5" 
+               HasShadow="True">
+            <Frame.BackgroundColor>
+                <Color x:FactoryMethod="FromRgba">
+                    <x:Arguments>
+                        <x:Int32>0</x:Int32>
+                        <x:Int32>0</x:Int32>
+                        <x:Int32>0</x:Int32>
+                        <x:Int32>128</x:Int32>
+                    </x:Arguments>
+                </Color>
+            </Frame.BackgroundColor>
+            <StackLayout BackgroundColor="{StaticResource AlertBackgroundColor}" 
+                         Orientation="Vertical"
+                         Padding="10">
+                <Label x:Name="MessageLabel" 
+                       Margin="10" 
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <controls:ImprovedButton x:Name="ContinueButton"
+                                             Clicked="HidePopup"
+                                             Style="{StaticResource PurpleButtonStyle}"
+                                             HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+         </Frame>
+  </StackLayout>
+</pages:PopupPage>
