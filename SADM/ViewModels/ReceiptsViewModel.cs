@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Plugin.Permissions;
@@ -53,8 +52,8 @@ namespace SADM.ViewModels
                 foreach (var contract in getBalanceListResponse.BalanceList)
                 {
                     contract.DownloadCommand = new AsyncCommand(async () => await DownloadAsync(contract));
-                    contract.SendToTheAddressCommand = new AsyncCommand(async () => await ChangeSendToTheAddressAsync(contract));
-                    contract.SendToEmailCommand = new AsyncCommand(async () => await ChangeSendToEmailAsync(contract));
+                    contract.SendToTheAddressCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
+                    contract.SendToEmailCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
                 }
                 ContractList.Reset(getBalanceListResponse.BalanceList);
             }
@@ -149,11 +148,10 @@ namespace SADM.ViewModels
                 }
 
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
-                //Best practice to always check that the key exists
-                if (results.ContainsKey(Permission.Storage))
+                if (results.ContainsKey(Permission.Storage)){
                     status = results[Permission.Storage];
+                }   
             }
-
             if (status == PermissionStatus.Granted)
             {
                 return true;
@@ -165,45 +163,14 @@ namespace SADM.ViewModels
             return false;
         }
 
-        protected async Task ChangeSendToTheAddressAsync(Balance contract)
+        protected async Task ChangeConfigurationAsync(Balance contract)
         {
-            /*var request = new UpdateBillDeliveryConfigurationRequest { 
+            var request = new UpdateBillDeliveryConfigurationRequest { 
                 Email = SettingsService.User.Email,
-                Indicator = 1,
+                Indicator = (int)contract.BillDeliveryConfiguration,
                 Nis = contract.Nis
             };
-            if(await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateMyDataResponse>(request, "Combiando configuración...", true) is UpdateMyDataResponse response && response.Success)
-            {
-                
-            }*/
-
-            await HudService.ShowErrorAsync("Servicio no disponible por el momento.");
-            /*var message = contract.SendToTheAddress ? "activando" : "desactivando";
-            ResponseBase response = null;
-            using (new Busy(this, $"Se esta {message} el envio a domicilio para el NIS:{contract.Nis}", HudService))
-            {
-                response = await ApiService.SimulateSuccessfulAsync<ResponseBase>();
-            }
-            if(contract.SendToTheAddress)
-            {
-                await HudService.ShowSuccessMessageAsync("Tu factura llegará en XX días hábiles.");
-            }*/
-        }
-
-        protected async Task ChangeSendToEmailAsync(Balance contract)
-        {
-            /*if (await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateMyDataResponse>(new UpdateBillDeliveryConfigurationRequest(), "Combiando configuración...", true) is UpdateMyDataResponse response && response.Success)
-            {
-
-            }*/
-
-            await HudService.ShowErrorAsync("Servicio no disponible por el momento.");
-            /*var message = contract.SendToEmail ? "activando" : "desactivando";
-            ResponseBase response = null;
-            using (new Busy(this, $"Se esta {message} el envio a correo electrónico para el NIS:{contract.Nis}", HudService))
-            {
-                response = await ApiService.SimulateSuccessfulAsync<ResponseBase>();
-            }*/
+            await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateBillDeliveryConfigurationResponse>(request, "Cambiando la configuración...", true);
         }
     }
 }

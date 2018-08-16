@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using Newtonsoft.Json;
+using SADM.Enums;
 
 namespace SADM.Models
 {
@@ -11,17 +12,7 @@ namespace SADM.Models
         public string Xml { get; set; }
         [JsonProperty("pdf")]
         public string Pdf { get; set; }
-
+        [JsonProperty("Nis")]
         public string Nis { get; set; }
-        public string Date { get; set; }
-        public string Amount { get; set; }
-        public string Status { get; set; }
-
-
-        public bool SendToTheAddress { get; set; }
-        public bool SendToEmail { get; set; }
-        public ICommand DownloadCommand { get; set; }
-        public ICommand SendToTheAddressCommand { get; set; }
-        public ICommand SendToEmailCommand { get; set; }
     }
 }

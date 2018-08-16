@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using SADM.Enums;
 
 namespace SADM.Models
 {
@@ -81,11 +82,56 @@ namespace SADM.Models
         public ICommand SendToTheAddressCommand { get; set; }
         [JsonIgnore]
         public ICommand SendToEmailCommand { get; set; }
-        [JsonIgnore]
-        public bool SendToTheAddress { get; set; }
-        [JsonIgnore]
-        public bool SendToEmail { get; set; }
-        //[JsonIgnore]
-        //public IList<Bill> BillList { get; set; }
+
+        [JsonProperty("BillDeliveryConfiguration")]
+        public BillDeliveryConfiguration BillDeliveryConfiguration
+        {
+            get
+            {
+                if (SendToEmail && SendToTheAddress)
+                {
+                    return BillDeliveryConfiguration.PrintedAndEmail;
+                }
+                if (SendToEmail)
+                {
+                    return BillDeliveryConfiguration.OnlyEmail;
+                }
+                return BillDeliveryConfiguration.OnlyPrinted;
+            }
+            set
+            {
+                sendToEmail = value == BillDeliveryConfiguration.PrintedAndEmail || value == BillDeliveryConfiguration.OnlyEmail;
+                sendToTheAddress = value == BillDeliveryConfiguration.PrintedAndEmail || value == BillDeliveryConfiguration.OnlyPrinted;
+            }
+        }
+
+        protected bool sendToTheAddress;
+        protected bool sendToEmail;
+
+        public bool SendToTheAddress
+        {
+            get => sendToTheAddress;
+            set
+            {
+                if (!value && !sendToEmail)
+                {
+                    sendToEmail = true;
+                }
+                sendToTheAddress = value;
+            }
+        }
+
+        public bool SendToEmail
+        {
+            get => sendToEmail;
+            set
+            {
+                if (!value && !sendToTheAddress)
+                {
+                    sendToTheAddress = true;
+                }
+                sendToEmail = value;
+            }
+        }
     }
 }
