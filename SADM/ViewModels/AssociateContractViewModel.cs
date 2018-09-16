@@ -6,6 +6,8 @@ using SADM.Models.Requests;
 using SADM.Models.Responses;
 using SADM.Services;
 using SADM.Views;
+using System;
+
 
 namespace SADM.ViewModels
 {
@@ -30,6 +32,7 @@ namespace SADM.ViewModels
         public IAsyncCommand ReadBarCodeForNisCommand { get; private set; }
         public IAsyncCommand ShowInfoForNisCommand { get; private set; }
         public IAsyncCommand AssociateContractAttemptCommand { get; private set; }
+        public IAsyncCommand RemoveContractAttemptCommand { get; private set; }
 
         public AssociateContractViewModel(INavigationService navigationService, 
                                           ISettingsService settingsService, 
@@ -38,8 +41,9 @@ namespace SADM.ViewModels
         base(navigationService, settingsService, hudService, apiService)
         {
             ReadBarCodeForNisCommand = new AsyncCommand(ReadBarCodeForNisAsync);
-            ShowInfoForNisCommand = new AsyncCommand(() => HudService.ShowExampleAsync(AppResources.NisHelp, "barcode_example.png"));
+            ShowInfoForNisCommand = new AsyncCommand(() => HudService.ShowExampleAsync(AppResources.NisHelp, "factura.png"));
             AssociateContractAttemptCommand = new AsyncCommand(AssociateContractAttemptAsync);
+            RemoveContractAttemptCommand = new AsyncCommand(RemoveContractAttemptAsync);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -106,7 +110,7 @@ namespace SADM.ViewModels
         {
             if (isRegister)
             {
-                request.Nir = Nis;
+                request.Nir = DecodeNis(Nis);
                 request.PreviousReading = PreviousReading;
                 if (await CallServiceAsync<SignUpRequest, SignUpResponse>(request, AppResources.SignUpLoading, true) is SignUpResponse response && response.Success)
                 {
@@ -135,7 +139,7 @@ namespace SADM.ViewModels
             else
             {
                 var addContractRequest = new AddContractRequest {
-                    Nir = Nis,
+                    Nir = DecodeNis(Nis),
                     PreviousReading = PreviousReading,
                     Email = SettingsService.User.Email,
                     UserId = SettingsService.User.Folio
@@ -148,6 +152,58 @@ namespace SADM.ViewModels
             }
         }
 
+        protected async Task RemoveContractAttemptAsync()
+        {
+            if (isRegister)
+            {
+                request.Nir = DecodeNis(Nis);
+                request.PreviousReading = PreviousReading;
+                if (await CallServiceAsync<SignUpRequest, SignUpResponse>(request, AppResources.SignUpLoading, true) is SignUpResponse response && response.Success)
+                {
+                    var newUser = new User
+                    {
+                        Name = request.Name,
+                        LastName = request.LastName,
+                        SecondLastName = request.SecondLastName,
+                        Folio = long.Parse(response.Token),
+                        Email = request.Email,
+                        IsActive = request.Active,
+                        Street = request.Street,
+                        Number = request.Number,
+                        Colony = request.Colony,
+                        City = request.City,
+                        State = request.State,
+                        PostalCode = request.PostalCode,
+                        PhoneNumber = request.PhoneNumber,
+                        Question = request.Question,
+                        Answer = request.Answer,
+                        Password = request.Password
+                    };
+                    await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
+                    await GoToPageAsync<LateralMenuPage>();
+                }
+            }
+            else
+            {
+                var removeContractRequest = new RemoveContractRequest
+                {
+                    Nir = DecodeNis(Nis),
+                    PreviousReading = PreviousReading,
+                    Email = SettingsService.User.Email,
+                    UserId = SettingsService.User.Folio
+                };
+                if (await CallServiceAsync<RemoveContractRequest, RemoveContractResponse>(removeContractRequest, AppResources.AddContractLoading, true)
+                   is RemoveContractResponse response && response.Success)
+                {
+                    await NavigationService.GoBackAsync();
+                }
+            }
+        }
+
+        private string DecodeNis(string _nis){
+            var result = _nis.Replace("-","").Replace("/","");
+            return result;
+        }
         protected async Task<string> ScanBarCodeAsync()
         {
             var barCode = string.Empty;

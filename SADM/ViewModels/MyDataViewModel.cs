@@ -45,6 +45,7 @@ namespace SADM.ViewModels
         public string Answer { get => answer; set => SetProperty(ref answer, value); }
 
         public IAsyncCommand UpdateDataAttemptCommand => new AsyncCommand(UpdateDataAttemptAsync);
+        public IAsyncCommand UpdateUserAttemptCommand => new AsyncCommand(UpdateUserAttemptAsync);
 
         public IAsyncCommand PhoneHelpCommand => new AsyncCommand(() => HudService.ShowInformationAsync(AppResources.PhoneHelp));
         public IAsyncCommand PasswordHelpCommand => new AsyncCommand(() => HudService.ShowInformationAsync(AppResources.PasswordHelp));
@@ -134,6 +135,53 @@ namespace SADM.ViewModels
                     ConfirmPassword = SettingsService.User.Password;
                     Question = SettingsService.User.Question;
                     Answer = SettingsService.User.Answer;
+                }
+            }
+        }
+
+        protected async Task UpdateUserAttemptAsync()
+        {
+            if (await UserInputsAreValids())
+            {
+                var request = new UpdateUserRequest
+                {
+                    Name = FirstName ?? string.Empty,
+                    LastName = LastName ?? string.Empty,
+                    SecondLastName = SecondLastName ?? string.Empty,
+                    Email = Email ?? string.Empty,
+                    Street = Street ?? string.Empty,
+                    Number = Number ?? string.Empty,
+                    Colony = Colony ?? string.Empty,
+                    City = City ?? string.Empty,
+                    State = State ?? string.Empty,
+                    PostalCode = PostalCode ?? string.Empty,
+                    PhoneNumber = Phone ?? string.Empty,
+                    Password = Password ?? string.Empty,
+                    Question = Question ?? string.Empty,
+                    Answer = Answer ?? string.Empty
+                };
+
+                if (await CallServiceAsync<UpdateUserRequest, UpdateUserResponse>(request, AppResources.UpdateDataLoading, true) is UpdateUserResponse response && response.Success)
+                {
+
+                    var user = SettingsService.User;
+                    user.Name = FirstName;
+                    user.LastName = LastName;
+                    user.SecondLastName = SecondLastName;
+                    user.Email = Email;
+                    user.Street = Street;
+                    user.Number = Number;
+                    user.Colony = Colony;
+                    user.City = City;
+                    user.State = State;
+                    user.PostalCode = PostalCode;
+                    user.PhoneNumber = Phone;
+                    user.Password = Password;
+                    user.Password = ConfirmPassword;
+                    user.Question = Question;
+                    user.Answer = Answer;
+                    await SettingsService.WriteUserAsync(user);
+                    await HudService.ShowSuccessMessageAsync("Se actualizó los datos del usuario.");
                 }
             }
         }
@@ -233,5 +281,7 @@ namespace SADM.ViewModels
             }
             return !errorList.Any();
         }
+
+
     }
 }

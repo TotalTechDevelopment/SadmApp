@@ -53,15 +53,15 @@
                                    ImageRightCommand="{Binding ShowInfoForNisCommand}"
                                    Keyboard="Numeric">
                     <controls:InputBox.Behaviors>
-                        <behaviors:OnlyDigitsValidatorBehavior Max="18"/>
+                        <behaviors:MaskValidatorBehavior Mask="X-XXXXXXX-XX-XX/XX/XXXX"/>
                     </controls:InputBox.Behaviors>
                 </controls:InputBox>
                 <controls:InputBox Text="{Binding PreviousReading}"
                                    Placeholder="{i18n:Translate PreviousReadingPlaceholder}"
                                    Keyboard="Numeric">
-                    <controls:InputBox.Behaviors>
+<!--                    <controls:InputBox.Behaviors>
                         <behaviors:OnlyDigitsValidatorBehavior Max="4"/>
-                    </controls:InputBox.Behaviors>
+                    </controls:InputBox.Behaviors>-->
                 </controls:InputBox>
                 <controls:ImprovedButton Text="{Binding Action}"
                                          Command="{Binding AssociateContractAttemptCommand}"

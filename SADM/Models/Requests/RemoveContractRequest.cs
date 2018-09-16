@@ -2,7 +2,7 @@
 
 namespace SADM.Models.Requests
 {
-    public class AddContractRequest : RequestBase
+    public class RemoveContractRequest : RequestBase
     {
         [JsonProperty("EMAIL")]
         public string Email { get; set; }
@@ -13,18 +13,17 @@ namespace SADM.Models.Requests
         [JsonIgnore]
         public string Nir { get; set; }
 
-        //Dynamic
         [JsonProperty("SEC_REC")]
-        public string SecRec => Nir?.Substring(0, 1) ?? string.Empty;
+        public string SecRec;
         [JsonProperty("NIS_RAD")]
-        public string NisRad => Nir?.Substring(1, 7) ?? string.Empty;
+        public string NisRad;
         [JsonProperty("SEC_NIS")]
-        public string Nis => Nir?.Substring(8, 2) ?? string.Empty;
+        public string Nis;
         [JsonProperty("F_FACT")]
-        public string Date => Nir?.Substring(10, 8) ?? string.Empty;
+        public string Date;
 
         //Constant
         [JsonProperty("ab")]
-        public string Vab => "A";
+        public string Vab => "B";
     }
 }

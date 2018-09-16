@@ -527,6 +527,24 @@ namespace SADM {
             }
         }
         
+        public static string DeleteBalanceButton {
+            get {
+                return ResourceManager.GetString("DeleteBalanceButton", resourceCulture);
+            }
+        }
+        
+        public static string DeleteBalanceTitle {
+            get {
+                return ResourceManager.GetString("DeleteBalanceTitle", resourceCulture);
+            }
+        }
+        
+        public static string DeleteBalanceMessage {
+            get {
+                return ResourceManager.GetString("DeleteBalanceMessage", resourceCulture);
+            }
+        }
+        
         public static string BalanceTitle {
             get {
                 return ResourceManager.GetString("BalanceTitle", resourceCulture);
@@ -938,6 +956,12 @@ namespace SADM {
         public static string AddContractLoading {
             get {
                 return ResourceManager.GetString("AddContractLoading", resourceCulture);
+            }
+        }
+        
+        public static string DeleteContractLoading {
+            get {
+                return ResourceManager.GetString("DeleteContractLoading", resourceCulture);
             }
         }
         

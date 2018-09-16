@@ -349,12 +349,12 @@ En el caso de que el usuario no esté de acuerdo con las disposiciones del prese
         <value>NIR (Número de identificación del registro)</value>
     </data>
     <data name="NisHelp" xml:space="preserve">
-        <value>NIR (Número de identificación del registro), ejemplo 999999999999999999.
+        <value>NIR (Número de identificación del registro), ejemplo 9-9999999-99-99/99/9999.
 
 Ubica este dato en tu recibo:</value>
     </data>
     <data name="NisPlaceholder" xml:space="preserve">
-        <value>999999999999999999</value>
+        <value>9-9999999-99-99/99/9999</value>
     </data>
     <data name="Or" xml:space="preserve">
         <value>ó</value>
@@ -416,7 +416,15 @@ Ubica este dato en tu recibo:</value>
     <data name="BalanceButton" xml:space="preserve">
         <value>PAGAR</value>
     </data>
-
+     <data name="DeleteBalanceButton" xml:space="preserve">
+        <value>ELIMINAR</value>
+    </data>
+    <data name="DeleteBalanceTitle" xml:space="preserve">
+        <value>ELIMINAR SERVICIO</value>
+    </data>
+    <data name="DeleteBalanceMessage" xml:space="preserve">
+        <value>¿En verdad desea eliminar el servicio?</value>
+    </data>    
     <!-- Balance -->
     <data name="BalanceTitle" xml:space="preserve">
         <value>SALDO</value>
@@ -647,6 +655,9 @@ correo</value>
     <data name="AddContractLoading" xml:space="preserve">
         <value>Añadiendo NIR...</value>
     </data>
+    <data name="DeleteContractLoading" xml:space="preserve">
+        <value>Eliminando NIR...</value>
+    </data>    
     <data name="UpdateDataLoading" xml:space="preserve">
         <value>Guardando...</value>
     </data>

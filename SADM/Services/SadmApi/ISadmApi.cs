@@ -15,6 +15,11 @@ namespace SADM.Services
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> SignUp([Body(BodySerializationMethod.Json)]SignUpRequest request);
 
+        [Post("/api/Registro_de_usuarios/UpdateUser")]
+        [Headers("Id_User: 1", "Authorization: Bearer")]
+        Task<string> UpdateUser([Body(BodySerializationMethod.Json)]UpdateUserRequest request);
+
+
         [Post("/api/Registro_de_usuarios/Post")]
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> Update([Body(BodySerializationMethod.Json)]UpdateMyDataRequest request);
@@ -30,6 +35,11 @@ namespace SADM.Services
         [Post("/api/SUMCON/Post")]
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> AddNis([Body(BodySerializationMethod.Json)]AddContractRequest request);
+
+        [Post("/api/SUMCON/Post")]
+        [Headers("Id_User: 1", "Authorization: Bearer")]
+        Task<string> RemoveNis([Body(BodySerializationMethod.Json)]RemoveContractRequest request);
+
 
         [Get("/api/Envio_de_Facturas/ListaSelAll")]
         [Headers("Authorization: Bearer")]

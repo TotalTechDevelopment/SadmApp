@@ -25,8 +25,8 @@
                        HorizontalOptions="CenterAndExpand"
                        HorizontalTextAlignment="Center"/>
                 <Image x:Name="ExampleImage" 
-                       HeightRequest="100"
-                       WidthRequest="200"
+                       HeightRequest="300"
+                       WidthRequest="600"
                        Margin="10"/>
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <controls:ImprovedButton x:Name="ContinueButton"

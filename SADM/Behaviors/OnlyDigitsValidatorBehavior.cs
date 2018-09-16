@@ -1,20 +1,51 @@
-﻿using SADM.Controls;
+﻿using System.Collections.Generic;
+using SADM.Controls;
 using SADM.Extensions;
 using Xamarin.Forms;
 
 namespace SADM.Behaviors
 {
-    public class OnlyDigitsValidatorBehavior : Behavior<InputBox>
+    public class MaskValidatorBehavior : Behavior<InputBox>
     {
         public int Max { get; set; }
 
+        private string _mask = "";
+        public string Mask
+        {
+            get => _mask;
+            set
+            {
+                _mask = value;
+                SetPositions();
+            }
+        }
+
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(e.NewTextValue) && sender is Entry entry)
+            var entry = sender as Entry;
+
+            var text = entry.Text;
+
+            if (string.IsNullOrWhiteSpace(text) || _positions == null)
+                return;
+
+            if (text.Length > _mask.Length)
             {
-                entry.Text = e.NewTextValue.IsIntegerNumber() && e.NewTextValue.Length <= Max
-                        ? e.NewTextValue : e.OldTextValue;
+                entry.Text = text.Remove(text.Length - 1);
+                return;
             }
+
+            foreach (var position in _positions)
+                if (text.Length >= position.Key + 1)
+                {
+                    var value = position.Value.ToString();
+                    if (text.Substring(position.Key, 1) != value)
+                        text = text.Insert(position.Key, value);
+                }
+
+            if (entry.Text != text)
+                entry.Text = text;
+
         }
 
         protected override void OnAttachedTo(InputBox bindable)
@@ -26,5 +57,25 @@ namespace SADM.Behaviors
         {
             bindable.TextChanged -= HandleTextChanged;
         }
+
+        IDictionary<int, char> _positions;
+
+        void SetPositions()
+        {
+            if (string.IsNullOrEmpty(Mask))
+            {
+                _positions = null;
+                return;
+            }
+
+            var list = new Dictionary<int, char>();
+            for (var i = 0; i < Mask.Length; i++)
+                if (Mask[i] != 'X')
+                    list.Add(i, Mask[i]);
+
+            _positions = list;
+        }
+
+
     }
 }

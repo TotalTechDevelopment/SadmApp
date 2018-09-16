@@ -69,25 +69,50 @@
 
                 <BoxView BackgroundColor="{StaticResource YellowColor}" HeightRequest="1" Margin="0,10,0,10"/>
 
-                <Frame Padding="0" HorizontalOptions="Center">
+                <Frame Padding="0" HorizontalOptions="Center" >
+                    <StackLayout VerticalOptions="FillAndExpand"> 
                     <StackLayout BackgroundColor="{StaticResource BarChartBackgroundColor}"
-                                 HeightRequest="70"
+                                 HeightRequest="100"
                                  HorizontalOptions="Center"
                                  Orientation="Horizontal"
-                                 Padding="15,10,20,0">
-                        <Label HeightRequest="{Binding Bar1}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar2}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar3}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar4}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar5}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar6}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar7}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar8}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar9}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar10}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar11}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
-                        <Label HeightRequest="{Binding Bar12}" WidthRequest="10" BackgroundColor="{StaticResource BarChartBarColor}" Margin="5,0,0,0" VerticalOptions="End"/>
+                                 Padding="0,10,20,0">
+                            <StackLayout HeightRequest="280" WidthRequest="15" VerticalOptions="End"  Padding="10,30,0,0" >
+                                <Label Text="{Binding MaxBilled}" FontSize="8" WidthRequest="30" VerticalOptions="StartAndExpand" HeightRequest="{Binding MaxBar}" />
+                                <Label Text="0" FontSize="8" WidthRequest="15" VerticalOptions="End"/>
+                            </StackLayout>
+                        <Label HeightRequest="{Binding Bar1}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar2}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar3}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar4}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar5}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar6}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar7}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar8}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar9}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar10}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar11}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
+                        <Label HeightRequest="{Binding Bar12}" WidthRequest="14" BackgroundColor="{StaticResource BarChartBarColor}" Margin="2,0,0,0" VerticalOptions="End"/>
                     </StackLayout>
+                   
+                    <StackLayout 
+                                 HeightRequest="50"
+                                 HorizontalOptions="Center"
+                                 Orientation="Horizontal"
+                                 Padding="40,10,20,0">
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month1}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month2}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month3}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month4}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month5}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month6}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month7}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month8}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month9}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month10}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month11}"/>
+                        <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month12}"/>
+                    </StackLayout>
+                        </StackLayout>
                 </Frame>
 
                 <controls:ImprovedButton Text="{i18n:Translate BalanceButton}"

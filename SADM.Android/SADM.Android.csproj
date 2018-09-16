@@ -20,7 +20,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -286,6 +286,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\switchon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\switchoff.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\switchon.png" />
+    <AndroidResource Include="Resources\drawable\factura.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

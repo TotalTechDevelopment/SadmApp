@@ -30,7 +30,7 @@ namespace SADM.Services
 
         public async Task<V> CallServiceAsync<U, V>(U request) where U : RequestBase where V : ResponseBase, new()
         {
-            var response = new V();
+             var response = new V();
             try
             {
                 switch(request.GetType().Name)
@@ -41,6 +41,9 @@ namespace SADM.Services
                     case nameof(SignUpRequest):
                         response = new SignUpResponse { Token = (await SadmApi.SignUp(request as SignUpRequest)).Replace("\"", string.Empty) } as V;
                         break;
+                    case nameof(UpdateUserRequest):
+                        response = new UpdateUserResponse { Message = (await SadmApi.UpdateUser(request as UpdateUserRequest)).Replace("\"", string.Empty) } as V;
+                        break;
                     case nameof(LoginRequest):
                         response = await ProcessCallAsync(request as LoginRequest) as V;
                         break;
@@ -49,6 +52,9 @@ namespace SADM.Services
                         break;
                     case nameof(AddContractRequest):
                         response = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) } as V;
+                        break;
+                   case nameof(RemoveContractRequest):
+                        response = new RemoveContractResponse { ContractId = (await SadmApi.RemoveNis(request as RemoveContractRequest)).Replace("\"", string.Empty) } as V;
                         break;
                     case nameof(GetContractListRequest):
                         var tmp = await SadmApi.GetBalanceList(request as GetContractListRequest);

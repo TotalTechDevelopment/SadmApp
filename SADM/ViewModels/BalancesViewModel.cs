@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Navigation;
@@ -16,7 +17,9 @@ namespace SADM.ViewModels
     {
 
         protected bool showPaymentButton;
+        protected bool showDeleteButton;
         public bool ShowPaymentButton { get => showPaymentButton; set => SetProperty(ref showPaymentButton, value); }
+        public bool ShowDeleteButton { get => showDeleteButton; set => SetProperty(ref showDeleteButton, value); }
         protected bool loading;
         public bool Loading { get => loading; set => SetProperty(ref loading, value); }
         public ObservableCollectionExt<Balance> BalanceList { get; private set; }
@@ -24,6 +27,7 @@ namespace SADM.ViewModels
         public IAsyncCommand SeeMoreCommand { get; private set;}
         public ICommand ItemSelectedCommand => new Command(OnSelected);
         public IAsyncCommand PaymentCommand => new AsyncCommand(PaymentAsync);
+        public IAsyncCommand DeleteCommand => new AsyncCommand(DeleteAsync);
         public IAsyncCommand AddContractCommand => new AsyncCommand(GoToPageAsync<Views.AssociateContractPage>);
 
         public BalancesViewModel(INavigationService navigationService,
@@ -67,7 +71,8 @@ namespace SADM.ViewModels
             {
                 balanceSelected.Selected = !balanceSelected.Selected;
             }
-            ShowPaymentButton = BalanceList.Any((balance) => balance.Selected);
+            // ShowPaymentButton = BalanceList.Any((balance) => balance.Selected);
+            ShowDeleteButton = BalanceList.Any((balance) => balance.Selected);
             BalanceList.Refresh();
         }
 
@@ -77,5 +82,63 @@ namespace SADM.ViewModels
             BalanceList.Refresh();
             ShowPaymentButton = false;
         }
+
+        protected async Task DeleteAsync()
+        {
+       
+            await DeleteBalanceAsync();
+
+        }
+
+
+        protected async Task DeleteBalanceAsync()
+        {
+            await HideLateralMenuAsync();
+            if (await HudService.ShowQuestionAsync(AppResources.DeleteBalanceTitle,
+                                                  AppResources.DeleteBalanceMessage,
+                                                  AppResources.CloseSessionAcceptButton,
+                                                  AppResources.CloseSessionCancelButton))
+            {
+                foreach (var balance in BalanceList)
+                {
+                    if (balance.Selected)
+                    {
+                        await RemoveContractAttemptAsync(balance);
+                    }
+                }
+
+                await GetBalanceList();
+                BalanceList.Refresh();
+                ShowDeleteButton = BalanceList.Any((balance) => balance.Selected);
+            
+
+            }
+        }
+
+        protected async Task RemoveContractAttemptAsync(Balance balance)
+        {
+            var removeContractRequest = new RemoveContractRequest
+                {
+                    Nir = "0",
+                    PreviousReading = "0",
+                    Email = SettingsService.User.Email,
+                    UserId = SettingsService.User.Folio,
+                    Nis = balance.Nis,
+                    NisRad=balance.Nis,
+                    SecRec="0",
+
+                };
+
+             if (await CallServiceAsync<RemoveContractRequest, RemoveContractResponse>(removeContractRequest, AppResources.DeleteContractLoading, true)
+                   is RemoveContractResponse response && response.Success)
+                {
+
+
+            }
+
+        }
+
+
+
     }
 }

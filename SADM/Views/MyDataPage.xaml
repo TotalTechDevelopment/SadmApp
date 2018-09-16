@@ -63,6 +63,7 @@
                 <controls:InputBox Text="{Binding Email}"
                                    Keyboard="Email"
                                    IsRequired="true"
+                                   IsEnabled="false"
                                    Margin="0,0,0,10"/>
 
                 <Label Text="{i18n:Translate StreetPlaceholder}" 
@@ -220,7 +221,7 @@
                                    Margin="0,0,0,10"/>
                 
                 <controls:ImprovedButton Text="{i18n:Translate UpdateDataButton}"
-                                         Command="{Binding UpdateDataAttemptCommand}"
+                                         Command="{Binding UpdateUserAttemptCommand}"
                                          Style="{StaticResource PurpleButtonStyle}"
                                          HorizontalOptions="Center"/>
             </StackLayout>

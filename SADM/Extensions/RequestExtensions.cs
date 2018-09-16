@@ -13,6 +13,11 @@ namespace SADM.Extensions
             {
                 return GetErrorList(request as SignUpRequest);
             }
+            if (request is UpdateUserRequest)
+            {
+                return GetErrorList(request as UpdateUserRequest);
+            }
+
             if (request is LoginRequest)
             {
                 return GetErrorList(request as LoginRequest);
@@ -25,6 +30,10 @@ namespace SADM.Extensions
             {
                 return GetErrorList(request as AddContractRequest);
             }
+            if (request is RemoveContractRequest)
+            {
+                return GetErrorList(request as RemoveContractRequest);
+            }
             if (request is GetContractListRequest)
             {
                 return null;
@@ -33,6 +42,7 @@ namespace SADM.Extensions
             {
                 return GetErrorList(request as AddReportRequest);
             }
+
             if (request is GetReportListRequest)
             {
                 return null;
@@ -63,6 +73,13 @@ namespace SADM.Extensions
             {
                 errorList.Add(previousReadingError);
             }
+            return errorList.Any() ? errorList : null;
+        }
+
+        public static IList<string> GetErrorList(this UpdateUserRequest request)
+        {
+            var errorList = new List<string>();
+
             return errorList.Any() ? errorList : null;
         }
 
@@ -101,6 +118,20 @@ namespace SADM.Extensions
             {
                 errorList.Add(previousReadingError);
             }
+            return errorList.Any() ? errorList : null;
+        }
+
+        public static IList<string> GetErrorList(this RemoveContractRequest request)
+        {
+            var errorList = new List<string>();
+            //if (request.Nir.GetNirError() is String nirError)
+            //{
+            //    errorList.Add(nirError);
+            //}
+            //if (request.PreviousReading.GetPreviousReadingError() is String previousReadingError)
+            //{
+            //    errorList.Add(previousReadingError);
+            //}
             return errorList.Any() ? errorList : null;
         }
 
