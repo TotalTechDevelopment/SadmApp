@@ -22,6 +22,17 @@ namespace SADM.Extensions
             {
                 return GetErrorList(request as LoginRequest);
             }
+
+            if (request is RecoverPasswordRequest)
+            {
+                return null;
+            }
+
+            if (request is RecoverPasswordRequest)
+            {
+                return GetErrorList(request as RecoverPasswordRequest);
+            }
+
             if (request is PasswordRecoveryRequest)
             {
                 return GetErrorList(request as PasswordRecoveryRequest);

@@ -41,6 +41,9 @@ namespace SADM.Services
                     case nameof(SignUpRequest):
                         response = new SignUpResponse { Token = (await SadmApi.SignUp(request as SignUpRequest)).Replace("\"", string.Empty) } as V;
                         break;
+                    case nameof(RecoverPasswordRequest):
+                        response = new RecoverPasswordResponse { Message = (await SadmApi.RecoverPassword(request as RecoverPasswordRequest)) } as V;
+                        break;
                     case nameof(UpdateUserRequest):
                         response = new UpdateUserResponse { Message = (await SadmApi.UpdateUser(request as UpdateUserRequest)).Replace("\"", string.Empty) } as V;
                         break;

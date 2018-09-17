@@ -545,6 +545,30 @@ namespace SADM {
             }
         }
         
+        public static string RecoverPasswordTitle {
+            get {
+                return ResourceManager.GetString("RecoverPasswordTitle", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordMessage {
+            get {
+                return ResourceManager.GetString("RecoverPasswordMessage", resourceCulture);
+            }
+        }
+        
+        public static string SuccessRecoverPasswordMessage {
+            get {
+                return ResourceManager.GetString("SuccessRecoverPasswordMessage", resourceCulture);
+            }
+        }
+        
+        public static string SendingRecoverPasswordMessage {
+            get {
+                return ResourceManager.GetString("SendingRecoverPasswordMessage", resourceCulture);
+            }
+        }
+        
         public static string BalanceTitle {
             get {
                 return ResourceManager.GetString("BalanceTitle", resourceCulture);

@@ -425,6 +425,18 @@ Ubica este dato en tu recibo:</value>
     <data name="DeleteBalanceMessage" xml:space="preserve">
         <value>¿En verdad desea eliminar el servicio?</value>
     </data>    
+    <data name="RecoverPasswordTitle" xml:space="preserve">
+        <value>RECUPERAR CONTRASEÑA</value>
+    </data>
+    <data name="RecoverPasswordMessage" xml:space="preserve">
+        <value>Entre su correo electrónico</value>
+    </data>  
+    <data name="SuccessRecoverPasswordMessage" xml:space="preserve">
+        <value>Se le enviará un mensaje a su email con las instrucciones.</value>
+    </data>    
+    <data name="SendingRecoverPasswordMessage" xml:space="preserve">
+        <value>Enviando correo.</value>
+    </data>      
     <!-- Balance -->
     <data name="BalanceTitle" xml:space="preserve">
         <value>SALDO</value>

@@ -44,13 +44,63 @@ namespace SADM.ViewModels
 
         protected async Task PasswordRecoveryAttemptAsync()
         {
-            await HudService.ShowErrorAsync("Servicio no disponible por el momento.");
-            /*var request = new PasswordRecoveryRequest { Email = Email };
-            if(await CallServiceAsync<PasswordRecoveryRequest, PasswordRecoveryResponse>(request, AppResources.PasswordRecoveryLoading, true) 
-               is PasswordRecoveryResponse response && response.Success)
+
+            var emailResult = await HudService.ShowRecoverPasswordAsync(AppResources.RecoverPasswordTitle,
+                          AppResources.RecoverPasswordMessage,
+                          AppResources.CloseSessionAcceptButton,
+                          AppResources.CloseSessionCancelButton);
+
+            if (emailResult != "")
             {
-                await HudService.ShowSuccessMessageAsync(AppResources.PasswordRecoverySuccessful);
-            }*/
-        }
+
+                var recoverPasswordRequest = new RecoverPasswordRequest
+                {
+                    Email = emailResult
+
+                };
+
+                if (await CallServiceAsync<RecoverPasswordRequest, RecoverPasswordResponse>(recoverPasswordRequest, AppResources.SendingRecoverPasswordMessage, true)
+                      is RecoverPasswordResponse response && response.Success)
+                {
+                    await HudService.ShowSuccessMessageAsync(AppResources.PasswordRecoverySuccessful);
+
+                }
+
+
+            }
+
+            // await HudService.ShowErrorAsync("Servicio no disponible por el momento.");
+                /*var request = new PasswordRecoveryRequest { Email = Email };
+                if(await CallServiceAsync<PasswordRecoveryRequest, PasswordRecoveryResponse>(request, AppResources.PasswordRecoveryLoading, true) 
+                   is PasswordRecoveryResponse response && response.Success)
+                {
+                    await HudService.ShowSuccessMessageAsync(AppResources.PasswordRecoverySuccessful);
+                }*/
+            }
+
+        //protected async Task DeleteBalanceAsync()
+        //{
+        //    await HideLateralMenuAsync();
+        //    if (await HudService.ShowQuestionAsync(AppResources.RecoverPasswordTitle,
+        //                                          AppResources.RecoverPasswordMessage,
+        //                                          AppResources.CloseSessionAcceptButton,
+        //                                          AppResources.CloseSessionCancelButton))
+        //    {
+        //        foreach (var balance in BalanceList)
+        //        {
+        //            if (balance.Selected)
+        //            {
+        //                await RemoveContractAttemptAsync(balance);
+        //            }
+        //        }
+
+        //        await GetBalanceList();
+        //        BalanceList.Refresh();
+        //        ShowDeleteButton = BalanceList.Any((balance) => balance.Selected);
+
+
+        //    }
+        //}
+
     }
 }

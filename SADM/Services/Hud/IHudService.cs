@@ -52,6 +52,7 @@ namespace SADM.Services
         void HideProgress();
 
         Task<bool> ShowQuestionAsync(string title, string message, string acceptButtonText, string cancelButtonText);
+        Task<string> ShowRecoverPasswordAsync(string title, string message, string acceptButtonText, string cancelButtonText);
         Task ShowInformationAsync(string message);
         Task ShowInformationAsync(string message, string acceptButtonText);
         Task ShowSuccessMessageAsync(string message);

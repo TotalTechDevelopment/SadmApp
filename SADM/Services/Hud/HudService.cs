@@ -132,6 +132,23 @@ namespace SADM.Services
             return result;
         }
 
+        public async Task<string> ShowRecoverPasswordAsync(string title, string message, string acceptButtonText, string cancelButtonText)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            RecoverPasswordPopup alert = new RecoverPasswordPopup(tcs, title, message, acceptButtonText, cancelButtonText);
+            await PopupNavigation.PushAsync(alert);
+            var result = await tcs.Task;
+            await PopupNavigation.RemovePageAsync(alert);
+            if(result){
+                var emailText =  alert.FindByName<Entry>("EmailText");
+                return  emailText.Text;
+            }
+            else{
+                return "";
+            }
+
+        }
+
         public async Task ShowInformationAsync(string message)
         {
             await ShowInformationAsync(message, "OK");
