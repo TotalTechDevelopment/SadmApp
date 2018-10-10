@@ -10,7 +10,7 @@ namespace SADM.Converters
         {
             if(System.Convert.ToString(value) is string valueString)
             {
-                var textToAdd = string.Empty;
+                /*var textToAdd = string.Empty;
                 if(string.IsNullOrWhiteSpace(valueString))
                 {
                     valueString = "0";
@@ -33,6 +33,12 @@ namespace SADM.Converters
                     }
                 }
                 return $"$ {parts[0]}{textToAdd}";
+                */
+
+                if (string.IsNullOrWhiteSpace(valueString))
+                    return "$ 0.00";
+
+                return int.Parse(valueString).ToString("C");
             }
             return "$ 0.00";
         }

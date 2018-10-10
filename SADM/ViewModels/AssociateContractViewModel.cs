@@ -7,7 +7,8 @@ using SADM.Models.Responses;
 using SADM.Services;
 using SADM.Views;
 using System;
-
+using SADM.Controls;
+using System.Linq;
 
 namespace SADM.ViewModels
 {
@@ -29,6 +30,8 @@ namespace SADM.ViewModels
         public string Action { get => action; set => SetProperty(ref action, value); }
         public string PreviousReading { get => previousReading; set => SetProperty(ref previousReading, value); }
 
+        ObservableCollectionExt<Balance> BalanceList;
+
         public IAsyncCommand ReadBarCodeForNisCommand { get; private set; }
         public IAsyncCommand ShowInfoForNisCommand { get; private set; }
         public IAsyncCommand AssociateContractAttemptCommand { get; private set; }
@@ -44,24 +47,36 @@ namespace SADM.ViewModels
             ShowInfoForNisCommand = new AsyncCommand(() => HudService.ShowExampleAsync(AppResources.NisHelp, "factura.png"));
             AssociateContractAttemptCommand = new AsyncCommand(AssociateContractAttemptAsync);
             RemoveContractAttemptCommand = new AsyncCommand(RemoveContractAttemptAsync);
+
+            BalanceList = new ObservableCollectionExt<Balance>();
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
             base.OnNavigatingTo(parameters);
 
-            if (parameters.ContainsKey(string.Empty) && parameters.GetValue<SignUpRequest>(string.Empty) is SignUpRequest data)
+            if (parameters.ContainsKey(string.Empty) && parameters.GetValue<ObservableCollectionExt<Balance>>(string.Empty) is ObservableCollectionExt<Balance> lst)
             {
-                isRegister = true;
-                request = data;
-                Title = AppResources.SignUpTitle;
-                Action = AppResources.AssociateContractButton;
-            }
-            else
-            {
+                BalanceList = lst;
                 isRegister = false;
                 Title = AppResources.AssociateContractTitle;
                 Action = AppResources.AddContract;
+            }
+            else
+            {
+                if (parameters.ContainsKey(string.Empty) && parameters.GetValue<SignUpRequest>(string.Empty) is SignUpRequest data)
+                {
+                    isRegister = true;
+                    request = data;
+                    Title = AppResources.SignUpTitle;
+                    Action = AppResources.AssociateContractButton;
+                }
+                else
+                {
+                    isRegister = false;
+                    Title = AppResources.AssociateContractTitle;
+                    Action = AppResources.AddContract;
+                }
             }
         }
 
@@ -108,6 +123,18 @@ namespace SADM.ViewModels
 
         protected async Task AssociateContractAttemptAsync()
         {
+            if (Nis.Contains('-') && Nis.Split('-').Count() == 4)
+            {
+                var arrayNIS = Nis.Split('-');
+                if (BalanceList.Where(x => x.Nis == arrayNIS[1]).Any())
+                {
+                    //Nir = DecodeNis(Nis),
+                    //PreviousReading = PreviousReading,
+                    await HudService.ShowErrorAsync("El NIR ingresado ya existe, intente con otro.");
+                    return;
+                }
+            }
+
             if (isRegister)
             {
                 request.Nir = DecodeNis(Nis);

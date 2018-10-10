@@ -49,7 +49,7 @@
                     </StackLayout>
                     <StackLayout HorizontalOptions="FillAndExpand">
                         <Frame Style="{StaticResource BalanceBackgroundLabelStyle}">
-                            <Label Text="{Binding OutstandingDebt}" 
+                            <Label Text="{Binding OutstandingDebt, Converter={StaticResource DoubleToAmountConverter}}" 
                                    Style="{StaticResource BalanceBlackTextLabelStyle}"/>
                         </Frame>
                         <Frame Style="{StaticResource BalanceBackgroundLabelStyle}">
@@ -98,7 +98,7 @@
                                  HeightRequest="50"
                                  HorizontalOptions="Center"
                                  Orientation="Horizontal"
-                                 Padding="40,10,20,0">
+                                 Padding="36,10,20,0">
                         <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month1}"/>
                         <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month2}"/>
                         <Label   WidthRequest="16"  Margin="0,0,0,0" VerticalOptions="Start" FontSize="8" Text="{Binding Month3}"/>

@@ -28,7 +28,7 @@ namespace SADM.ViewModels
         public ICommand ItemSelectedCommand => new Command(OnSelected);
         public IAsyncCommand PaymentCommand => new AsyncCommand(PaymentAsync);
         public IAsyncCommand DeleteCommand => new AsyncCommand(DeleteAsync);
-        public IAsyncCommand AddContractCommand => new AsyncCommand(GoToPageAsync<Views.AssociateContractPage>);
+        public IAsyncCommand AddContractCommand => new AsyncCommand(AddContractCommandExecuted);
 
         public BalancesViewModel(INavigationService navigationService,
                                  ISettingsService settingsService,
@@ -38,6 +38,11 @@ namespace SADM.ViewModels
         {
             BalanceList = new ObservableCollectionExt<Balance>();
             SeeMoreCommand = new AsyncCommand(SeeMoreAsync);
+        }
+
+        public async Task AddContractCommandExecuted()
+        {
+            await GoToPageAsync<Views.AssociateContractPage>(BalanceList);
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
