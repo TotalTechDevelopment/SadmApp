@@ -55,9 +55,9 @@ namespace SADM.ViewModels
         {
             base.OnNavigatingTo(parameters);
 
-            if (parameters.ContainsKey(string.Empty) && parameters.GetValue<ObservableCollectionExt<Balance>>(string.Empty) is ObservableCollectionExt<Balance> lst)
+            if (parameters.ContainsKey(string.Empty) && parameters.GetValue<object>(string.Empty) is ObservableCollectionExt<Balance>)
             {
-                BalanceList = lst;
+                BalanceList = parameters.GetValue<ObservableCollectionExt<Balance>>(string.Empty) as ObservableCollectionExt<Balance>;
                 isRegister = false;
                 Title = AppResources.AssociateContractTitle;
                 Action = AppResources.AddContract;

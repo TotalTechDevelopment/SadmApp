@@ -100,8 +100,8 @@ namespace SADM.Models
             }
             set
             {
-                sendToEmail = value == BillDeliveryConfiguration.PrintedAndEmail || value == BillDeliveryConfiguration.OnlyEmail;
-                sendToTheAddress = value == BillDeliveryConfiguration.PrintedAndEmail || value == BillDeliveryConfiguration.OnlyPrinted;
+                SendToEmail = value == BillDeliveryConfiguration.PrintedAndEmail || value == BillDeliveryConfiguration.OnlyEmail;
+                SendToTheAddress = value == BillDeliveryConfiguration.PrintedAndEmail || value == BillDeliveryConfiguration.OnlyPrinted;
             }
         }
 

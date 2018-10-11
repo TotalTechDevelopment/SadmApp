@@ -30,6 +30,18 @@ namespace SADM.ViewModels
         protected Double bar10;
         protected Double bar11;
         protected Double bar12;
+        protected string value1;
+        protected string value2;
+        protected string value3;
+        protected string value4;
+        protected string value5;
+        protected string value6;
+        protected string value7;
+        protected string value8;
+        protected string value9;
+        protected string value10;
+        protected string value11;
+        protected string value12;
 
         protected string month1;
         protected string month2;
@@ -63,6 +75,18 @@ namespace SADM.ViewModels
         public Double Bar10 { get => bar10; set => SetProperty(ref bar10, value); }
         public Double Bar11 { get => bar11; set => SetProperty(ref bar11, value); }
         public Double Bar12 { get => bar12; set => SetProperty(ref bar12, value); }
+        public string Value1 { get => value1; set => SetProperty(ref value1, value); }
+        public string Value2 { get => value2; set => SetProperty(ref value2, value); }
+        public string Value3 { get => value3; set => SetProperty(ref value3, value); }
+        public string Value4 { get => value4; set => SetProperty(ref value4, value); }
+        public string Value5 { get => value5; set => SetProperty(ref value5, value); }
+        public string Value6 { get => value6; set => SetProperty(ref value6, value); }
+        public string Value7 { get => value7; set => SetProperty(ref value7, value); }
+        public string Value8 { get => value8; set => SetProperty(ref value8, value); }
+        public string Value9 { get => value9; set => SetProperty(ref value9, value); }
+        public string Value10 { get => value10; set => SetProperty(ref value10, value); }
+        public string Value11 { get => value11; set => SetProperty(ref value11, value); }
+        public string Value12 { get => value12; set => SetProperty(ref value12, value); }
         public string Month1 { get => month1; set => SetProperty(ref month1, value); }
         public string Month2 { get => month2; set => SetProperty(ref month2, value); }
         public string Month3 { get => month3; set => SetProperty(ref month3, value); }
@@ -102,7 +126,7 @@ namespace SADM.ViewModels
                 OutstandingDebt = balance.TotalDebt;
                 Expiration = balance.ExpirationDate;
                 BilledMonth = balance.BilledMonth;
-                PeriodOfConsumption = "DD/MM/AA - DD/MM/AA";
+                PeriodOfConsumption = balance.ExpirationDate.AddMonths(-1).ToString("dd/MM/yy") + " - " + balance.ExpirationDate.ToString("dd/MM/yy");//"DD/MM/AA - DD/MM/AA";
                 processGraph();
             }
         }
@@ -135,6 +159,19 @@ namespace SADM.ViewModels
             Bar10 = GetHeight(values[9], maxValue);
             Bar11 = GetHeight(values[10], maxValue);
             Bar12 = GetHeight(values[11], maxValue);
+
+            Value1 = values[0].ToString();
+            Value2 = values[1].ToString();
+            Value3 = values[2].ToString();
+            Value4 = values[3].ToString();
+            Value5 = values[4].ToString();
+            Value6 = values[5].ToString();
+            Value7 = values[6].ToString();
+            Value8 = values[7].ToString();
+            Value9 = values[8].ToString();
+            Value10 = values[9].ToString();
+            Value11 = values[10].ToString();
+            Value12 = values[11].ToString();
 
             Month1  = getMonth(1);
             Month2  = getMonth(2);
