@@ -69,6 +69,9 @@ namespace SADM.Models
         [JsonProperty("ULT_LECTURA")]
         public string LastReading { get; set; }
 
+        [JsonProperty("v_envio")]
+        public int? V_Envio { get; set; }
+
         [JsonIgnore]//TEMP
         public float? TotalAmount => null;
 

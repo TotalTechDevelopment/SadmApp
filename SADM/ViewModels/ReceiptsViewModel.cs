@@ -5,6 +5,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Prism.Navigation;
 using SADM.Controls;
+using SADM.Enums;
 using SADM.Helpers;
 using SADM.Models;
 using SADM.Models.Requests;
@@ -51,6 +52,7 @@ namespace SADM.ViewModels
             {
                 foreach (var contract in getBalanceListResponse.BalanceList)
                 {
+                    contract.BillDeliveryConfiguration = (BillDeliveryConfiguration)contract.V_Envio;
                     contract.DownloadCommand = new AsyncCommand(async () => await DownloadAsync(contract));
                     contract.SendToTheAddressCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
                     contract.SendToEmailCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
@@ -165,9 +167,10 @@ namespace SADM.ViewModels
 
         protected async Task ChangeConfigurationAsync(Balance contract)
         {
+            var bdc = contract.BillDeliveryConfiguration;
             var request = new UpdateBillDeliveryConfigurationRequest { 
                 Email = SettingsService.User.Email,
-                Indicator = (int)contract.BillDeliveryConfiguration,
+                Indicator = (int)bdc,
                 Nis = contract.Nis
             };
             await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateBillDeliveryConfigurationResponse>(request, "Cambiando la configuración...", true);
