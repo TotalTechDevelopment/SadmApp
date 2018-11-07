@@ -14,8 +14,9 @@ namespace SADM.Models.Requests
 
         //NIR
         [JsonIgnore]
+        [JsonProperty("NIR")]
         public string Nir { get; set; }
-        [JsonProperty("LECT")]
+        [JsonProperty("lastReading")]
         public string PreviousReading { get; set; }
         [JsonProperty("SEC_REC")]
         public string SecRec => Nir?.Substring(0, 1) ?? string.Empty;
@@ -63,5 +64,7 @@ namespace SADM.Models.Requests
         public string Passkey => Email;
         [JsonProperty("Telefono")]
         public string PhoneNumber { get; set; }
+        public int? IdSpartanUser { get; set; }
+        public bool updateOnly { get; set; }
     }
 }
