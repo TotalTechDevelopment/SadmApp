@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Prism.Navigation;
 using SADM.Extensions;
 using SADM.Helpers;
+using SADM.Models;
 using SADM.Services;
 
 namespace SADM.ViewModels
 {
     public class PayViewModel : ViewModelBase
     {
+        Balance balance;
         protected string cardHolder;
         protected string cardNumber;
         protected string month;
@@ -110,6 +112,16 @@ namespace SADM.ViewModels
                 list.Add((i).ToString().Substring(2, 2));
             }
             return list;
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.ContainsKey("Balance"))
+            {
+                balance = parameters.GetValue<Balance>("Balance");
+            }
         }
     }
 }

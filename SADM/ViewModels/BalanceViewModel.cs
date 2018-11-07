@@ -5,11 +5,15 @@ using Prism.Navigation;
 using SADM.Helpers;
 using SADM.Models;
 using SADM.Services;
+using SADM.Views;
+using Xamarin.Forms;
 
 namespace SADM.ViewModels
 {
     public class BalanceViewModel : ViewModelBase
     {
+        private INavigationService _navigationService;
+
         protected const double MAX_HEIGHT_BAR = 70;
         protected Balance balance;
 
@@ -103,7 +107,7 @@ namespace SADM.ViewModels
         public int MaxBilled { get => maxBilled; set => SetProperty(ref maxBilled, value); }
         public int MaxBar { get => maxBar; set => SetProperty(ref maxBar, value); }
 
-        public IAsyncCommand PayAttemptCommand { get; private set; }
+        public Command PayAttemptCommand { get; private set; }
 
         public BalanceViewModel(INavigationService navigationService, 
                                  ISettingsService settingsService, 
@@ -111,8 +115,8 @@ namespace SADM.ViewModels
                                  ISadmApiService apiService) : 
         base(navigationService, settingsService, hudService, apiService)
         {
-            PayAttemptCommand = new AsyncCommand(async () => await HudService.ShowErrorAsync("Servicio no disponible por el momento."));
-
+            _navigationService = navigationService;
+            PayAttemptCommand = new Command(PayAttemptCommandExecuted);//(async () => await HudService.ShowErrorAsync("Servicio no disponible por el momento."));
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -129,6 +133,16 @@ namespace SADM.ViewModels
                 PeriodOfConsumption = balance.ExpirationDate.AddMonths(-1).ToString("dd/MM/yy") + " - " + balance.ExpirationDate.ToString("dd/MM/yy");//"DD/MM/AA - DD/MM/AA";
                 processGraph();
             }
+        }
+
+        private async void PayAttemptCommandExecuted()
+        {
+            var parameter = new NavigationParameters()
+            {
+                {"Balance",balance}
+            };
+
+            await _navigationService.NavigateAsync(new Uri($"/{nameof(PayPage)}"), parameter);
         }
 
         protected void processGraph()
