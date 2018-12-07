@@ -71,7 +71,7 @@ namespace SADM
             containerRegistry.RegisterForNavigation<MyDataPage, MyDataViewModel>();
             containerRegistry.RegisterForNavigation<PayPage, PayViewModel>();
             containerRegistry.RegisterForNavigation<ContactPage, ContactViewModel>();
-
+            containerRegistry.RegisterForNavigation<PaymentBanamex, PaymentBanamexViewModel>();
             //Services
             containerRegistry.Register<ISettingsService, SettingsService>();
             containerRegistry.Register<ISadmApiService, SadmApiService>();

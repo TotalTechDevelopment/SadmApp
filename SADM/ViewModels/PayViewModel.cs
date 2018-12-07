@@ -69,7 +69,16 @@ namespace SADM.ViewModels
         {
             if(await UserInputsAreValids())
             {
-                await GoToPageAsync<Views.PaymentBanamex>();
+                var data = new DataCardModel
+                {
+                    CardHolder = CardHolder,
+                    Cvv = Cvv,
+                    Month = Month,
+                    CardNumber = CardNumber,
+                    Year = Year,
+                    Amount = balance.TotalDebt
+                };
+                await GoToPageAsync<Views.PaymentBanamex>(data);
                 //await HudService.ShowInformationAsync("PENDIENTE POR DEFINIR");
             }
         }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
                 xmlns:behaviors="clr-namespace:SADM.Behaviors;assembly=SADM"
                 xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
@@ -14,7 +14,7 @@
 
         <ScrollView>
             <StackLayout Style="{StaticResource LayoutBaseStyle}">
-                <WebView x:Name="wvBanamex" WidthRequest="1000" HeightRequest="1000"></WebView>
+                <WebView Source="{Binding UrlWeb}" WidthRequest="1000" HeightRequest="1000"></WebView>
             </StackLayout>
         </ScrollView>
 
