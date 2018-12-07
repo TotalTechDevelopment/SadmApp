@@ -29,7 +29,10 @@ namespace SADM.Services
 
         [Get("/api/Registro_de_usuarios/ListaSelAll")]
         [Headers("Authorization: Bearer")]
-        Task<LoginResponse> LogIn(LoginRequest request);
+        Task<Spartan_User> LogIn(LoginRequest request);
+        [Get("/api/Registro_de_usuarios/ListaSelAll")]
+        [Headers("Authorization: Bearer")]
+        Task<string> LogInStr(LoginRequest request);
 
         [Get("/api/SUMCON/ListaSelAll")]
         [Headers("Authorization: Bearer")]

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:PageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:behaviors="clr-namespace:SADM.Behaviors;assembly=SADM"
+                xmlns:controls="clr-namespace:SADM.Controls;assembly=SADM"
+                xmlns:i18n="clr-namespace:SADM.Services;assembly=SADM"
+                xmlns:views="clr-namespace:SADM.Views;assembly=SADM"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                x:Class="SADM.Views.PaymentBanamex">
+    <StackLayout Style="{StaticResource LayoutBaseStyle}">
+        <controls:AppBar Style="{StaticResource AppBarStyle}"/>
+        <Label Style="{StaticResource TitleLabelStyle}" Text="{i18n:Translate PayTitle}"/>
+        <BoxView Style="{StaticResource YellowHorizontalSeparatorStyle}"/>
+        <!-- Begin Content -->
+
+        <ScrollView>
+            <StackLayout Style="{StaticResource LayoutBaseStyle}">
+                <WebView x:Name="wvBanamex" WidthRequest="1000" HeightRequest="1000"></WebView>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- End Content -->
+    </StackLayout>
+</views:PageBase>

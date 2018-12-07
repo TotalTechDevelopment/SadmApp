@@ -61,7 +61,7 @@ namespace SADM.Extensions
 
         public static bool IsNir(this string nis)
         {
-            return nis.IsValid(@"[0-9]{18}$");
+            return true; // nis.IsValid(@"[0-9]{18}$");
         }
 
         public static bool IsPreviousReading(this string name)

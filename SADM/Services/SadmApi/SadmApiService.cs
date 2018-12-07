@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Refit;
@@ -22,18 +23,18 @@ namespace SADM.Services
         {
             SettingsService = settingsService;
             HudService = hudService;
-            SadmApi = RestService.For<ISadmApi>(new HttpClient(new AuthenticationHelper(this, SettingsService)) 
-            { 
+            SadmApi = RestService.For<ISadmApi>(new HttpClient(new AuthenticationHelper(this, SettingsService))
+            {
                 BaseAddress = new Uri(Settings.AppConfiguration.Values.BaseUrl)
             });
         }
 
         public async Task<V> CallServiceAsync<U, V>(U request) where U : RequestBase where V : ResponseBase, new()
         {
-             var response = new V();
+            var response = new V();
             try
             {
-                switch(request.GetType().Name)
+                switch (request.GetType().Name)
                 {
                     case nameof(GetAppTokenRequest):
                         response = await SadmApi.GetAppToken(request as GetAppTokenRequest) as V;
@@ -56,7 +57,7 @@ namespace SADM.Services
                     case nameof(AddContractRequest):
                         response = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) } as V;
                         break;
-                   case nameof(RemoveContractRequest):
+                    case nameof(RemoveContractRequest):
                         response = new RemoveContractResponse { ContractId = (await SadmApi.RemoveNis(request as RemoveContractRequest)).Replace("\"", string.Empty) } as V;
                         break;
                     case nameof(GetContractListRequest):
@@ -79,18 +80,18 @@ namespace SADM.Services
                     case nameof(GetBillListRequest):
                         var responseAux = await SadmApi.GetBillList(request as GetBillListRequest);
                         var billList = Newtonsoft.Json.JsonConvert.DeserializeObject<IList<Bill>>(responseAux);
-                        response = new GetBillListResponse{ BillList = billList } as V;
+                        response = new GetBillListResponse { BillList = billList } as V;
                         break;
                     case nameof(UpdateBillDeliveryConfigurationRequest):
                         var respAux = await SadmApi.UpdateBillDeliveryConfiguration(request as UpdateBillDeliveryConfigurationRequest);
                         var success = respAux == "\"1\"";
-                        response = new UpdateBillDeliveryConfigurationResponse{ Result = success } as V;
+                        response = new UpdateBillDeliveryConfigurationResponse { Result = success } as V;
                         break;
                     default:
                         throw new NotImplementedException();
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 response.AddError("Ocurrió un error, vuelve a intentarlo más tarde.");
             }
@@ -99,17 +100,31 @@ namespace SADM.Services
 
         public async Task<ResponseBase> ProcessCallAsync(LoginRequest request)
         {
-            var response = await SadmApi.LogIn(request);
-            if(string.IsNullOrEmpty(response.Name))
+            var temp = await SadmApi.LogInStr(request);
+            var resultado = Newtonsoft.Json.JsonConvert.DeserializeObject<Registro_de_UsuariosPagingModel>(temp);
+
+            var response = new LoginResponse();
+            if (resultado.Registro_de_Usuarioss == null)
+                response.AddError("Correo / Contraseña no validos. Revise sus datos y vuelva a intentarlo.");
+            else
             {
-                response.AddError("Revisa tus credenciales y vuelve a intentarlo.");
+                foreach (var r in resultado.Registro_de_Usuarioss)
+                {
+                    response.Activo = r.Activo;
+                    response.Apellido_Materno = r.Apellido_Materno;
+                    response.Apellido_Paterno = r.Apellido_Materno;
+                    response.Nombre = r.Nombre;
+                    response.Correo = r.Correo;
+                }
             }
+            // else if(string.IsNullOrEmpty(resultado.Registro_de_Usuarioss)
             return response;
+
         }
 
         public async Task<T> SimulateSuccessfulAsync<T>() where T : new()
         {
-            await Task.Delay(3000);
+            await Task.Delay(300);
             return new T();
         }
     }

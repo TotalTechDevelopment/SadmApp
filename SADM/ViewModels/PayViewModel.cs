@@ -69,7 +69,8 @@ namespace SADM.ViewModels
         {
             if(await UserInputsAreValids())
             {
-                await HudService.ShowInformationAsync("PENDIENTE POR DEFINIR");
+                await GoToPageAsync<Views.PaymentBanamex>();
+                //await HudService.ShowInformationAsync("PENDIENTE POR DEFINIR");
             }
         }
 

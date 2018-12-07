@@ -137,7 +137,7 @@ namespace SADM.ViewModels
 
             if (isRegister)
             {
-                request.Nir = DecodeNis(Nis);
+                request.Nir = Nis;// DecodeNis(Nis);
                 request.PreviousReading = PreviousReading;
                 if (await CallServiceAsync<SignUpRequest, SignUpResponse>(request, AppResources.SignUpLoading, true) is SignUpResponse response && response.Success)
                 {
@@ -166,7 +166,7 @@ namespace SADM.ViewModels
             else
             {
                 var addContractRequest = new AddContractRequest {
-                    Nir = DecodeNis(Nis),
+                    Nir = Nis, //DecodeNis(Nis),
                     PreviousReading = PreviousReading,
                     Email = SettingsService.User.Email,
                     UserId = SettingsService.User.Folio
@@ -183,7 +183,7 @@ namespace SADM.ViewModels
         {
             if (isRegister)
             {
-                request.Nir = DecodeNis(Nis);
+                request.Nir = Nis;// DecodeNis(Nis);
                 request.PreviousReading = PreviousReading;
                 if (await CallServiceAsync<SignUpRequest, SignUpResponse>(request, AppResources.SignUpLoading, true) is SignUpResponse response && response.Success)
                 {
@@ -214,7 +214,7 @@ namespace SADM.ViewModels
             {
                 var removeContractRequest = new RemoveContractRequest
                 {
-                    Nir = DecodeNis(Nis),
+                    Nir = Nis,//DecodeNis(Nis),
                     PreviousReading = PreviousReading,
                     Email = SettingsService.User.Email,
                     UserId = SettingsService.User.Folio
