@@ -1,7 +1,11 @@
 ﻿
 using Prism.Navigation;
+using SADM.Helpers;
 using SADM.Models;
+using SADM.Models.Requests;
+using SADM.Models.Responses;
 using SADM.Services;
+using System.Threading.Tasks;
 
 namespace SADM.ViewModels
 {
@@ -10,6 +14,7 @@ namespace SADM.ViewModels
 
         #region Vars 
         private DataCardModel card;
+        protected ISadmApiService sadmApiService;
         #endregion
 
         #region Properties
@@ -24,17 +29,30 @@ namespace SADM.ViewModels
         }
         #endregion
 
-        public PaymentBanamexViewModel(INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
+        public PaymentBanamexViewModel(ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
         {
+            this.sadmApiService = sadmApiService;
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
-            if(parameters.ContainsKey(string.Empty))
-            {
-                card = parameters.GetValue<DataCardModel>(string.Empty);
-                UrlWeb = $"https://banamex.dialectpayments.com/vpcpay?vpc_Amount={card.Amount}&vpc_Version=1&vpc_OrderInfo=50000008&vpc_Command=pay&vpc_Currency=MXN&vpc_Merchant=TEST1008073&vpc_ReturnAuthResponseData=N&vpc_ReturnURL=http%3A%2F%2Flocalhost%3A8080%2FaydB%2FpaymentController&vpc_SecureHash=DE45F717A8C5A4BB6C7AA205BF4CEC9054D6627CD757C535C54AA78B7E290F23&vpc_SecureHashType=SHA256&vpc_AccessCode=B3B33E35&vpc_MerchTxnRef=67ff3b50%3A16659de4b9d%3A-8000&vpc_Locale=es_MX";
-            }
+            card = parameters.GetValue<DataCardModel>(string.Empty);
+            VPCRequest conn = new VPCRequest();
+            conn.AddDigitalOrderField("vpc_Version", SADM.Settings.AppConfiguration.Values.vpc_Version);
+            conn.AddDigitalOrderField("vpc_Command", SADM.Settings.AppConfiguration.Values.vpc_Command);
+            conn.AddDigitalOrderField("vpc_AccessCode", SADM.Settings.AppConfiguration.Values.vpc_AccessCode);
+            conn.AddDigitalOrderField("vpc_Merchant", SADM.Settings.AppConfiguration.Values.vpc_Merchant);
+            conn.AddDigitalOrderField("vpc_ReturnURL", "http://localhost:8080/api/");
+            conn.AddDigitalOrderField("vpc_MerchTxnRef", "PruebaRfId2529");
+            conn.AddDigitalOrderField("vpc_OrderInfo", "2529");
+            conn.AddDigitalOrderField("vpc_Amount", (card.Amount * 100).ToString());
+            conn.AddDigitalOrderField("vpc_Currency", SADM.Settings.AppConfiguration.Values.vpc_Currency);
+            //conn.AddDigitalOrderField("vpc_CustomPaymentPlanPlanId", vpc_CustomPaymentPlanPlanId.Text);
+            conn.AddDigitalOrderField("vpc_Locale", SADM.Settings.AppConfiguration.Values.vpc_Locale);
+            // Perform the transaction
+            string url = conn.Create3PartyQueryString();
+            url = "https://banamex.dialectpayments.com/vpcpay" + url;
+            UrlWeb = url;
         }
 
     }

@@ -5,6 +5,16 @@
   "OauthGrantType": "password",
   "ContactAddress": "Matamoros 1717 Pte.\nCol. Obispado\nMonterrey, N.L., México",
   "ContactPhone": "073",
+  "vpc_Merchant": "TEST1008073",
+  "vpc_AccessCode": "B3B33E35",
+  "vpc_Command": "pay",
+  "vpc_Version": "1",
+  "SecureSecret": "6D7D5B6300A3ADFA81749DBCE8DE84EB",
+  "vpc_Locale": "es_MX",
+  "vpc_Currency": "MXN",
+  "vpc_ReturnAuthResponseData": "N",
+  "vpc_SecureHashType": "SHA256",
+  "PaymentBaseUrl": "https://banamex.dialectpayments.com/vpcpay",
   "PaymentCenterList": [
     {
       "Name": "Oficina Comercial Obispado",

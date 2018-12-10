@@ -65,8 +65,10 @@ namespace SADM.Extensions
         }
 
         public static bool IsPreviousReading(this string name)
-        {
-            return name.IsValid(@"\+?[0-9]{4}");
+        { 
+            if (string.IsNullOrEmpty(name))
+                return false;
+            return name.IsValid(@"\+?[0-9]{" + name.Length.ToString() + "}");
         }
 
         /// <summary>
@@ -93,7 +95,7 @@ namespace SADM.Extensions
         public static IEnumerable<string> GetCardHolderErrorList(this string cardHolder)
         {
             var errorList = new List<string>();
-            if(string.IsNullOrWhiteSpace(cardHolder))
+            if (string.IsNullOrWhiteSpace(cardHolder))
             {
                 errorList.Add(AppResources.CardHolderEmpty);
             }

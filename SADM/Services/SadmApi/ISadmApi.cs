@@ -19,6 +19,8 @@ namespace SADM.Services
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> UpdateUser([Body(BodySerializationMethod.Json)]UpdateUserRequest request);
 
+        [Get("/api/Pagos/ObtenerUrlPagos")]
+        Task<string> ObtenerUrlPagos(ObtenerUrlPagosRequest request);
 
         [Get("/api/Registro_de_usuarios/PasswordRecover")]
         Task<string> RecoverPassword(RecoverPasswordRequest request);

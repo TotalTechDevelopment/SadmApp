@@ -12,8 +12,7 @@ namespace SADM.Models.Requests
         [JsonProperty("Apellido_Materno")]
         public string SecondLastName { get; set; }
 
-        //NIR
-        [JsonIgnore]
+        //NIR 
         [JsonProperty("NIR")]
         public string Nir { get; set; }
         [JsonProperty("lastReading")]

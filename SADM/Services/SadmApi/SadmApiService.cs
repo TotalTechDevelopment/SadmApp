@@ -36,6 +36,9 @@ namespace SADM.Services
             {
                 switch (request.GetType().Name)
                 {
+                    case nameof(ObtenerUrlPagosRequest):
+                        response = await ProcessCallPagosAsync(request as ObtenerUrlPagosRequest) as V; 
+                        break;
                     case nameof(GetAppTokenRequest):
                         response = await SadmApi.GetAppToken(request as GetAppTokenRequest) as V;
                         break;
@@ -97,7 +100,22 @@ namespace SADM.Services
             }
             return response;
         }
+        public async Task<ResponseBase> ProcessCallPagosAsync(ObtenerUrlPagosRequest request)
+        {
+            var temp = await SadmApi.ObtenerUrlPagos(request);
+            var resultado = Newtonsoft.Json.JsonConvert.DeserializeObject<ObtenerUrlPagosResponse>(temp);
 
+            var response = new ObtenerUrlPagosResponse();
+            if (String.IsNullOrEmpty(temp))
+                response.AddError("Correo / Contraseña no validos. Revise sus datos y vuelva a intentarlo.");
+            else
+            {
+                response.Url = resultado.Url;
+            }
+            // else if(string.IsNullOrEmpty(resultado.Registro_de_Usuarioss)
+            return response;
+
+        }
         public async Task<ResponseBase> ProcessCallAsync(LoginRequest request)
         {
             var temp = await SadmApi.LogInStr(request);

@@ -22,9 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Services\Settings\" />
-    <Folder Include="Services\SadmApi\" />
-    <Folder Include="Models\Requests\" />
-    <Folder Include="Models\Responses\" />
     <Folder Include="Helpers\" />
     <Folder Include="Helpers\AsyncCommand\" />
     <Folder Include="Extensions\" />
@@ -38,6 +35,7 @@
     <Folder Include="Services\Download\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Services\SadmApi\HttpLoggingHandler.cs" />
     <Compile Remove="ViewModels\MainViewModel.cs" />
     <Compile Remove="EventArgs\EventArgs{T}.cs" />
     <Compile Remove="Validations\EmailRule.cs" />
