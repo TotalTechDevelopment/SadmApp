@@ -33,6 +33,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Enums\" />
     <Folder Include="Services\Download\" />
+    <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Services\SadmApi\HttpLoggingHandler.cs" />

@@ -14,7 +14,7 @@
 
         <ScrollView>
             <StackLayout Style="{StaticResource LayoutBaseStyle}">
-                <WebView Source="{Binding UrlWeb}" WidthRequest="1000" HeightRequest="1000"></WebView>
+                <WebView PropertyChanged="w_PropertyChanged" Source="{Binding UrlWeb}" WidthRequest="1000" HeightRequest="1000"></WebView>
             </StackLayout>
         </ScrollView>
 

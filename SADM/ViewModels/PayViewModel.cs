@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
+using Prism.Events;
 using Prism.Navigation;
+using SADM.Events;
 using SADM.Extensions;
 using SADM.Helpers;
 using SADM.Models;
 using SADM.Models.Requests;
 using SADM.Services;
+using Xamarin.Forms;
 
 namespace SADM.ViewModels
 {
@@ -15,7 +21,7 @@ namespace SADM.ViewModels
     {
         private Balance balance;
         protected ISadmApiService sadmApiService;
- 
+        private IEventAggregator _event;
 
         #region Properties
         private string urlWeb;
@@ -29,9 +35,26 @@ namespace SADM.ViewModels
         }
         #endregion
 
-        public PayViewModel(ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
+        public PayViewModel(IEventAggregator eventAggregator,ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
         {
+            _event = eventAggregator;
             this.sadmApiService = sadmApiService;
+            _event.GetEvent<UrlChangeEvent>().Subscribe(ResponseUrlPayment);
+        }
+
+        private void ResponseUrlPayment(string url)
+        {
+            var dic = GetParams(url);
+
+        }
+
+        private Dictionary<string, string> GetParams(string uri)
+        {
+            var matches = Regex.Matches(uri, @"[\?&](([^&=]+)=([^&=#]*))", RegexOptions.Compiled);
+            return matches.Cast<Match>().ToDictionary(
+                m => Uri.UnescapeDataString(m.Groups[2].Value),
+                m => Uri.UnescapeDataString(m.Groups[3].Value)
+            );
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -48,6 +71,7 @@ namespace SADM.ViewModels
             conn.AddDigitalOrderField("vpc_ReturnURL", "http://localhost:8080/api/");
             conn.AddDigitalOrderField("vpc_MerchTxnRef", "PruebaRfId2529");
             conn.AddDigitalOrderField("vpc_OrderInfo", "2529");
+            balance.TotalDebt = (float?)0.1;
             conn.AddDigitalOrderField("vpc_Amount", (balance.TotalDebt * 100).ToString());
             conn.AddDigitalOrderField("vpc_Currency", SADM.Settings.AppConfiguration.Values.vpc_Currency);
             //conn.AddDigitalOrderField("vpc_CustomPaymentPlanPlanId", vpc_CustomPaymentPlanPlanId.Text);
