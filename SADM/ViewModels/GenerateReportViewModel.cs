@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace SADM.ViewModels
         protected string postalCode;
         protected string references;
         protected string comments;
-
+        protected int spartanUserId;
         protected ReportType type;
 
         public string TypeSelected { get => typeSelected; set => SetProperty(ref typeSelected, value); }
@@ -55,7 +56,7 @@ namespace SADM.ViewModels
         public ICommand MapClickedCommand { get; private set; }
         public ICommand ChangeAddressInputCommand { get; private set; }
         public IAsyncCommand SendCommand { get; private set; }
-
+        public int SpartanUserId { get => spartanUserId; set => SetProperty(ref spartanUserId, value); }
         public GenerateReportViewModel(INavigationService navigationService, 
                                        ISettingsService settingsService, 
                                        IHudService hudService, 
@@ -129,6 +130,7 @@ namespace SADM.ViewModels
 
         protected async Task SendAttemptAsync()
         {
+            DateTime dt = DateTime.Now;
             var balanceSelected = balanceList[nisList.IndexOf(NisSelected)];
             var request = new AddReportRequest
             {
@@ -145,7 +147,10 @@ namespace SADM.ViewModels
                     References = References,
                     Comments = Comments,
                     Latitude = PinList?.FirstOrDefault()?.Position.Latitude,
-                    Longitude = PinList?.FirstOrDefault()?.Position.Longitude
+                    Longitude = PinList?.FirstOrDefault()?.Position.Longitude,
+                    RegisterDate = dt.ToString("dd/MM/yyyy"),
+                    RegisterTime = dt.ToString("HH:mm"),
+                    User = int.Parse(SettingsService.User.Folio.ToString())
                 }
             };
 

@@ -14,7 +14,7 @@ namespace SADM.Models
         [JsonProperty("Hora_de_Registro")]
         public string RegisterTime { get; set; }
         [JsonProperty("Usuario_que_Registra")]
-        public long User => 1;
+        public int User { get; set; }
         [JsonProperty("Correo")]
         public string Email { get; set; }
         [JsonProperty("Calle")]

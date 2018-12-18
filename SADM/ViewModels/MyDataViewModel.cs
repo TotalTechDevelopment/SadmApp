@@ -113,7 +113,7 @@ namespace SADM.ViewModels
                         PostalCode = request.PostalCode,
                         PhoneNumber = request.PhoneNumber,
                         Question = request.Question,
-                        Answer = request.Answer
+                        Answer = request.Answer 
                     };
                     await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
                     await HudService.ShowSuccessMessageAsync(AppResources.UpdateDataSuccess);

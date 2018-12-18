@@ -123,7 +123,7 @@ namespace SADM.Services
 
             var response = new LoginResponse();
             if (resultado.Registro_de_Usuarioss == null)
-                response.AddError("Correo / Contraseña no validos. Revise sus datos y vuelva a intentarlo.");
+                response.AddError("Correo / Contraseña no válidos. Revise sus datos y vuelva a intentarlo.");
             else
             {
                 foreach (var r in resultado.Registro_de_Usuarioss)
@@ -133,6 +133,24 @@ namespace SADM.Services
                     response.Apellido_Paterno = r.Apellido_Materno;
                     response.Nombre = r.Nombre;
                     response.Correo = r.Correo;
+                    response.Calle = r.Calle;
+                    response.Ciudad = r.Ciudad;
+                    response.Clave_de_acceso = r.Clave_de_acceso;
+                    response.Codigo_Postal = r.Codigo_Postal;
+                    response.Colonia = r.Colonia;
+                    response.Contrasena = r.Contrasena;
+                    response.Correo = r.Correo;
+                    response.Estado = r.Estado;
+                    response.Fecha_de_Registro = r.Fecha_de_Registro;
+                    response.Folio = r.Folio;
+                    response.Hora_de_Registro = r.Hora_de_Registro;
+                    response.lastReading = r.lastReading;
+                    response.Lec = r.Lec;
+                    response.Numero = r.Numero;
+                    response.Pregunta_de_seguridad = r.Pregunta_de_seguridad;
+                    response.Respuesta_de_seguridad = r.Respuesta_de_seguridad;
+                    response.Rol = r.Rol;
+                    response.Usuario_que_Registra = r.IdSpartanUser;
                 }
             }
             // else if(string.IsNullOrEmpty(resultado.Registro_de_Usuarioss)

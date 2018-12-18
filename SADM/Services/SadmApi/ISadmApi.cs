@@ -29,10 +29,10 @@ namespace SADM.Services
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> Update([Body(BodySerializationMethod.Json)]UpdateMyDataRequest request);
 
-        [Get("/api/Registro_de_usuarios/ListaSelAll")]
+        [Get("/api/Registro_de_usuarios/ListaSelAllApp")]
         [Headers("Authorization: Bearer")]
         Task<Spartan_User> LogIn(LoginRequest request);
-        [Get("/api/Registro_de_usuarios/ListaSelAll")]
+        [Get("/api/Registro_de_usuarios/ListaSelAllApp")]
         [Headers("Authorization: Bearer")]
         Task<string> LogInStr(LoginRequest request);
 
