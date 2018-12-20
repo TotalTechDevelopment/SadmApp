@@ -154,7 +154,7 @@ namespace SADM.ViewModels
                         City = request.City,
                         State = request.State,
                         PostalCode = request.PostalCode,
-                        PhoneNumber = request.PhoneNumber,
+                        PhoneNumber = (request.PhoneNumber).ToString(),
                         Question = request.Question,
                         Answer = request.Answer,
                         Password = request.Password
@@ -201,7 +201,7 @@ namespace SADM.ViewModels
                         City = request.City,
                         State = request.State,
                         PostalCode = request.PostalCode,
-                        PhoneNumber = request.PhoneNumber,
+                        PhoneNumber = (request.PhoneNumber).ToString(),
                         Question = request.Question,
                         Answer = request.Answer,
                         Password = request.Password

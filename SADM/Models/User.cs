@@ -42,5 +42,8 @@ namespace SADM.Models
         public string Answer { get; set; }
         [JsonProperty("Telefono")]
         public string PhoneNumber { get; set; }
+
+        [JsonIgnore()]
+        public int Spartan_userId { get; set; }
     }
 }

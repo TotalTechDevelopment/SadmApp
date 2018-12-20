@@ -62,7 +62,7 @@ namespace SADM.Models.Requests
         [JsonProperty("Clave_de_acceso")]
         public string Passkey => Email;
         [JsonProperty("Telefono")]
-        public string PhoneNumber { get; set; }
+        public long? PhoneNumber { get; set; }
         public int? IdSpartanUser { get; set; }
         public bool updateOnly { get; set; }
     }

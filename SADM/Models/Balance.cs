@@ -22,7 +22,7 @@ namespace SADM.Models
         public long? Folio { get; set; }
         [JsonProperty("NIS_RAD")]
         public string Nis { get; set; }
-        [JsonProperty("SEC_NIS")]
+        [JsonProperty("v_secnis")]
         public int? SecNis { get; set; }
         [JsonProperty("EST_SUM")]
         public string Status { get; set; }
@@ -58,7 +58,8 @@ namespace SADM.Models
         public string ClientLastName { get; set; }
         [JsonProperty("APE2_CLI")]
         public string ClientSecondLastName { get; set; }
-
+        [JsonProperty("v_fecsec")]
+        public string v_fecsec { get; set; }
         //Meter
         [JsonProperty("NUM_APA")]
         public string MeterNumber { get; set; }

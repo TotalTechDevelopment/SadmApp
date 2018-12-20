@@ -113,8 +113,9 @@ namespace SADM.ViewModels
                         PostalCode = request.PostalCode,
                         PhoneNumber = request.PhoneNumber,
                         Question = request.Question,
-                        Answer = request.Answer 
-                    };
+                        Answer = request.Answer ,
+                        Spartan_userId= SettingsService.User.Spartan_userId
+                };
                     await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
                     await HudService.ShowSuccessMessageAsync(AppResources.UpdateDataSuccess);
                 }
@@ -135,6 +136,7 @@ namespace SADM.ViewModels
                     ConfirmPassword = SettingsService.User.Password;
                     Question = SettingsService.User.Question;
                     Answer = SettingsService.User.Answer;
+                     
                 }
             }
         }
@@ -180,6 +182,7 @@ namespace SADM.ViewModels
                     user.Password = ConfirmPassword;
                     user.Question = Question;
                     user.Answer = Answer;
+                    user.Spartan_userId = SettingsService.User.Spartan_userId;
                     await SettingsService.WriteUserAsync(user);
                     await HudService.ShowSuccessMessageAsync("Se actualizó los datos del usuario.");
                 }

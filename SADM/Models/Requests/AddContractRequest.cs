@@ -15,13 +15,13 @@ namespace SADM.Models.Requests
 
         //Dynamic
         [JsonProperty("SEC_REC")]
-        public string SecRec => Nir?.Substring(0, 1) ?? string.Empty;
+        public string SecRec => Nir.Split('-')[0];//Nir?.Substring(0, 1) ?? string.Empty;
         [JsonProperty("NIS_RAD")]
-        public string NisRad => Nir?.Substring(1, 7) ?? string.Empty;
+        public string NisRad => Nir.Split('-')[1];
         [JsonProperty("SEC_NIS")]
-        public string Nis => Nir?.Substring(8, 2) ?? string.Empty;
+        public string Nis => int.Parse(Nir.Split('-')[2]).ToString();
         [JsonProperty("F_FACT")]
-        public string Date => Nir?.Substring(10, 8) ?? string.Empty;
+        public string Date => Nir.Split('-')[3];
 
         //Constant
         [JsonProperty("ab")]

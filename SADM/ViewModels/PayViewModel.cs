@@ -22,7 +22,7 @@ namespace SADM.ViewModels
         private Balance balance;
         protected ISadmApiService sadmApiService;
         private IEventAggregator _event;
-
+        private ISettingsService _settingsService;
         #region Properties
         private string urlWeb;
         public string UrlWeb
@@ -35,17 +35,51 @@ namespace SADM.ViewModels
         }
         #endregion
 
-        public PayViewModel(IEventAggregator eventAggregator,ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
+        public PayViewModel(IEventAggregator eventAggregator, ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
         {
+
             _event = eventAggregator;
             this.sadmApiService = sadmApiService;
             _event.GetEvent<UrlChangeEvent>().Subscribe(ResponseUrlPayment);
         }
 
-        private void ResponseUrlPayment(string url)
+        private async void ResponseUrlPayment(string url)
         {
             var dic = GetParams(url);
+            var EstatusPago = dic.Where(e => e.Key == "vpc_TxnResponseCode").ToList().First().Value;
+            if (EstatusPago == "2")
+            {
+                var request = new GetContractListRequest { Email = DatosPago.email };
+                if (await CallServiceAsync<GetContractListRequest, Models.Responses.GetBalanceListResponse>(request, "Actualizando pago", true) is Models.Responses.GetBalanceListResponse response && response.Success)
+                {
+                    var seleccionado = response.BalanceList.Where(t => t.Nis == DatosPago.NIS_RAD.ToString()).First();
+                    var fecha = seleccionado.v_fecsec.Remove(seleccionado.v_fecsec.Length - 1);
+                    fecha = new string(fecha.Skip(6).Take(2).ToArray()) + new string(fecha.Skip(4).Take(2).ToArray()) + new string(fecha.Take(4).ToArray());
+                    DatosPago.NIS_RAD = int.Parse(seleccionado.Nis);
+                    DatosPago.SEC_NIS = seleccionado.SecNis ?? 0;
+                    DatosPago.F_FACT = fecha;
+                    await sadmApiService.CallServiceAsync<PAGOSRequest, Models.Responses.ResponseBase>(new PAGOSRequest
+                    {
+                        v_f_fact = DatosPago.F_FACT,
+                        v_importe = DatosPago.v_importe / 100,
+                        v_nis_rad = DatosPago.NIS_RAD,
+                        v_referencia = DatosPago.v_referencia,
+                        v_sec_nis = DatosPago.SEC_NIS,
+                        v_sec_rec = DatosPago.SEC_REC
+                    });
 
+                }
+
+            }
+            //await this.sadmApiService.CallServiceAsync(new PAGOSRequest
+            //{
+            //    v_f_fact = DatosPago.F_FACT,
+            //    v_importe = DatosPago.v_importe,
+            //    v_nis_rad = DatosPago.NIS_RAD,
+            //    v_referencia = DatosPago.v_referencia,
+            //    v_sec_nis = DatosPago.SEC_NIS,
+            //    v_sec_rec = DatosPago.SEC_REC
+            //});
         }
 
         private Dictionary<string, string> GetParams(string uri)
@@ -59,18 +93,21 @@ namespace SADM.ViewModels
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
+            var fechaConcatenada = DateTime.Now.Day.ToString().PadLeft(2, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0') + DateTime.Now.Year.ToString().PadLeft(2, '0') + DateTime.Now.Second.ToString().PadLeft(2, '0') + DateTime.Now.Millisecond.ToString().PadLeft(6, '0');
             if (parameters.ContainsKey("Balance"))
             {
                 balance = parameters.GetValue<Balance>("Balance");
             }
+            DatosPago.v_referencia = "RfId" + fechaConcatenada;
+            DatosPago.v_importe = int.Parse((balance.TotalDebt * 100).Value.ToString());
             VPCRequest conn = new VPCRequest();
             conn.AddDigitalOrderField("vpc_Version", SADM.Settings.AppConfiguration.Values.vpc_Version);
             conn.AddDigitalOrderField("vpc_Command", SADM.Settings.AppConfiguration.Values.vpc_Command);
             conn.AddDigitalOrderField("vpc_AccessCode", SADM.Settings.AppConfiguration.Values.vpc_AccessCode);
             conn.AddDigitalOrderField("vpc_Merchant", SADM.Settings.AppConfiguration.Values.vpc_Merchant);
             conn.AddDigitalOrderField("vpc_ReturnURL", "http://localhost:8080/api/");
-            conn.AddDigitalOrderField("vpc_MerchTxnRef", "PruebaRfId2529");
-            conn.AddDigitalOrderField("vpc_OrderInfo", "2529");
+            conn.AddDigitalOrderField("vpc_MerchTxnRef", "RfId" + fechaConcatenada);
+            conn.AddDigitalOrderField("vpc_OrderInfo", fechaConcatenada);
             balance.TotalDebt = (float?)0.1;
             conn.AddDigitalOrderField("vpc_Amount", (balance.TotalDebt * 100).ToString());
             conn.AddDigitalOrderField("vpc_Currency", SADM.Settings.AppConfiguration.Values.vpc_Currency);

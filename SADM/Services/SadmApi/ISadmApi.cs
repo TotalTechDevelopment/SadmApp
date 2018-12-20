@@ -48,6 +48,9 @@ namespace SADM.Services
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> RemoveNis([Body(BodySerializationMethod.Json)]RemoveContractRequest request);
 
+        [Post("/api/PAGOS/RealizarPago")]
+        [Headers("Id_User: 1", "Authorization: Bearer")]
+        Task<string> RealizarPago([Body(BodySerializationMethod.Json)]PAGOSRequest request);
 
         [Get("/api/Envio_de_Facturas/ListaSelAll")]
         [Headers("Authorization: Bearer")]

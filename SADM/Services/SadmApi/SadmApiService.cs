@@ -36,8 +36,12 @@ namespace SADM.Services
             {
                 switch (request.GetType().Name)
                 {
+                    case nameof(PAGOSRequest):
+                        response = new ResponseBase() as V;
+                        await SadmApi.RealizarPago(request as PAGOSRequest);
+                        break;
                     case nameof(ObtenerUrlPagosRequest):
-                        response = await ProcessCallPagosAsync(request as ObtenerUrlPagosRequest) as V; 
+                        response = await ProcessCallPagosAsync(request as ObtenerUrlPagosRequest) as V;
                         break;
                     case nameof(GetAppTokenRequest):
                         response = await SadmApi.GetAppToken(request as GetAppTokenRequest) as V;
@@ -58,6 +62,15 @@ namespace SADM.Services
                         response = await SimulateSuccessfulAsync<PasswordRecoveryResponse>() as V;
                         break;
                     case nameof(AddContractRequest):
+                        var reqAux = new AddContractRequest();
+                        //var splits = (request as AddContractRequest).Nir.Split('-');
+                        //var iteradorSecuencia = 0;
+                        //foreach (var valor in splits)
+                        //{
+                        //    switch (iteradorSecuencia)
+                          
+                        //    iteradorSecuencia++;
+                        //}
                         response = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) } as V;
                         break;
                     case nameof(RemoveContractRequest):
@@ -126,6 +139,7 @@ namespace SADM.Services
                 response.AddError("Correo / Contraseña no válidos. Revise sus datos y vuelva a intentarlo.");
             else
             {
+                DatosPago.email = request.Email;
                 foreach (var r in resultado.Registro_de_Usuarioss)
                 {
                     response.Activo = r.Activo;
@@ -151,6 +165,8 @@ namespace SADM.Services
                     response.Respuesta_de_seguridad = r.Respuesta_de_seguridad;
                     response.Rol = r.Rol;
                     response.Usuario_que_Registra = r.IdSpartanUser;
+                    response.User.Spartan_userId = r.IdSpartanUser ?? 0;
+                    DatosPago.SpartanUserId = r.IdSpartanUser ?? 0;
                 }
             }
             // else if(string.IsNullOrEmpty(resultado.Registro_de_Usuarioss)

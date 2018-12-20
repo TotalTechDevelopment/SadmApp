@@ -55,6 +55,11 @@ namespace SADM.ViewModels
         {
             if(arg is Balance balance)
             {
+                DatosPago.NIS_RAD = int.Parse(balance.Nis.ToString());
+                //DatosPago.F_FACT = balance.BilledMonth.ToString();
+                //DatosPago.SEC_NIS = int.Parse(balance.SecNis.ToString());
+                DatosPago.SEC_REC = 0;
+
                 await GoToPageAsync<Views.BalancePage>(balance);
             }
         }
@@ -62,6 +67,8 @@ namespace SADM.ViewModels
         protected async Task GetBalanceList()
         {
             Loading = true;
+            DatosPago.email = SettingsService.User.Email;
+            DatosPago.SpartanUserId = SettingsService.User.Spartan_userId;
             var request = new GetContractListRequest { Email = SettingsService.User.Email };
             if(await CallServiceAsync<GetContractListRequest, GetBalanceListResponse>(request, null, false) is GetBalanceListResponse response && response.Success)
             {

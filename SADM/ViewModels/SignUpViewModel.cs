@@ -84,7 +84,7 @@ namespace SADM.ViewModels
                     City = City,
                     State = State,
                     PostalCode = PostalCode,
-                    PhoneNumber = Phone,
+                    PhoneNumber = long.Parse(Phone),
                     Password = Password,
                     Question = Question,
                     Answer = Answer

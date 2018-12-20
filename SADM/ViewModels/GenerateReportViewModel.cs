@@ -150,7 +150,7 @@ namespace SADM.ViewModels
                     Longitude = PinList?.FirstOrDefault()?.Position.Longitude,
                     RegisterDate = dt.ToString("dd/MM/yyyy"),
                     RegisterTime = dt.ToString("HH:mm"),
-                    User = int.Parse(SettingsService.User.Folio.ToString())
+                    User = DatosPago.SpartanUserId
                 }
             };
 
