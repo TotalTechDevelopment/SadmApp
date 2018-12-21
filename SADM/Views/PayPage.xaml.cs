@@ -24,6 +24,8 @@ namespace SADM.Views
                 var o = contentWebView.Source as UrlWebViewSource;
                 if(o.Url.Contains("http://localhost:8080/api/"))
                 {
+                    webview.Source = "about:blank";
+                    webview.IsVisible = false;
                     _event.GetEvent<UrlChangeEvent>().Publish(o.Url);
                 }
             }

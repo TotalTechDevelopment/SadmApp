@@ -13,6 +13,7 @@ using SADM.Helpers;
 using SADM.Models;
 using SADM.Models.Requests;
 using SADM.Services;
+using SADM.Views;
 using Xamarin.Forms;
 
 namespace SADM.ViewModels
@@ -23,6 +24,7 @@ namespace SADM.ViewModels
         protected ISadmApiService sadmApiService;
         private IEventAggregator _event;
         private ISettingsService _settingsService;
+        private readonly IHudService _hudService;
         private readonly INavigationService _navigationService;
         #region Properties
         private string urlWeb;
@@ -36,10 +38,11 @@ namespace SADM.ViewModels
         }
         #endregion
 
-        public PayViewModel(IEventAggregator eventAggregator, ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
+        public PayViewModel(IEventAggregator eventAggregator, IHudService hudService, ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
         {
             _navigationService = navigationService;
             _event = eventAggregator;
+            _hudService = hudService;
             this.sadmApiService = sadmApiService;
             _event.GetEvent<UrlChangeEvent>().Subscribe(ResponseUrlPayment);
         }
@@ -68,9 +71,20 @@ namespace SADM.ViewModels
                         v_sec_nis = DatosPago.SEC_NIS,
                         v_sec_rec = DatosPago.SEC_REC
                     });
+                    await _hudService.ShowSuccessMessageAsync("Pago realizado con exito");
+                    await _navigationService.NavigateAsync(new Uri($"/{nameof(LateralMenuPage)}/{nameof(NavigationPage)}/{nameof(BalancesPage)}", UriKind.Absolute));
 
                 }
-
+                else
+                {
+                    await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
+                    await _navigationService.GoBackAsync();
+                }
+            }
+            else
+            {
+                await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
+                await _navigationService.GoBackAsync();
             }
             //await this.sadmApiService.CallServiceAsync(new PAGOSRequest
             //{
