@@ -23,6 +23,7 @@ namespace SADM.ViewModels
         protected ISadmApiService sadmApiService;
         private IEventAggregator _event;
         private ISettingsService _settingsService;
+        private readonly INavigationService _navigationService;
         #region Properties
         private string urlWeb;
         public string UrlWeb
@@ -37,7 +38,7 @@ namespace SADM.ViewModels
 
         public PayViewModel(IEventAggregator eventAggregator, ISadmApiService sadmApiService, INavigationService navigationService, ISettingsService settingsService, IHudService hudService, ISadmApiService apiService) : base(navigationService, settingsService, hudService, apiService)
         {
-
+            _navigationService = navigationService;
             _event = eventAggregator;
             this.sadmApiService = sadmApiService;
             _event.GetEvent<UrlChangeEvent>().Subscribe(ResponseUrlPayment);

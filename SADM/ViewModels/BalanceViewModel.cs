@@ -148,7 +148,7 @@ namespace SADM.ViewModels
                 {"Balance",balance}
             };
 
-            await _navigationService.NavigateAsync(new Uri($"/{nameof(PayPage)}"), parameter);
+            await _navigationService.NavigateAsync(nameof(PayPage), parameter);
         }
 
         protected void processGraph()
