@@ -13,6 +13,7 @@ namespace SADM.ViewModels
     public class BalanceViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
+        private readonly IHudService _hudService;
 
         protected const double MAX_HEIGHT_BAR = 70;
         protected Balance balance;
@@ -116,6 +117,7 @@ namespace SADM.ViewModels
         base(navigationService, settingsService, hudService, apiService)
         {
             _navigationService = navigationService;
+            _hudService = hudService;
             PayAttemptCommand = new Command(PayAttemptCommandExecuted);//(async () => await HudService.ShowErrorAsync("Servicio no disponible por el momento."));
         }
 
@@ -137,6 +139,10 @@ namespace SADM.ViewModels
 
         private async void PayAttemptCommandExecuted()
         {
+            if ((float)balance.TotalDebt <= 0) {
+                await _hudService.ShowInformationAsync("Tu saldo es de 0");
+                return; 
+            } 
             var parameter = new NavigationParameters()
             {
                 {"Balance",balance}
