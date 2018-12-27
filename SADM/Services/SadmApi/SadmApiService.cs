@@ -164,6 +164,7 @@ namespace SADM.Services
                     response.Pregunta_de_seguridad = r.Pregunta_de_seguridad;
                     response.Respuesta_de_seguridad = r.Respuesta_de_seguridad;
                     response.Rol = r.Rol;
+                    response.Telefono = r.Telefono;
                     response.Usuario_que_Registra = r.IdSpartanUser;
                     response.User.Spartan_userId = r.IdSpartanUser ?? 0;
                     DatosPago.SpartanUserId = r.IdSpartanUser ?? 0;
