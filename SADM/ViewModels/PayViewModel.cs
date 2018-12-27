@@ -71,13 +71,13 @@ namespace SADM.ViewModels
                         v_sec_nis = DatosPago.SEC_NIS,
                         v_sec_rec = DatosPago.SEC_REC
                     });
-                    await _hudService.ShowSuccessMessageAsync("Pago realizado con exito");
+                    await _hudService.ShowSuccessMessageAsync("Pago realizado con éxito.");
                     await _navigationService.NavigateAsync(new Uri($"/{nameof(LateralMenuPage)}/{nameof(NavigationPage)}/{nameof(BalancesPage)}", UriKind.Absolute));
 
                 }
                 else
                 {
-                    await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
+                    await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo.");
                     await _navigationService.GoBackAsync();
                 }
             }
