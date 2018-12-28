@@ -72,16 +72,24 @@ namespace SADM.ViewModels
 
         public async Task GetReportListAsync()
         {
-            var request = new GetReportListRequest { UserId = 1 };
-            if (await CallServiceAsync<GetReportListRequest, GetReportListResponse>(request, "Consultando las solicitudes...", true) is GetReportListResponse response && response.Success)
+            RegistroUsuariosGetAllRequest requests = new RegistroUsuariosGetAllRequest
             {
-                if (response.ReportList.Any())
+                order = "  Registro_de_Usuarios.Folio ASC ",
+                where = "Registro_de_Usuarios.Correo='" + SettingsService.User.Email + "'"
+            };
+            if (await CallServiceAsync<RegistroUsuariosGetAllRequest, LoginResponse>(requests, "", false) is LoginResponse responseLogin && responseLogin.Success)
+            {
+                var request = new GetReportListRequest { UserId = responseLogin.Folio };
+                if (await CallServiceAsync<GetReportListRequest, GetReportListResponse>(request, "Consultando las solicitudes...", true) is GetReportListResponse response && response.Success)
                 {
-                    await GoToPageAsync<Views.ReportListPage>(response.ReportList);
-                }
-                else
-                {
-                    await HudService.ShowErrorAsync("No has generado solictudes");
+                    if (response.ReportList.Any())
+                    {
+                        await GoToPageAsync<Views.ReportListPage>(response.ReportList);
+                    }
+                    else
+                    {
+                        await HudService.ShowErrorAsync("No has generado solictudes");
+                    }
                 }
             }
         }
