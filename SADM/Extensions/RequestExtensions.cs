@@ -13,6 +13,10 @@ namespace SADM.Extensions
             {
                 return GetErrorList(request as SignUpRequest);
             }
+            if(request is RegistroUsuariosGetAllRequest)
+            {
+                return null;
+            }
             if (request is UpdateUserRequest)
             {
                 return GetErrorList(request as UpdateUserRequest);

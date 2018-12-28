@@ -36,6 +36,9 @@ namespace SADM.Services
             {
                 switch (request.GetType().Name)
                 {
+                    case nameof(RegistroUsuariosGetAllRequest):
+                        response = await ProcessCallAsyncObtenerDatos(request as RegistroUsuariosGetAllRequest) as V; //SadmApi.RegistroUsuariosGetAll(request as RegistroUsuariosGetAllRequest) as V;
+                        break;
                     case nameof(PAGOSRequest):
                         response = new ResponseBase() as V;
                         await SadmApi.RealizarPago(request as PAGOSRequest);
@@ -63,14 +66,7 @@ namespace SADM.Services
                         break;
                     case nameof(AddContractRequest):
                         var reqAux = new AddContractRequest();
-                        //var splits = (request as AddContractRequest).Nir.Split('-');
-                        //var iteradorSecuencia = 0;
-                        //foreach (var valor in splits)
-                        //{
-                        //    switch (iteradorSecuencia)
-                          
-                        //    iteradorSecuencia++;
-                        //}
+           
                         response = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) } as V;
                         break;
                     case nameof(RemoveContractRequest):
@@ -129,6 +125,49 @@ namespace SADM.Services
             return response;
 
         }
+        public async Task<ResponseBase> ProcessCallAsyncObtenerDatos(RegistroUsuariosGetAllRequest request)
+        {
+            var temp = await SadmApi.RegistroUsuariosGetAll(request);
+            var resultado = Newtonsoft.Json.JsonConvert.DeserializeObject<List<LoginResponse>>(temp);
+
+            var response = new LoginResponse();
+            if (resultado == null)
+                response.AddError("Correo/Contraseña no válidos. Revise sus datos y vuelva a intentarlo.");
+            else
+            {                 
+                foreach (var r in resultado)
+                {
+                    response.Activo = r.Activo;
+                    response.Apellido_Materno = r.Apellido_Materno;
+                    response.Apellido_Paterno = r.Apellido_Materno;
+                    response.Nombre = r.Nombre;
+                    response.Correo = r.Correo;
+                    response.Calle = r.Calle;
+                    response.Ciudad = r.Ciudad;
+                    response.Clave_de_acceso = r.Clave_de_acceso;
+                    response.Codigo_Postal = r.Codigo_Postal;
+                    response.Colonia = r.Colonia;
+                    response.Contrasena = r.Contrasena;
+                    response.Correo = r.Correo;
+                    response.Estado = r.Estado;
+                    response.Fecha_de_Registro = r.Fecha_de_Registro;
+                    response.Folio = r.Folio;
+                    response.Hora_de_Registro = r.Hora_de_Registro;
+                    response.lastReading = r.lastReading;
+                    response.Lec = r.Lec;
+                    response.Numero = r.Numero;
+                    response.Pregunta_de_seguridad = r.Pregunta_de_seguridad;
+                    response.Respuesta_de_seguridad = r.Respuesta_de_seguridad;
+                    response.Rol = r.Rol;
+                    response.Telefono = r.Telefono;
+                    response.Usuario_que_Registra = r.IdSpartanUser;
+                    response.User.Spartan_userId = r.IdSpartanUser ?? 0;
+                    DatosPago.SpartanUserId = r.IdSpartanUser ?? 1;
+                }
+            }           
+            return response;
+        }
+
         public async Task<ResponseBase> ProcessCallAsync(LoginRequest request)
         {
             var temp = await SadmApi.LogInStr(request);

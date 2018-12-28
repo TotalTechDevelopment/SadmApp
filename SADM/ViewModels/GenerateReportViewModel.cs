@@ -20,7 +20,7 @@ namespace SADM.ViewModels
     {
         protected readonly List<string> ReportTypes = new List<string>{
             AppResources.FugueInMyAddress,
-            AppResources.FugueInAnotherAddress 
+            AppResources.FugueInAnotherAddress
         };
         protected string typeSelected;
         protected IList<Balance> balanceList;
@@ -57,10 +57,10 @@ namespace SADM.ViewModels
         public ICommand ChangeAddressInputCommand { get; private set; }
         public IAsyncCommand SendCommand { get; private set; }
         public int SpartanUserId { get => spartanUserId; set => SetProperty(ref spartanUserId, value); }
-        public GenerateReportViewModel(INavigationService navigationService, 
-                                       ISettingsService settingsService, 
-                                       IHudService hudService, 
-                                       ISadmApiService apiService) : 
+        public GenerateReportViewModel(INavigationService navigationService,
+                                       ISettingsService settingsService,
+                                       IHudService hudService,
+                                       ISadmApiService apiService) :
         base(navigationService, settingsService, hudService, apiService)
         {
             //TODO: get NIS List of storage
@@ -78,6 +78,7 @@ namespace SADM.ViewModels
             MapClickedCommand = new Command<MapClickedEventArgs>(MapClicked);
             ChangeAddressInputCommand = new Command(SwitchAddressInput);
             Comments = string.Empty;
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
@@ -100,7 +101,8 @@ namespace SADM.ViewModels
         protected void MapClicked(MapClickedEventArgs args)
         {
             PinList?.Clear();
-            PinList?.Add(new Pin{
+            PinList?.Add(new Pin
+            {
                 Label = "Aquí esta la fuga!",
                 Position = args.Point
             });
@@ -108,14 +110,14 @@ namespace SADM.ViewModels
 
         protected async Task ShowListAsync(string title)
         {
-            if(await HudService.ShowListAsync(title, title == AppResources.ReportTypeListTitle ? ReportTypes : nisList) 
+            if (await HudService.ShowListAsync(title, title == AppResources.ReportTypeListTitle ? ReportTypes : nisList)
                is string selected)
             {
-                if(title == AppResources.ReportTypeListTitle)
+                if (title == AppResources.ReportTypeListTitle)
                 {
                     TypeSelected = selected;
                     type = (ReportType)ReportTypes.IndexOf(selected);
-                    if(type == ReportType.FugueInAnotherAddress)
+                    if (type == ReportType.FugueInAnotherAddress)
                     {
                         type = TextAddressInput ? ReportType.FugueInAnotherAddress : ReportType.FugueInAnotherLocation;
                     }
@@ -130,35 +132,44 @@ namespace SADM.ViewModels
 
         protected async Task SendAttemptAsync()
         {
-            DateTime dt = DateTime.Now;
-            var balanceSelected = balanceList[nisList.IndexOf(NisSelected)];
-            var request = new AddReportRequest
+            var usuarioId = SettingsService.User.Email;
+            RegistroUsuariosGetAllRequest requests = new RegistroUsuariosGetAllRequest
             {
-                Type = type,
-                Nis = NisSelected,
-                Report = new Report
-                {
-                    Status = ReportStatus.Pending,
-                    Email = SettingsService.User.Email,
-                    Street = type == ReportType.FugueInMyAddress ? balanceSelected.StreetName : Street,
-                    Number = type == ReportType.FugueInMyAddress ? balanceSelected.DoorNumber : Number,
-                    Colony = type == ReportType.FugueInMyAddress ? balanceSelected.ColonyName : Colony,
-                    PostalCode = PostalCode,
-                    References = References,
-                    Comments = Comments,
-                    Latitude = PinList?.FirstOrDefault()?.Position.Latitude,
-                    Longitude = PinList?.FirstOrDefault()?.Position.Longitude,
-                    RegisterDate = dt.ToString("dd/MM/yyyy"),
-                    RegisterTime = dt.ToString("HH:mm"),
-                    User = DatosPago.SpartanUserId
-                }
+                order = "  Registro_de_Usuarios.Folio ASC ",
+                where = "Registro_de_Usuarios.Correo='" + SettingsService.User.Email + "'"
             };
-
-            if(await CallServiceAsync<AddReportRequest, AddReportResponse>(request, AppResources.AddReportLoading, true) 
-               is AddReportResponse response && response.Success)
+            if (await CallServiceAsync<RegistroUsuariosGetAllRequest, LoginResponse>(requests, "Procesando reporte", true) is LoginResponse responseLogin && responseLogin.Success)
             {
-                await HudService.ShowSuccessMessageAsync(string.Format(AppResources.AddReportSuccess, response.ReportId));
-                await NavigationService.GoBackAsync();
+                DateTime dt = DateTime.Now;
+                var balanceSelected = balanceList[nisList.IndexOf(NisSelected)];
+                var request = new AddReportRequest
+                {
+                    Type = type,
+                    Nis = NisSelected,
+                    Report = new Report
+                    {
+                        Status = ReportStatus.Pending,
+                        Email = SettingsService.User.Email,
+                        Street = type == ReportType.FugueInMyAddress ? balanceSelected.StreetName : Street,
+                        Number = type == ReportType.FugueInMyAddress ? balanceSelected.DoorNumber : Number,
+                        Colony = type == ReportType.FugueInMyAddress ? balanceSelected.ColonyName : Colony,
+                        PostalCode = PostalCode,
+                        References = References,
+                        Comments = Comments,
+                        Latitude = PinList?.FirstOrDefault()?.Position.Latitude,
+                        Longitude = PinList?.FirstOrDefault()?.Position.Longitude,
+                        //RegisterDate = dt.ToString("dd/MM/yyyy"),
+                        RegisterTime = dt.ToString("HH:mm"),
+                        User = responseLogin.Folio
+                    }
+                };
+
+                if (await CallServiceAsync<AddReportRequest, AddReportResponse>(request, AppResources.AddReportLoading, true)
+                   is AddReportResponse response && response.Success)
+                {
+                    await HudService.ShowSuccessMessageAsync(string.Format(AppResources.AddReportSuccess, response.ReportId));
+                    await NavigationService.GoBackAsync();
+                }
             }
         }
     }

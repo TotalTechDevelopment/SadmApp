@@ -11,6 +11,9 @@ namespace SADM.Services
         [Post("/oauth/token")]
         Task<GetAppTokenResponse> GetAppToken([Body(BodySerializationMethod.UrlEncoded)] GetAppTokenRequest request);
 
+        [Get("/api/Registro_de_usuarios/GetAll")] 
+        Task<string> RegistroUsuariosGetAll(RegistroUsuariosGetAllRequest request);
+
         [Post("/api/Registro_de_usuarios/Post")]
         [Headers("Id_User: 1", "Authorization: Bearer")]
         Task<string> SignUp([Body(BodySerializationMethod.Json)]SignUpRequest request);
