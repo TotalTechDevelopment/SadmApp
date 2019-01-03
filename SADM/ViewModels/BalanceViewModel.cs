@@ -139,10 +139,10 @@ namespace SADM.ViewModels
 
         private async void PayAttemptCommandExecuted()
         {
-            if ((float)balance.TotalDebt <= 0) {
+            /*if ((float)balance.TotalDebt <= 0) {
                 await _hudService.ShowInformationAsync("Tu saldo es de 0");
                 return; 
-            } 
+            } */
             var parameter = new NavigationParameters()
             {
                 {"Balance",balance}

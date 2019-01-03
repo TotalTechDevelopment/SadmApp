@@ -83,8 +83,16 @@ namespace SADM.ViewModels
             }
             else
             {
-                await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
-                await _navigationService.GoBackAsync();
+                if(EstatusPago.Equals("C"))
+                {
+                    await _navigationService.GoBackAsync();
+                }
+                else
+                {
+                    await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
+                    await _navigationService.GoBackAsync();
+                }
+
             }
             //await this.sadmApiService.CallServiceAsync(new PAGOSRequest
             //{
