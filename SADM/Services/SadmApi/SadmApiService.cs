@@ -66,11 +66,20 @@ namespace SADM.Services
                         break;
                     case nameof(AddContractRequest):
                         var reqAux = new AddContractRequest();
+                        bool errorExiste = false;
+                        //bool errordiverso = true;
            
-                        response = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) } as V;
+                        var response1 = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) };
+                        //if(response.== @"\0|El Servicio No Puede Agregarse, Ya Se Encuentra Asociado\")
+                        if (response1.ContractId.Contains("El Servicio No Puede Agregarse, Ya Se Encuentra Asociado"))
+                            errorExiste = true;
+                        response = response1 as V;
+                        if (errorExiste)
+                            response.AddError("El Servicio No Puede Agregarse, Ya Se Encuentra Asociado");
                         break;
                     case nameof(RemoveContractRequest):
                         response = new RemoveContractResponse { ContractId = (await SadmApi.RemoveNis(request as RemoveContractRequest)).Replace("\"", string.Empty) } as V;
+
                         break;
                     case nameof(GetContractListRequest):
                         var tmp = await SadmApi.GetBalanceList(request as GetContractListRequest);
