@@ -15,11 +15,13 @@ namespace SADM.iOS.Services
             var webClient = new WebClient();
             webClient.DownloadDataCompleted += (s, e) =>
             {
-                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 string localPath = Path.Combine(documentsPath, fileName);
                 File.WriteAllBytes(localPath, e.Result);   
             };
             webClient.DownloadDataAsync(new Uri(uri));
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library");
+
         }
     }
 }
