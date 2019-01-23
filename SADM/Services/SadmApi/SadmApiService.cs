@@ -71,11 +71,13 @@ namespace SADM.Services
            
                         var response1 = new AddContractResponse { ContractId = (await SadmApi.AddNis(request as AddContractRequest)).Replace("\"", string.Empty) };
                         //if(response.== @"\0|El Servicio No Puede Agregarse, Ya Se Encuentra Asociado\")
-                        if (response1.ContractId.Contains("El Servicio No Puede Agregarse, Ya Se Encuentra Asociado"))
-                            errorExiste = true;
                         response = response1 as V;
-                        if (errorExiste)
+                        if (response1.ContractId.Contains("El Servicio No Puede Agregarse, Ya Se Encuentra Asociado"))
+                        {
                             response.AddError("El Servicio No Puede Agregarse, Ya Se Encuentra Asociado");
+                        }
+                        else if(response1.ContractId.ToUpper().Contains("EL RECIBO INDICADO NO EXISTE"))
+                            response.AddError("El recibo indicado no existe");
                         break;
                     case nameof(RemoveContractRequest):
                         response = new RemoveContractResponse { ContractId = (await SadmApi.RemoveNis(request as RemoveContractRequest)).Replace("\"", string.Empty) } as V;

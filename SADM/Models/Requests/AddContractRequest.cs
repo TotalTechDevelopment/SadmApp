@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace SADM.Models.Requests
 {
@@ -21,7 +22,7 @@ namespace SADM.Models.Requests
         [JsonProperty("SEC_NIS")]
         public string Nis => int.Parse(Nir.Split('-')[2]).ToString();
         [JsonProperty("F_FACT")]
-        public string Date => Nir.Split('-')[3];
+        public DateTime Date => new DateTime(int.Parse(Nir.Split('-')[3].Split('/')[2]), int.Parse(Nir.Split('-')[3].Split('/')[1]), int.Parse(Nir.Split('-')[3].Split('/')[0])); //Nir.Split('-')[3];
 
         //Constant
         [JsonProperty("ab")]
