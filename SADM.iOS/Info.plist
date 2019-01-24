@@ -15,7 +15,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>9.3</string>
+	<string>9</string>
 	<key>CFBundleDisplayName</key>
 	<string>SADM</string>
 	<key>CFBundleIdentifier</key>
@@ -43,10 +43,16 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) user your calendar.</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>3.1</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Need permission to save files.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
 </dict>
 </plist>

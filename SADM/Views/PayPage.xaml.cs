@@ -16,10 +16,12 @@ namespace SADM.Views
             InitializeComponent();
             _event = eventAggregator;
         }
+
         void w_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Source")
             {
+                
                 var contentWebView = sender as WebView;
                 var o = contentWebView.Source as UrlWebViewSource;
                 if(o.Url.Contains("http://localhost:8080/api/"))

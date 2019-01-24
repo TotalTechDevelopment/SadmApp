@@ -27,8 +27,8 @@ namespace SADM.ViewModels
         private readonly IHudService _hudService;
         private readonly INavigationService _navigationService;
         #region Properties
-        private string urlWeb;
-        public string UrlWeb
+        private Uri urlWeb;
+        public Uri UrlWeb
         {
             get { return urlWeb; }
             set
@@ -128,7 +128,7 @@ namespace SADM.ViewModels
             conn.AddDigitalOrderField("vpc_Command", SADM.Settings.AppConfiguration.Values.vpc_Command);
             conn.AddDigitalOrderField("vpc_AccessCode", SADM.Settings.AppConfiguration.Values.vpc_AccessCode);
             conn.AddDigitalOrderField("vpc_Merchant", SADM.Settings.AppConfiguration.Values.vpc_Merchant);
-            conn.AddDigitalOrderField("vpc_ReturnURL", "http://localhost:8080/api/");
+            conn.AddDigitalOrderField("vpc_ReturnURL", "https://www.google.com/");
             conn.AddDigitalOrderField("vpc_MerchTxnRef", "RfId" + fechaConcatenada);
             conn.AddDigitalOrderField("vpc_OrderInfo", fechaConcatenada);
             balance.TotalDebt = (float?)0.1;
@@ -139,7 +139,7 @@ namespace SADM.ViewModels
             // Perform the transaction
             string url = conn.Create3PartyQueryString();
             url = SADM.Settings.AppConfiguration.Values.PaymentBaseUrl + url;
-            UrlWeb = url;
+            UrlWeb = new Uri(url);
         }
         //Balance balance;
         //protected string cardHolder;
