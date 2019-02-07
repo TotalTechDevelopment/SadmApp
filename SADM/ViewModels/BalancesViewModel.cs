@@ -72,7 +72,8 @@ namespace SADM.ViewModels
             var request = new GetContractListRequest { Email = SettingsService.User.Email };
             if(await CallServiceAsync<GetContractListRequest, GetBalanceListResponse>(request, null, false) is GetBalanceListResponse response && response.Success)
             {
-                BalanceList.Reset(response.BalanceList);
+                var a = response.BalanceList.ToList().GroupBy(x => x.Nis).Select(x => x.FirstOrDefault()).ToList();
+                BalanceList.Reset(a);
             }
             Loading = false;
         }

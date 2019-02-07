@@ -57,7 +57,8 @@ namespace SADM.ViewModels
                     contract.SendToTheAddressCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
                     contract.SendToEmailCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
                 }
-                ContractList.Reset(getBalanceListResponse.BalanceList);
+                var a  = getBalanceListResponse.BalanceList.GroupBy(x => x.Nis).Select(x => x.FirstOrDefault()).ToList();
+                ContractList.Reset(a);
             }
             Loading = false;
         }
@@ -173,7 +174,7 @@ namespace SADM.ViewModels
                 Indicator = (int)bdc,
                 Nis = contract.Nis
             };
-            await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateBillDeliveryConfigurationResponse>(request, "Cambiando la configuración...", true);
+            var a = await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateBillDeliveryConfigurationResponse>(request, "Cambiando la configuración...", true);
         }
     }
 }

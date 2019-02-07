@@ -128,7 +128,7 @@ namespace SADM.ViewModels
             conn.AddDigitalOrderField("vpc_Command", SADM.Settings.AppConfiguration.Values.vpc_Command);
             conn.AddDigitalOrderField("vpc_AccessCode", SADM.Settings.AppConfiguration.Values.vpc_AccessCode);
             conn.AddDigitalOrderField("vpc_Merchant", SADM.Settings.AppConfiguration.Values.vpc_Merchant);
-            conn.AddDigitalOrderField("vpc_ReturnURL", "https://www.google.com/");
+            conn.AddDigitalOrderField("vpc_ReturnURL", "http://localhost:8080/api/");
             conn.AddDigitalOrderField("vpc_MerchTxnRef", "RfId" + fechaConcatenada);
             conn.AddDigitalOrderField("vpc_OrderInfo", fechaConcatenada);
             balance.TotalDebt = (float?)0.1;

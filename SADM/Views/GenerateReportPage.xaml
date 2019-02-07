@@ -170,12 +170,13 @@
                     </maps:Map>
                 </StackLayout>
 
-                <controls:InputBox HeightRequest="60">
+                <controls:InputBox HeightRequest="100">
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                         <Editor Text="Comentarios adicionales" 
                                 TextColor="{StaticResource SecondaryDarkTextColor}"
                                 IsVisible="false"
+                                Margin="16,0,16,0"
                                 HorizontalOptions="FillAndExpand" 
                                 VerticalOptions="FillAndExpand"
                                 BackgroundColor="Transparent"
@@ -192,6 +193,7 @@
                         
                         <Editor Text="{Binding Comments}"
                                 FontSize="15"
+                                Margin="16,0,16,0"
                                 TextColor="{StaticResource PrimaryDarkTextColor}"
                                 HorizontalOptions="FillAndExpand" 
                                 VerticalOptions="FillAndExpand"
