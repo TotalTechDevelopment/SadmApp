@@ -13,5 +13,9 @@
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string Address => $"{Street} {Number}, {Colony}, {Town}, {State} Tel. {Telephone}";
+        public override string ToString()
+        {
+            return $"{Name} {Colony} {Street} {Number} {State} {PostalCode} {Town} {Telephone}".ToLower();
+        }
     }
 }

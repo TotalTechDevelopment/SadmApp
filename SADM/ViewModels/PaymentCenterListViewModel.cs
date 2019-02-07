@@ -64,7 +64,16 @@ namespace SADM.ViewModels
 
         protected void UpdateList()
         {
-            var list = Settings.AppConfiguration.Values.PaymentCenterList;
+            List<PaymentCenter> list;
+            if(!string.IsNullOrEmpty(Search))
+            {
+               list = Settings.AppConfiguration.Values.PaymentCenterList.Where(x => x.ToString().Contains(Search.ToLower())).ToList();
+            }
+            else
+            {
+                list = Settings.AppConfiguration.Values.PaymentCenterList.ToList();
+            }
+
             PaymentCenterList.Reset(list);
             PinList.Clear();
             var latitudeList = new List<double>();

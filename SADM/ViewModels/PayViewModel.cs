@@ -49,51 +49,59 @@ namespace SADM.ViewModels
 
         private async void ResponseUrlPayment(string url)
         {
-            var dic = GetParams(url);
-            var EstatusPago = dic.Where(e => e.Key == "vpc_TxnResponseCode").ToList().First().Value;
-            if (EstatusPago == "2")
+            if (url.Contains("back"))
             {
-                var request = new GetContractListRequest { Email = DatosPago.email };
-                if (await CallServiceAsync<GetContractListRequest, Models.Responses.GetBalanceListResponse>(request, "Actualizando pago", true) is Models.Responses.GetBalanceListResponse response && response.Success)
-                {
-                    var seleccionado = response.BalanceList.Where(t => t.Nis == DatosPago.NIS_RAD.ToString()).First();
-                    var fecha = seleccionado.v_fecsec.Remove(seleccionado.v_fecsec.Length - 1);
-                    fecha = new string(fecha.Skip(6).Take(2).ToArray()) + new string(fecha.Skip(4).Take(2).ToArray()) + new string(fecha.Take(4).ToArray());
-                    DatosPago.NIS_RAD = int.Parse(seleccionado.Nis);
-                    DatosPago.SEC_NIS = seleccionado.SecNis ?? 0;
-                    DatosPago.F_FACT = fecha;
-                    await sadmApiService.CallServiceAsync<PAGOSRequest, Models.Responses.ResponseBase>(new PAGOSRequest
-                    {
-                        v_f_fact = DatosPago.F_FACT,
-                        v_importe = DatosPago.v_importe / 100,
-                        v_nis_rad = DatosPago.NIS_RAD,
-                        v_referencia = DatosPago.v_referencia,
-                        v_sec_nis = DatosPago.SEC_NIS,
-                        v_sec_rec = DatosPago.SEC_REC
-                    });
-                    await _hudService.ShowSuccessMessageAsync("Pago realizado con éxito.");
-                    await _navigationService.NavigateAsync(new Uri($"/{nameof(LateralMenuPage)}/{nameof(NavigationPage)}/{nameof(BalancesPage)}", UriKind.Absolute));
-
-                }
-                else
-                {
-                    await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo.");
-                    await _navigationService.GoBackAsync();
-                }
+                await _navigationService.GoBackAsync();
             }
             else
             {
-                if(EstatusPago.Equals("C"))
+                var dic = GetParams(url);
+                var EstatusPago = dic.Where(e => e.Key == "vpc_TxnResponseCode").ToList().First().Value;
+                if (EstatusPago == "2")
                 {
-                    await _navigationService.GoBackAsync();
+                    var request = new GetContractListRequest { Email = DatosPago.email };
+                    if (await CallServiceAsync<GetContractListRequest, Models.Responses.GetBalanceListResponse>(request, "Actualizando pago", true) is Models.Responses.GetBalanceListResponse response && response.Success)
+                    {
+                        var seleccionado = response.BalanceList.Where(t => t.Nis == DatosPago.NIS_RAD.ToString()).First();
+                        var fecha = seleccionado.v_fecsec.Remove(seleccionado.v_fecsec.Length - 1);
+                        fecha = new string(fecha.Skip(6).Take(2).ToArray()) + new string(fecha.Skip(4).Take(2).ToArray()) + new string(fecha.Take(4).ToArray());
+                        DatosPago.NIS_RAD = int.Parse(seleccionado.Nis);
+                        DatosPago.SEC_NIS = seleccionado.SecNis ?? 0;
+                        DatosPago.F_FACT = fecha;
+                        await sadmApiService.CallServiceAsync<PAGOSRequest, Models.Responses.ResponseBase>(new PAGOSRequest
+                        {
+                            v_f_fact = DatosPago.F_FACT,
+                            v_importe = DatosPago.v_importe / 100,
+                            v_nis_rad = DatosPago.NIS_RAD,
+                            v_referencia = DatosPago.v_referencia,
+                            v_sec_nis = DatosPago.SEC_NIS,
+                            v_sec_rec = DatosPago.SEC_REC
+                        });
+                        await _hudService.ShowSuccessMessageAsync("Pago realizado con éxito.");
+                        await _navigationService.NavigateAsync(new Uri($"/{nameof(LateralMenuPage)}/{nameof(NavigationPage)}/{nameof(BalancesPage)}", UriKind.Absolute));
+
+                    }
+                    else
+                    {
+                        await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo.");
+                        await _navigationService.GoBackAsync();
+                    }
                 }
                 else
                 {
-                    await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
-                    await _navigationService.GoBackAsync();
-                }
+                    if (EstatusPago.Equals("C"))
+                    {
+                        await _navigationService.GoBackAsync();
+                    }
+                    else
+                    {
+                        await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
+                        await _navigationService.GoBackAsync();
+                    }
 
+                }
             }
+
             //await this.sadmApiService.CallServiceAsync(new PAGOSRequest
             //{
             //    v_f_fact = DatosPago.F_FACT,
