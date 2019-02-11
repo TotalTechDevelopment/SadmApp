@@ -30,7 +30,7 @@ namespace SADM.Views
                     {
                         _event.GetEvent<UrlChangeEvent>().Publish("back");
                     }
-                    else if (o.Url.Contains("http://localhost:8080/api/"))
+                    else if (o.Url.Contains("http://spartane.com/pay"))
                     {
                         webview.Source = "about:blank";
                         webview.IsVisible = false;

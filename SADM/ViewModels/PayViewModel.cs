@@ -46,9 +46,13 @@ namespace SADM.ViewModels
             this.sadmApiService = sadmApiService;
             _event.GetEvent<UrlChangeEvent>().Subscribe(ResponseUrlPayment);
         }
-
+        private bool yaNO;
         private async void ResponseUrlPayment(string url)
         {
+            if (yaNO)
+                return;
+
+            yaNO = true;
             if (url.Contains("back"))
             {
                 await _navigationService.GoBackAsync();
@@ -59,6 +63,7 @@ namespace SADM.ViewModels
                 var EstatusPago = dic.Where(e => e.Key == "vpc_TxnResponseCode").ToList().First().Value;
                 if (EstatusPago == "2")
                 {
+                   
                     var request = new GetContractListRequest { Email = DatosPago.email };
                     if (await CallServiceAsync<GetContractListRequest, Models.Responses.GetBalanceListResponse>(request, "Actualizando pago", true) is Models.Responses.GetBalanceListResponse response && response.Success)
                     {
@@ -78,6 +83,7 @@ namespace SADM.ViewModels
                             v_sec_rec = DatosPago.SEC_REC
                         });
                         await _hudService.ShowSuccessMessageAsync("Pago realizado con éxito.");
+
                         await _navigationService.NavigateAsync(new Uri($"/{nameof(LateralMenuPage)}/{nameof(NavigationPage)}/{nameof(BalancesPage)}", UriKind.Absolute));
 
                     }
@@ -136,7 +142,7 @@ namespace SADM.ViewModels
             conn.AddDigitalOrderField("vpc_Command", SADM.Settings.AppConfiguration.Values.vpc_Command);
             conn.AddDigitalOrderField("vpc_AccessCode", SADM.Settings.AppConfiguration.Values.vpc_AccessCode);
             conn.AddDigitalOrderField("vpc_Merchant", SADM.Settings.AppConfiguration.Values.vpc_Merchant);
-            conn.AddDigitalOrderField("vpc_ReturnURL", "http://localhost:8080/api/");
+            conn.AddDigitalOrderField("vpc_ReturnURL", "http://spartane.com/pay");
             conn.AddDigitalOrderField("vpc_MerchTxnRef", "RfId" + fechaConcatenada);
             conn.AddDigitalOrderField("vpc_OrderInfo", fechaConcatenada);
             balance.TotalDebt = (float?)0.1;

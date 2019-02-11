@@ -7,6 +7,9 @@ using Xamarin.Forms.Xaml;
 using Prism.DryIoc;
 using SADM.Services;
 using System;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SADM
@@ -76,6 +79,14 @@ namespace SADM
             containerRegistry.Register<ISettingsService, SettingsService>();
             containerRegistry.Register<ISadmApiService, SadmApiService>();
             containerRegistry.Register<IHudService, HudService>();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            AppCenter.Start("android=072fd3d1-473a-4e88-9cde-50c3877676cc;" +
+                  "ios=64d5501f-2fe8-4296-868b-6f0c8fe90edc;",
+                  typeof(Analytics), typeof(Crashes));
         }
     }
 }

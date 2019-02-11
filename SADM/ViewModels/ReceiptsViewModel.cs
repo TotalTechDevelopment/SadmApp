@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Prism.AppModel;
 using Prism.Navigation;
 using SADM.Controls;
 using SADM.Enums;
@@ -15,7 +17,7 @@ using Xamarin.Forms;
 
 namespace SADM.ViewModels
 {
-    public class ReceiptsViewModel : ViewModelBase
+    public class ReceiptsViewModel : ViewModelBase, IPageLifecycleAware
     {
         public IList<Bill> BillList { get; private set; }
         public ObservableCollectionExt<Balance> ContractList { get; private set; }
@@ -35,10 +37,26 @@ namespace SADM.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            new Command(async () => await GetBillListAsync()).Execute(null);
         }
 
-        protected async Task GetBillListAsync()
+        public void OnAppearing()
+        {
+            try
+            {
+                GetBillListAsync();
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+        }
+
+        public void OnDisappearing()
+        {
+
+        }
+
+        protected async void GetBillListAsync()
         {
             Loading = true;
             var request = new GetBillListRequest { Email = SettingsService.User.Email };
@@ -57,7 +75,7 @@ namespace SADM.ViewModels
                     contract.SendToTheAddressCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
                     contract.SendToEmailCommand = new AsyncCommand(async () => await ChangeConfigurationAsync(contract));
                 }
-                var a  = getBalanceListResponse.BalanceList.GroupBy(x => x.Nis).Select(x => x.FirstOrDefault()).ToList();
+                var a  = getBalanceListResponse.BalanceList.OrderBy(x => x.Nis);
                 ContractList.Reset(a);
             }
             Loading = false;
@@ -176,5 +194,7 @@ namespace SADM.ViewModels
             };
             var a = await CallServiceAsync<UpdateBillDeliveryConfigurationRequest, UpdateBillDeliveryConfigurationResponse>(request, "Cambiando la configuración...", true);
         }
+
+
     }
 }

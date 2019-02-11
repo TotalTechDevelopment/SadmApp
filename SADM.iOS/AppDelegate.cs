@@ -21,6 +21,7 @@ namespace SADM.iOS
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             global::Xamarin.Forms.Forms.Init();
+            Rg.Plugins.Popup.Popup.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyB7PdFV5A9xAXuBTY2ZIw_Jlk8blh_ilZM");
             Renderers.FloatingActionButtonRenderer.InitRenderer();
             LoadApplication(new App(new iOSInitializer()));
