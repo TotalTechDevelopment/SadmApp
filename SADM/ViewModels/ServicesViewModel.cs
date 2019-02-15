@@ -88,7 +88,7 @@ namespace SADM.ViewModels
                     }
                     else
                     {
-                        await HudService.ShowErrorAsync("No has generado solictudes");
+                        await HudService.ShowErrorAsync("No has generado solicitudes");
                     }
                 }
             }

@@ -150,7 +150,7 @@ namespace SADM.Services
                 {
                     response.Activo = r.Activo;
                     response.Apellido_Materno = r.Apellido_Materno;
-                    response.Apellido_Paterno = r.Apellido_Materno;
+                    response.Apellido_Paterno = r.Apellido_Paterno;
                     response.Nombre = r.Nombre;
                     response.Correo = r.Correo;
                     response.Calle = r.Calle;
@@ -194,7 +194,7 @@ namespace SADM.Services
                 {
                     response.Activo = r.Activo;
                     response.Apellido_Materno = r.Apellido_Materno;
-                    response.Apellido_Paterno = r.Apellido_Materno;
+                    response.Apellido_Paterno = r.Apellido_Paterno;
                     response.Nombre = r.Nombre;
                     response.Correo = r.Correo;
                     response.Calle = r.Calle;

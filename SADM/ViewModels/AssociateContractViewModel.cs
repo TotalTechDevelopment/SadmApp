@@ -123,9 +123,38 @@ namespace SADM.ViewModels
 
         protected async Task AssociateContractAttemptAsync()
         {
+            if(string.IsNullOrEmpty(Nis))
+            {
+                await HudService.ShowErrorAsync("El NIR no fue ingresado, ingresar NIR.");
+                return;
+            }
             if (Nis.Contains('-') && Nis.Split('-').Count() == 4)
             {
                 var arrayNIS = Nis.Split('-');
+                bool isValidNis = true;
+                foreach (var item in arrayNIS)
+                {
+                    if (!int.TryParse(item, out int value))
+                    {
+                        var dateNisArray = item.Split('/');
+                        if (dateNisArray.Count() == 3)
+                        {
+                            foreach (var itemDate in dateNisArray)
+                            {
+                                isValidNis &= int.TryParse(itemDate, out int valu);
+                            }
+                        }
+                        else
+                        {
+                            isValidNis = false;
+                        }
+                    }
+                }
+                if(!isValidNis)
+                {
+                    await HudService.ShowErrorAsync("El NIR ingresado no es válido debe contener solo dígitos, intente con otro.");
+                    return;
+                }
                 if (BalanceList.Where(x => x.Nis == arrayNIS[1]).Any())
                 {
                     //Nir = DecodeNis(Nis),
@@ -134,7 +163,21 @@ namespace SADM.ViewModels
                     return;
                 }
             }
-
+            else
+            {
+                await HudService.ShowErrorAsync("El NIR ingresado no es válido, intente con otro.");
+                return;
+            }
+            if(PreviousReading is null)
+            {
+                await HudService.ShowErrorAsync("La lectura anterior no fue ingresado, ingresar lectura anterior.");
+                return;
+            }
+            if (!int.TryParse(PreviousReading, out int val) && PreviousReading.Count() < 4)
+            {
+                await HudService.ShowErrorAsync("La lectura anterior no es valido debe estar compuesta de 4 dígitos, intente con otro.");
+                return;
+            }
             if (isRegister)
             {
                 request.Nir = Nis;// DecodeNis(Nis);

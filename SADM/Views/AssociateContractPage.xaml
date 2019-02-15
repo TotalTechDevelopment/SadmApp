@@ -57,11 +57,11 @@
                     </controls:InputBox.Behaviors>
                 </controls:InputBox>
                 <controls:InputBox Text="{Binding PreviousReading}"
+                                   
                                    Placeholder="{i18n:Translate PreviousReadingPlaceholder}"
-                                   Keyboard="Numeric">
-<!--                    <controls:InputBox.Behaviors>
+                                   Keyboard="Numeric"><controls:InputBox.Behaviors>
                         <behaviors:OnlyDigitsValidatorBehavior Max="4"/>
-                    </controls:InputBox.Behaviors>-->
+                    </controls:InputBox.Behaviors>
                 </controls:InputBox>
                 <controls:ImprovedButton Text="{Binding Action}"
                                          Command="{Binding AssociateContractAttemptCommand}"

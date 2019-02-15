@@ -43,7 +43,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) user your calendar.</string>
 	<key>CFBundleVersion</key>
-	<string>3.1</string>
+	<string>3.3</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Need permission to save files.</string>
 	<key>UIFileSharingEnabled</key>
@@ -69,5 +69,7 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 </dict>
 </plist>

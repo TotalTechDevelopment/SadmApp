@@ -232,9 +232,14 @@ namespace SADM.ViewModels
             return "";
         }
 
-        protected Double GetHeight(double value, double maxValue)
+        protected double GetHeight(double value, double maxValue)
         {
-            return value * MAX_HEIGHT_BAR / maxValue;
+            var intent = value * MAX_HEIGHT_BAR / maxValue;
+            if(double.IsNaN(intent))
+            {
+                intent = 0;
+            }
+            return intent;
         }
     }
 }
