@@ -50,7 +50,7 @@ namespace SADM.Services
                         response = await SadmApi.GetAppToken(request as GetAppTokenRequest) as V;
                         break;
                     case nameof(SignUpRequest):
-                        response = new SignUpResponse { Token = (await SadmApi.SignUp(request as SignUpRequest)).Replace("\"", string.Empty) } as V;
+                        response = await SadmApi.SignUp(request as SignUpRequest) as V;
                         break;
                     case nameof(RecoverPasswordRequest):
                         response = new RecoverPasswordResponse { Message = (await SadmApi.RecoverPassword(request as RecoverPasswordRequest)) } as V;
@@ -77,7 +77,13 @@ namespace SADM.Services
                             response.AddError("El Servicio No Puede Agregarse, Ya Se Encuentra Asociado");
                         }
                         else if(response1.ContractId.ToUpper().Contains("EL RECIBO INDICADO NO EXISTE"))
-                            response.AddError("El recibo indicado no existe");
+                        { 
+                            response.AddError("El recibo indicado no existe"); 
+                        } else if(response1.ContractId.Contains("La Lectura Ingresada Es Incorrecta"))
+                        {
+                            response.AddError("La Lectura Ingresada Es Incorrecta");
+                        }
+
                         break;
                     case nameof(RemoveContractRequest):
                         response = new RemoveContractResponse { ContractId = (await SadmApi.RemoveNis(request as RemoveContractRequest)).Replace("\"", string.Empty) } as V;

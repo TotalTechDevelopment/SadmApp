@@ -162,6 +162,7 @@
                     
                     <maps:Map VerticalOptions="FillAndExpand" 
                               HorizontalOptions="FillAndExpand" 
+                              x:Name="map"
                               IsVisible="{Binding TextAddressInput, Converter={StaticResource InverseBoolConverter}}">
                         <maps:Map.Behaviors>
                             <mapsBindings:BindingPinsBehavior Value="{Binding PinList}"/>

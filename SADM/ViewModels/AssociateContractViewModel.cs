@@ -9,6 +9,7 @@ using SADM.Views;
 using System;
 using SADM.Controls;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SADM.ViewModels
 {
@@ -182,28 +183,45 @@ namespace SADM.ViewModels
             {
                 request.Nir = Nis;// DecodeNis(Nis);
                 request.PreviousReading = PreviousReading;
+                string json = JsonConvert.SerializeObject(request);
                 if (await CallServiceAsync<SignUpRequest, SignUpResponse>(request, AppResources.SignUpLoading, true) is SignUpResponse response && response.Success)
                 {
-                    var newUser = new User { 
-                        Name = request.Name,
-                        LastName = request.LastName,
-                        SecondLastName = request.SecondLastName,
-                        Folio = long.Parse(response.Token),
-                        Email = request.Email,
-                        IsActive = request.Active,
-                        Street = request.Street,
-                        Number = request.Number,
-                        Colony = request.Colony,
-                        City = request.City,
-                        State = request.State,
-                        PostalCode = request.PostalCode,
-                        PhoneNumber = (request.PhoneNumber).ToString(),
-                        Question = request.Question,
-                        Answer = request.Answer,
-                        Password = request.Password
-                    };
-                    await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
-                    await GoToPageAsync<LateralMenuPage>();
+                    if(response.Folio.Equals("-1"))
+                    {
+                        if(string.IsNullOrEmpty(response.ErrorMessage))
+                        {
+                            await HudService.ShowErrorAsync("El NIR ingresado no es válido, intente con otro.");
+                        }
+                        else
+                        {
+                            await HudService.ShowErrorAsync(response.ErrorMessage);
+                        }
+                    }
+                    else
+                    {
+                        var newUser = new User
+                        {
+                            Name = request.Name,
+                            LastName = request.LastName,
+                            SecondLastName = request.SecondLastName,
+                            Folio = long.Parse(response.Folio),
+                            Email = request.Email,
+                            IsActive = request.Active,
+                            Street = request.Street,
+                            Number = request.Number,
+                            Colony = request.Colony,
+                            City = request.City,
+                            State = request.State,
+                            PostalCode = request.PostalCode,
+                            PhoneNumber = (request.PhoneNumber).ToString(),
+                            Question = request.Question,
+                            Answer = request.Answer,
+                            Password = request.Password
+                        };
+                        await HudService.ShowSuccessMessageAsync(response.ErrorMessage);
+                        await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
+                        await GoToPageAsync<LateralMenuPage>();
+                    }
                 }
             }
             else
@@ -230,27 +248,35 @@ namespace SADM.ViewModels
                 request.PreviousReading = PreviousReading;
                 if (await CallServiceAsync<SignUpRequest, SignUpResponse>(request, AppResources.SignUpLoading, true) is SignUpResponse response && response.Success)
                 {
-                    var newUser = new User
+                    if (string.IsNullOrEmpty(response.Error))
                     {
-                        Name = request.Name,
-                        LastName = request.LastName,
-                        SecondLastName = request.SecondLastName,
-                        Folio = long.Parse(response.Token),
-                        Email = request.Email,
-                        IsActive = request.Active,
-                        Street = request.Street,
-                        Number = request.Number,
-                        Colony = request.Colony,
-                        City = request.City,
-                        State = request.State,
-                        PostalCode = request.PostalCode,
-                        PhoneNumber = (request.PhoneNumber).ToString(),
-                        Question = request.Question,
-                        Answer = request.Answer,
-                        Password = request.Password
-                    };
-                    await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
-                    await GoToPageAsync<LateralMenuPage>();
+                        await HudService.ShowErrorAsync(response.Error);
+                    }
+                    else
+                    {
+                        var newUser = new User
+                        {
+                            Name = request.Name,
+                            LastName = request.LastName,
+                            SecondLastName = request.SecondLastName,
+                            Folio = long.Parse(response.Folio),
+                            Email = request.Email,
+                            IsActive = request.Active,
+                            Street = request.Street,
+                            Number = request.Number,
+                            Colony = request.Colony,
+                            City = request.City,
+                            State = request.State,
+                            PostalCode = request.PostalCode,
+                            PhoneNumber = (request.PhoneNumber).ToString(),
+                            Question = request.Question,
+                            Answer = request.Answer,
+                            Password = request.Password
+                        };
+                        await SettingsService.WriteSessionDataAsync(newUser, newUser.Email, true);
+                        await GoToPageAsync<LateralMenuPage>();
+                    }
+                   
                 }
             }
             else

@@ -21,6 +21,7 @@
     <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.13.0" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
   </ItemGroup>
 
   <ItemGroup>

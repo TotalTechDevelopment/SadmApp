@@ -19,5 +19,7 @@ namespace SADM.Models.Requests
         public string v_referencia { get; set; }
         [JsonProperty("v_importe")]
         public float v_importe { get; set; }
+        [JsonProperty("v_fecha_vencimiento")]
+        public DateTime v_fecha_vencimiento { get; set; }
     }
 }

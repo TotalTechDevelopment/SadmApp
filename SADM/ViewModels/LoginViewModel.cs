@@ -37,7 +37,7 @@ namespace SADM.ViewModels
             if(await CallServiceAsync<LoginRequest, LoginResponse>(request, AppResources.LoginLoading, true) 
                is LoginResponse loginResponse && loginResponse.Success)
             {
-                await SettingsService.WriteSessionDataAsync(loginResponse.User, Email, RememberMe);
+                var a = await SettingsService.WriteSessionDataAsync(loginResponse.User, Email, RememberMe);
                 await GoToPageAsync<LateralMenuPage>();
             }
         }

@@ -52,7 +52,7 @@
     <CodesignKey>iPhone Distribution: TOTALSYSTEMS SA DE CV (6CDA8VWZT6)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignProvision>SADM Dis AdHoc</CodesignProvision>
 <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -64,7 +64,6 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution: TOTALSYSTEMS SA DE CV (6CDA8VWZT6)</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>SADM Dis AdHoc</CodesignProvision>
     <BuildIpa>true</BuildIpa>
     <MtouchSdkVersion>12.1</MtouchSdkVersion>
@@ -350,6 +349,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
       <Version>1.13.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Geolocator">
+      <Version>4.5.0.6</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

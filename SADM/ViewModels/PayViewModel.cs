@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
 using Prism.Events;
 using Prism.Navigation;
 using SADM.Events;
-using SADM.Extensions;
-using SADM.Helpers;
 using SADM.Models;
 using SADM.Models.Requests;
 using SADM.Services;
@@ -61,7 +56,7 @@ namespace SADM.ViewModels
             {
                 var dic = GetParams(url);
                 var EstatusPago = dic.Where(e => e.Key == "vpc_TxnResponseCode").ToList().First().Value;
-                if (EstatusPago == "2")
+                if (EstatusPago == "0")
                 {
                    
                     var request = new GetContractListRequest { Email = DatosPago.email };
@@ -69,6 +64,7 @@ namespace SADM.ViewModels
                     {
                         var seleccionado = response.BalanceList.Where(t => t.Nis == DatosPago.NIS_RAD.ToString()).First();
                         var fecha = seleccionado.v_fecsec.Remove(seleccionado.v_fecsec.Length - 1);
+                        
                         fecha = new string(fecha.Skip(6).Take(2).ToArray()) + new string(fecha.Skip(4).Take(2).ToArray()) + new string(fecha.Take(4).ToArray());
                         DatosPago.NIS_RAD = int.Parse(seleccionado.Nis);
                         DatosPago.SEC_NIS = seleccionado.SecNis ?? 0;
@@ -80,7 +76,8 @@ namespace SADM.ViewModels
                             v_nis_rad = DatosPago.NIS_RAD,
                             v_referencia = DatosPago.v_referencia,
                             v_sec_nis = DatosPago.SEC_NIS,
-                            v_sec_rec = DatosPago.SEC_REC
+                            v_sec_rec = DatosPago.SEC_REC,
+                            v_fecha_vencimiento = seleccionado.ExpirationDate
                         });
                         await _hudService.ShowSuccessMessageAsync("Pago realizado con éxito.");
 
@@ -101,7 +98,21 @@ namespace SADM.ViewModels
                     }
                     else
                     {
-                        await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo");
+                        switch(EstatusPago)
+                        {
+                            case "1":
+                                await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo, la transacción fue declinada.");
+                                break;
+                            case "2":
+                                await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo, el banco declino la transacción.");
+                                break;
+                            case "5":
+                                await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo, no tienes fondos suficientes.");
+                                break;
+                            default:
+                                await _hudService.ShowErrorAsync("Transacción denegada, favor de acercarse a su banco.");
+                                break;
+                        }
                         await _navigationService.GoBackAsync();
                     }
 
@@ -145,7 +156,6 @@ namespace SADM.ViewModels
             conn.AddDigitalOrderField("vpc_ReturnURL", "http://spartane.com/pay");
             conn.AddDigitalOrderField("vpc_MerchTxnRef", "RfId" + fechaConcatenada);
             conn.AddDigitalOrderField("vpc_OrderInfo", fechaConcatenada);
-            balance.TotalDebt = (float?)0.1;
             conn.AddDigitalOrderField("vpc_Amount", (balance.TotalDebt * 100).ToString());
             conn.AddDigitalOrderField("vpc_Currency", SADM.Settings.AppConfiguration.Values.vpc_Currency);
             //conn.AddDigitalOrderField("vpc_CustomPaymentPlanPlanId", vpc_CustomPaymentPlanPlanId.Text);

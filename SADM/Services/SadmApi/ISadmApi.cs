@@ -16,7 +16,7 @@ namespace SADM.Services
 
         [Post("/api/Registro_de_usuarios/Post")]
         [Headers("Id_User: 1", "Authorization: Bearer")]
-        Task<string> SignUp([Body(BodySerializationMethod.Json)]SignUpRequest request);
+        Task<SignUpResponse> SignUp([Body(BodySerializationMethod.Json)]SignUpRequest request);
 
         [Post("/api/Registro_de_usuarios/UpdateUser")]
         [Headers("Id_User: 1", "Authorization: Bearer")]

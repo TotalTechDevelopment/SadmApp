@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using Foundation;
 using SADM.iOS.Services;
 using SADM.Services;
@@ -17,12 +18,14 @@ namespace SADM.iOS.Services
         {
             var webClient = new WebClient();
 
-            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var library = Path.Combine(documents, "..", "Library");
-            var localPath = Path.Combine(library, fileName);
             webClient.DownloadDataCompleted += (s, e) =>
             {
-                File.WriteAllBytes(localPath, e.Result);
+                var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                var filename = Path.Combine(documents, fileName);
+                File.WriteAllBytes(filename, e.Result);
+                Device.BeginInvokeOnMainThread(() => {
+                    new UIAlertView("Éxito", "Archivo descargado correctamente.", null, "OK", null).Show();
+                });
             };
             webClient.DownloadDataAsync(new Uri(uri));
         }
