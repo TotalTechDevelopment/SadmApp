@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using Prism.Mvvm;
 using Prism.Navigation;
 using SADM.Extensions;
@@ -243,6 +244,7 @@ namespace SADM.ViewModels
                 {
                     HudService.ShowProgress(progressMessage);
                     response = await ApiService.CallServiceAsync<U, V>(request);
+                    string json = JsonConvert.SerializeObject(request);
                     await HudService.HideProgressAsync();
                 }
             }

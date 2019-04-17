@@ -38,7 +38,7 @@ namespace SADM.Converters
                 if (string.IsNullOrWhiteSpace(valueString))
                     return "$ 0.00";
 
-                return int.Parse(valueString).ToString("C");
+                return double.Parse(valueString).ToString("C");
             }
             return "$ 0.00";
         }

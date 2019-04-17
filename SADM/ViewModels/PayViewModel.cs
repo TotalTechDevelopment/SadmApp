@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.AppCenter.Analytics;
+using Newtonsoft.Json;
 using Prism.Events;
 using Prism.Navigation;
 using SADM.Events;
@@ -55,13 +57,16 @@ namespace SADM.ViewModels
             else
             {
                 var dic = GetParams(url);
+                Analytics.TrackEvent(url);
                 var EstatusPago = dic.Where(e => e.Key == "vpc_TxnResponseCode").ToList().First().Value;
                 if (EstatusPago == "0")
                 {
-                   
+                    Analytics.TrackEvent("ok code");
                     var request = new GetContractListRequest { Email = DatosPago.email };
+                   
                     if (await CallServiceAsync<GetContractListRequest, Models.Responses.GetBalanceListResponse>(request, "Actualizando pago", true) is Models.Responses.GetBalanceListResponse response && response.Success)
                     {
+                        Analytics.TrackEvent("ok response");
                         var seleccionado = response.BalanceList.Where(t => t.Nis == DatosPago.NIS_RAD.ToString()).First();
                         var fecha = seleccionado.v_fecsec.Remove(seleccionado.v_fecsec.Length - 1);
                         
@@ -69,7 +74,7 @@ namespace SADM.ViewModels
                         DatosPago.NIS_RAD = int.Parse(seleccionado.Nis);
                         DatosPago.SEC_NIS = seleccionado.SecNis ?? 0;
                         DatosPago.F_FACT = fecha;
-                        await sadmApiService.CallServiceAsync<PAGOSRequest, Models.Responses.ResponseBase>(new PAGOSRequest
+                        var pay = new PAGOSRequest
                         {
                             v_f_fact = DatosPago.F_FACT,
                             v_importe = DatosPago.v_importe / 100,
@@ -78,7 +83,9 @@ namespace SADM.ViewModels
                             v_sec_nis = DatosPago.SEC_NIS,
                             v_sec_rec = DatosPago.SEC_REC,
                             v_fecha_vencimiento = seleccionado.ExpirationDate
-                        });
+                        };
+                        string json = JsonConvert.SerializeObject(pay);
+                        await sadmApiService.CallServiceAsync<PAGOSRequest, Models.Responses.ResponseBase>(pay);
                         await _hudService.ShowSuccessMessageAsync("Pago realizado con éxito.");
 
                         await _navigationService.NavigateAsync(new Uri($"/{nameof(LateralMenuPage)}/{nameof(NavigationPage)}/{nameof(BalancesPage)}", UriKind.Absolute));
@@ -86,6 +93,7 @@ namespace SADM.ViewModels
                     }
                     else
                     {
+                        Analytics.TrackEvent("Error response");
                         await _hudService.ShowErrorAsync("Ocurrio un error en el pago intente de nuevo.");
                         await _navigationService.GoBackAsync();
                     }

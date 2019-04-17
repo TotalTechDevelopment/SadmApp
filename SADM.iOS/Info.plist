@@ -43,7 +43,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) user your calendar.</string>
 	<key>CFBundleVersion</key>
-	<string>3.6</string>
+	<string>3.11</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Need permission to save files.</string>
 	<key>UIFileSharingEnabled</key>
@@ -73,5 +73,7 @@
 	<true/>
 	<key>NSLocationWhenInUsageDescription</key>
 	<string>Can we use your location when your app is being used?</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Esta aplicación necesita acceso a tu locación para poder mostrarte el punto donde estas y puedas seleccionar el punto adecuado</string>
 </dict>
 </plist>

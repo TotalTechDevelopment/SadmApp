@@ -70,8 +70,10 @@
   <ItemGroup>
     <None Remove="Effects\UnderlinedLabelEffect.xml" />
     <None Remove="Settings\Development.json" />
+    <None Remove="Settings\Production.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Settings\Development.json" />
+    <EmbeddedResource Include="Settings\Production.json" />
   </ItemGroup>
 </Project>

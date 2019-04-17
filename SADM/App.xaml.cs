@@ -20,6 +20,7 @@ namespace SADM
         /// Initializes a new instance of the <see cref="T:SADM.App"/> class.
         /// </summary>
         public static App CurrentInstance { get; private set; }
+        public static bool SucessPay { get; set; }
         public App() : this(null) 
         {
             //Force constructor for PRISM

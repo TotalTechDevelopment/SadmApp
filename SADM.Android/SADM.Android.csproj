@@ -48,6 +48,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/alexdev/Downloads/Telegram Desktop/ArchivosTT/TTKeys/totaltech.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>sup3rDebi4n</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>totaltech</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>sup3rDebi4n</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />

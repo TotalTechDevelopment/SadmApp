@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Prism.Navigation;
 using SADM.Helpers;
 using SADM.Models;
@@ -21,32 +22,32 @@ namespace SADM.ViewModels
             NotificationList = new ObservableCollection<Notification> { 
                 new Notification {
                     Title = "Tu pago se ha realizado", 
-                    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod", 
+                    Message = "", 
                     Type = Enums.NotificationType.Success
                 },
                 new Notification {
                     Title = "Se ha reportado una fuga en el...",
-                    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod",
+                    Message = "",
                     Type = Enums.NotificationType.Error
                 },
                 new Notification {
                     Title = "Tu reporte se ha generado",
-                    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod",
+                    Message = "",
                     Type = Enums.NotificationType.Success
                 },
                 new Notification {
                     Title = "La fecha de vencimiento de tu...",
-                    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod",
+                    Message = "",
                     Type = Enums.NotificationType.Success
                 },
                 new Notification {
                     Title = "La fecha de vencimiento de tu...",
-                    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod",
+                    Message ="",
                     Type = Enums.NotificationType.Error
                 },
                 new Notification {
                     Title = "La fecha de vencimiento de tu...",
-                    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod",
+                    Message = "",
                     Type = Enums.NotificationType.Success
                 }
             };

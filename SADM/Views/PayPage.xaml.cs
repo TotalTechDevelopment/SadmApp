@@ -17,6 +17,12 @@ namespace SADM.Views
             _event = eventAggregator;
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.SucessPay = false;
+        }
+
         async void w_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Source")
@@ -32,9 +38,16 @@ namespace SADM.Views
                     }
                     else if (o.Url.Contains("http://spartane.com/pay"))
                     {
+
+
+
                         webview.Source = "about:blank";
                         webview.IsVisible = false;
+                        if (App.SucessPay) return;
+
+                        App.SucessPay = true;
                         _event.GetEvent<UrlChangeEvent>().Publish(o.Url);
+                        
                     }
                 }
                 catch (System.Exception ex)

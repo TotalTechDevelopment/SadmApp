@@ -51,6 +51,7 @@ namespace SADM.Services
                         break;
                     case nameof(SignUpRequest):
                         response = await SadmApi.SignUp(request as SignUpRequest) as V;
+                        var a = response;
                         break;
                     case nameof(RecoverPasswordRequest):
                         response = new RecoverPasswordResponse { Message = (await SadmApi.RecoverPassword(request as RecoverPasswordRequest)) } as V;
