@@ -1,5 +1,5 @@
-﻿#define Develop
-//#define Production
+﻿//#define Develop
+#define Production
 
 using System.IO;
 using System.Reflection;
